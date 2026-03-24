@@ -1,0 +1,42 @@
+{
+  "name": "@alt-javascript/jsnoslqc-dynamodb",
+  "version": "1.0.0",
+  "description": "JSNOSLQC DynamoDB driver via @aws-sdk/client-dynamodb",
+  "keywords": [
+    "jsnoslqc",
+    "nosql",
+    "dynamodb",
+    "aws",
+    "driver",
+    "database"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "homepage": "https://github.com/alt-javascript/jsnoslqc/tree/main/packages/dynamodb#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alt-javascript/jsnoslqc",
+    "directory": "packages/dynamodb"
+  },
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive 'test/**/*.spec.js' --timeout 20000"
+  },
+  "dependencies": {
+    "@alt-javascript/jsnoslqc-core": "*",
+    "@aws-sdk/client-dynamodb": "^3.500.0",
+    "@aws-sdk/lib-dynamodb": "^3.500.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
+  },
+  "author": "Craig Parravicini",
+  "contributors": [
+    "Claude (Anthropic)"
+  ],
+  "license": "MIT"
+}
