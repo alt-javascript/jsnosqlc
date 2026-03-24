@@ -1,15 +1,17 @@
 # GSD State
 
 **Active Milestone:** M001 — jsnoslqc Foundation
-**Active Slice:** S01 — Core Interfaces and Filter Builder
-**Active Task:** T01 — (not yet started)
-**Phase:** Planning
+**Active Slice:** — (all slices complete)
+**Active Task:** — (complete)
+**Phase:** Complete
 
 ## Recent Decisions
 
-- Filter syntax: chainable builder API `Filter.where('age').gt(18).and('name').eq('Alice')`
-- M1 drivers: core + memory + MongoDB + DynamoDB
-- ESM throughout, mocha + chai, mirrors jsdbc monorepo layout
+- `_store` is a reserved method name in Collection base class — use `_map` for backing store in MemoryCollection
+- insert() generates string ids (timestamp+random hex) for consistent get-by-id across all drivers
+- DynamoDB `in` operator emitted as OR chain of equality; `nin` as AND chain of inequality (no native $in)
+- MongoDB `contains` uses MongoDB's native array element matching (no $elemMatch needed)
+- DynamoDB tables created lazily on first operation via LazyDynamoCollection
 
 ## Blockers
 
@@ -17,4 +19,4 @@
 
 ## Next Action
 
-Plan and execute S01: write S01-PLAN.md and T01/T02/T03 task plans, then begin T01 execution.
+M001 complete. Consider M002 targets: additional drivers (Redis, Firestore, Cassandra), or/$or filter support, transaction API, streaming cursors.
