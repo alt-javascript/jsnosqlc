@@ -1,7 +1,7 @@
 /**
  * CosmosCollection — Azure Cosmos DB Collection implementation.
  *
- * Maps jsnoslqc operations to Cosmos DB SDK calls.
+ * Maps jsnosqlc operations to Cosmos DB SDK calls.
  * Uses the item 'id' field as the primary key (Cosmos DB's required field).
  *
  * Key strategy:

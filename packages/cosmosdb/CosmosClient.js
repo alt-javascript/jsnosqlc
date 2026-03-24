@@ -9,7 +9,7 @@ import CosmosCollection from './CosmosCollection.js';
 
 export default class CosmosClient extends Client {
   /**
-   * @param {string} url — jsnoslqc URL
+   * @param {string} url — jsnosqlc URL
    * @param {import('@azure/cosmos').CosmosClient} nativeClient
    * @param {import('@azure/cosmos').Database} database
    */

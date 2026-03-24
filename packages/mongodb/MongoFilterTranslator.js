@@ -1,5 +1,5 @@
 /**
- * MongoFilterTranslator — Converts a jsnoslqc Filter AST to a MongoDB query document.
+ * MongoFilterTranslator — Converts a jsnosqlc Filter AST to a MongoDB query document.
  *
  * Handles:
  *   Leaf:     { type: 'condition', field, op, value }

@@ -9,7 +9,7 @@ import DriverManager from './DriverManager.js';
 export default class Client {
   /**
    * @param {Object} [config]
-   * @param {string} [config.url] — jsnoslqc URL (stored for reference)
+   * @param {string} [config.url] — jsnosqlc URL (stored for reference)
    */
   constructor(config = {}) {
     this._url = config.url ?? null;
@@ -67,7 +67,7 @@ export default class Client {
 export class ClientDataSource {
   /**
    * @param {Object} config
-   * @param {string} config.url — jsnoslqc URL
+   * @param {string} config.url — jsnosqlc URL
    * @param {string} [config.username]
    * @param {string} [config.password]
    * @param {Object} [config.properties] — additional driver properties

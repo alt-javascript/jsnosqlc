@@ -1,4 +1,4 @@
-# M001: jsnoslqc Foundation
+# M001: jsnosqlc Foundation
 
 **Vision:** Deliver a working JDBC-inspired NoSQL access layer for JavaScript: a uniform
 `Client → Collection → Cursor` API with a chainable filter builder, backed by three

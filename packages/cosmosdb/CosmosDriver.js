@@ -1,5 +1,5 @@
 /**
- * CosmosDriver — Azure Cosmos DB jsnoslqc driver.
+ * CosmosDriver — Azure Cosmos DB jsnosqlc driver.
  *
  * URL formats:
  *   jsnosqlc:cosmosdb:local                  — local emulator (http://localhost:8081)
@@ -53,7 +53,7 @@ export default class CosmosDriver extends Driver {
 
     const nativeClient = new NativeCosmosClient(clientOptions);
 
-    const dbId = properties.database ?? 'jsnoslqc';
+    const dbId = properties.database ?? 'jsnosqlc';
     const { database } = await nativeClient.databases.createIfNotExists({ id: dbId });
 
     return new CosmosClient(url, nativeClient, database);

@@ -1,5 +1,5 @@
 /**
- * DynamoFilterTranslator — Converts a jsnoslqc Filter AST to DynamoDB
+ * DynamoFilterTranslator — Converts a jsnosqlc Filter AST to DynamoDB
  * FilterExpression syntax.
  *
  * DynamoDB requires:

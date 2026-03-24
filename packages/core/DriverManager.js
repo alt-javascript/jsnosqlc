@@ -1,5 +1,5 @@
 /**
- * DriverManager — Registry for jsnoslqc drivers.
+ * DriverManager — Registry for jsnosqlc drivers.
  *
  * Drivers register themselves on import. When getClient() is called,
  * DriverManager iterates registered drivers to find one that accepts the URL.
@@ -27,7 +27,7 @@ export default class DriverManager {
 
   /**
    * Get a client from the first driver that accepts the URL.
-   * @param {string} url — jsnoslqc URL
+   * @param {string} url — jsnosqlc URL
    * @param {Object} [properties] — connection properties
    * @returns {Promise<Client>}
    */

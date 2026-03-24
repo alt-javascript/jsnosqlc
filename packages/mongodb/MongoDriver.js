@@ -1,5 +1,5 @@
 /**
- * MongoDriver — MongoDB jsnoslqc driver.
+ * MongoDriver — MongoDB jsnosqlc driver.
  *
  * Handles URLs with prefix: jsnosqlc:mongodb://
  * Strips the jsnosqlc: prefix and passes the remainder to the native MongoDB client.

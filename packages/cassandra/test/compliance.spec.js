@@ -17,7 +17,7 @@ import { runCompliance } from '@alt-javascript/jsnosqlc-core/test/driverComplian
 import { DriverManager } from '@alt-javascript/jsnosqlc-core';
 import CassandraDriver from '../CassandraDriver.js';
 
-const CASSANDRA_URL = process.env.CASSANDRA_URL ?? 'jsnosqlc:cassandra:localhost:9042/jsnoslqc_test';
+const CASSANDRA_URL = process.env.CASSANDRA_URL ?? 'jsnosqlc:cassandra:localhost:9042/jsnosqlc_test';
 let cassandraAvailable = false;
 
 describe('Cassandra driver — connectivity check', function () {

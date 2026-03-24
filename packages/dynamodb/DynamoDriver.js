@@ -1,5 +1,5 @@
 /**
- * DynamoDriver — DynamoDB jsnoslqc driver.
+ * DynamoDriver — DynamoDB jsnosqlc driver.
  *
  * URL format: jsnosqlc:dynamodb:<region>
  * e.g. jsnosqlc:dynamodb:us-east-1

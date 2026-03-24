@@ -1,8 +1,8 @@
 /**
- * CassandraDriver — Apache Cassandra jsnoslqc driver.
+ * CassandraDriver — Apache Cassandra jsnosqlc driver.
  *
  * URL format: jsnosqlc:cassandra:<host>:<port>/<keyspace>
- * e.g. jsnosqlc:cassandra:localhost:9042/jsnoslqc
+ * e.g. jsnosqlc:cassandra:localhost:9042/jsnosqlc
  *
  * The keyspace is created automatically if it doesn't exist (SimpleStrategy,
  * replication_factor: 1 — suitable for local/test use).
@@ -27,7 +27,7 @@ export default class CassandraDriver extends Driver {
     const rest = url.substring(CassandraDriver.URL_PREFIX.length);
     const slashIdx = rest.indexOf('/');
     const hostPort = slashIdx >= 0 ? rest.substring(0, slashIdx) : rest;
-    const keyspace = slashIdx >= 0 ? rest.substring(slashIdx + 1) : 'jsnoslqc';
+    const keyspace = slashIdx >= 0 ? rest.substring(slashIdx + 1) : 'jsnosqlc';
     const [host, portStr] = hostPort.split(':');
     const port = portStr ? parseInt(portStr, 10) : 9042;
 

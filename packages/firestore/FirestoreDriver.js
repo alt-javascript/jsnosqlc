@@ -1,5 +1,5 @@
 /**
- * FirestoreDriver — Google Firestore jsnoslqc driver.
+ * FirestoreDriver — Google Firestore jsnosqlc driver.
  *
  * URL format: jsnosqlc:firestore:<project-id>
  * e.g. jsnosqlc:firestore:my-gcp-project

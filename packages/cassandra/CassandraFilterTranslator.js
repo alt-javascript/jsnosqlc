@@ -1,5 +1,5 @@
 /**
- * CassandraFilterTranslator — Converts a jsnoslqc Filter AST to CQL WHERE clause.
+ * CassandraFilterTranslator — Converts a jsnosqlc Filter AST to CQL WHERE clause.
  *
  * Schema: CREATE TABLE col (pk text PRIMARY KEY, data text)
  * Documents are stored as JSON in the 'data' column.

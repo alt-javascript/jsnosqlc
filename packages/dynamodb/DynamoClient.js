@@ -16,7 +16,7 @@ import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
 
 export default class DynamoClient extends Client {
   /**
-   * @param {string} url — original jsnoslqc URL
+   * @param {string} url — original jsnosqlc URL
    * @param {DynamoDBClient} nativeClient
    * @param {DynamoDBDocumentClient} docClient
    */

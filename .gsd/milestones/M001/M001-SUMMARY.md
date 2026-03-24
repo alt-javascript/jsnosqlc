@@ -45,7 +45,7 @@ verification_result: pass
 completed_at: 2026-03-24T12:00:00Z
 ---
 
-# M001: jsnoslqc Foundation
+# M001: jsnosqlc Foundation
 
 **50 unit tests + 50 integration tests passing across memory, MongoDB, and DynamoDB drivers.**
 

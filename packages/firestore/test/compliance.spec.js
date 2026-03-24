@@ -3,12 +3,12 @@
  *
  * Requires the Firestore emulator:
  *   docker run --rm -d --name jsnosqlc-firestore \
- *     -e FIRESTORE_PROJECT_ID=jsnoslqc-test -e PORT=8080 \
+ *     -e FIRESTORE_PROJECT_ID=jsnosqlc-test -e PORT=8080 \
  *     -p 8080:8080 mtlynch/firestore-emulator
  *
  * Environment:
  *   FIRESTORE_EMULATOR_HOST — defaults to localhost:8080
- *   FIRESTORE_PROJECT_ID    — defaults to jsnoslqc-test
+ *   FIRESTORE_PROJECT_ID    — defaults to jsnosqlc-test
  *
  * Skips all tests gracefully if Firestore emulator is not reachable.
  */
@@ -18,7 +18,7 @@ import { DriverManager } from '@alt-javascript/jsnosqlc-core';
 import FirestoreDriver from '../FirestoreDriver.js';
 
 const EMULATOR_HOST = process.env.FIRESTORE_EMULATOR_HOST ?? 'localhost:8080';
-const PROJECT_ID = process.env.FIRESTORE_PROJECT_ID ?? 'jsnoslqc-test';
+const PROJECT_ID = process.env.FIRESTORE_PROJECT_ID ?? 'jsnosqlc-test';
 const URL = `jsnosqlc:firestore:${PROJECT_ID}`;
 
 let firestoreAvailable = false;

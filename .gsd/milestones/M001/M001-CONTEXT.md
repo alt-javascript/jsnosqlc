@@ -1,4 +1,4 @@
-# M001: jsnoslqc Foundation — Context
+# M001: jsnosqlc Foundation — Context
 
 **Gathered:** 2026-03-24
 **Status:** Ready for planning
@@ -6,7 +6,7 @@
 ## Project Goal
 
 JSDBC-inspired unified NoSQL access layer for JavaScript. Where jsdbc wraps disparate SQL
-drivers behind a common Connection/Statement/ResultSet API, jsnoslqc wraps disparate NoSQL
+drivers behind a common Connection/Statement/ResultSet API, jsnosqlc wraps disparate NoSQL
 and key-value stores behind a common Client/Collection/Cursor API.
 
 ## Scope for M1

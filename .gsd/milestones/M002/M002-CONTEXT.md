@@ -1,4 +1,4 @@
-# M002: jsnoslqc Extended Drivers — Context
+# M002: jsnosqlc Extended Drivers — Context
 
 **Gathered:** 2026-03-24
 **Status:** Ready for planning
@@ -45,7 +45,7 @@ Plus: **filter builder extension** with `or` compound operator and `not` negatio
 - Local testing: `cassandra:4` Docker, port 9042
 - URL scheme: `jsnosqlc:cassandra:localhost:9042/keyspace`
 - Cassandra is CQL (SQL-like) — filter translates to CQL WHERE clause
-- Collections = tables. Tables must be created with a schema. jsnoslqc uses a fixed schema:
+- Collections = tables. Tables must be created with a schema. jsnosqlc uses a fixed schema:
   `CREATE TABLE IF NOT EXISTS collection (pk text PRIMARY KEY, data text)` — stores doc as JSON in `data`
 - `find()` with filter: CQL allows `ALLOW FILTERING` but it's expensive — document this.
   For M2: implement `find()` using `SELECT * FROM table ALLOW FILTERING` with CQL WHERE

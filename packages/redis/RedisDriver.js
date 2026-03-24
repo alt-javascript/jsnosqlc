@@ -1,5 +1,5 @@
 /**
- * RedisDriver — Redis jsnoslqc driver via ioredis.
+ * RedisDriver — Redis jsnosqlc driver via ioredis.
  *
  * URL formats:
  *   jsnosqlc:redis://localhost:6379

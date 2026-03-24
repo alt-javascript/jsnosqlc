@@ -6,7 +6,7 @@ import RedisCollection from './RedisCollection.js';
 
 export default class RedisClient extends Client {
   /**
-   * @param {string} url — jsnoslqc URL
+   * @param {string} url — jsnosqlc URL
    * @param {import('ioredis').Redis} redis — connected ioredis instance
    */
   constructor(url, redis) {

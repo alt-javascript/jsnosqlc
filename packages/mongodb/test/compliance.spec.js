@@ -2,7 +2,7 @@
  * compliance.spec.js — Runs the shared driver compliance suite against MongoDB.
  *
  * Requires a MongoDB instance. Set MONGODB_URL env var or defaults to
- * jsnosqlc:mongodb://localhost:27017/jsnoslqc_test
+ * jsnosqlc:mongodb://localhost:27017/jsnosqlc_test
  *
  * Skips all tests gracefully if MongoDB is not reachable.
  */
@@ -12,7 +12,7 @@ import { runCompliance } from '@alt-javascript/jsnosqlc-core/test/driverComplian
 import { DriverManager } from '@alt-javascript/jsnosqlc-core';
 import MongoDriver from '../MongoDriver.js';
 
-const MONGO_URL = process.env.MONGODB_URL ?? 'jsnosqlc:mongodb://localhost:27017/jsnoslqc_test';
+const MONGO_URL = process.env.MONGODB_URL ?? 'jsnosqlc:mongodb://localhost:27017/jsnosqlc_test';
 
 // Check connectivity before running the full suite
 let mongoAvailable = false;

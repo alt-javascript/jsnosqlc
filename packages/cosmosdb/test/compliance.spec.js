@@ -29,7 +29,7 @@ describe('Cosmos DB driver — connectivity check', function () {
     try {
       DriverManager.clear();
       DriverManager.registerDriver(new CosmosDriver());
-      const client = await DriverManager.getClient(COSMOS_URL, { database: 'jsnoslqc_ci' });
+      const client = await DriverManager.getClient(COSMOS_URL, { database: 'jsnosqlc_ci' });
       const col = client.getCollection('_ping');
       await col.store('ping', { ok: true });
       await client.close();
@@ -57,6 +57,6 @@ describe('Cosmos DB driver compliance (integration)', function () {
     if (!cosmosAvailable) return null;
     DriverManager.clear();
     DriverManager.registerDriver(new CosmosDriver());
-    return DriverManager.getClient(COSMOS_URL, { database: 'jsnoslqc_ci' });
+    return DriverManager.getClient(COSMOS_URL, { database: 'jsnosqlc_ci' });
   });
 });

@@ -6,7 +6,7 @@ import FirestoreCollection from './FirestoreCollection.js';
 
 export default class FirestoreClient extends Client {
   /**
-   * @param {string} url — jsnoslqc URL
+   * @param {string} url — jsnosqlc URL
    * @param {import('@google-cloud/firestore').Firestore} firestore
    */
   constructor(url, firestore) {

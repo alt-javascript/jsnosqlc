@@ -27,7 +27,7 @@ completed_at: 2026-03-24T11:00:00Z
 
 # S02: In-Memory Driver
 
-**24 compliance tests passing — full jsnoslqc interface working in pure JavaScript with no external dependencies.**
+**24 compliance tests passing — full jsnosqlc interface working in pure JavaScript with no external dependencies.**
 
 ## What Happened
 

@@ -1,7 +1,7 @@
 /**
  * FirestoreCollection — Google Firestore Collection implementation.
  *
- * Maps jsnoslqc operations to Firestore SDK calls.
+ * Maps jsnosqlc operations to Firestore SDK calls.
  *
  * Key/ID strategy:
  *   - store(key, doc): uses doc.ref = colRef.doc(key); set()

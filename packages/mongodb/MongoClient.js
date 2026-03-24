@@ -11,7 +11,7 @@ import { MongoClient as NativeMongoClient } from 'mongodb';
 
 export default class MongoClient extends Client {
   /**
-   * @param {string} url — full jsnoslqc URL (e.g. jsnosqlc:mongodb://localhost:27017/mydb)
+   * @param {string} url — full jsnosqlc URL (e.g. jsnosqlc:mongodb://localhost:27017/mydb)
    * @param {NativeMongoClient} nativeClient — connected mongodb.MongoClient
    * @param {import('mongodb').Db} db — the resolved database
    */

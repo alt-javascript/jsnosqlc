@@ -1,5 +1,5 @@
 /**
- * MemoryDriver — In-memory jsnoslqc driver.
+ * MemoryDriver — In-memory jsnosqlc driver.
  *
  * Handles URL: jsnosqlc:memory:
  * Auto-registers with DriverManager on import.

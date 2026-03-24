@@ -1,5 +1,5 @@
 /**
- * errors.js — Custom error classes for jsnoslqc.
+ * errors.js — Custom error classes for jsnosqlc.
  */
 
 /**

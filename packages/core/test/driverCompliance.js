@@ -1,5 +1,5 @@
 /**
- * driverCompliance.js — Shared compliance test suite for jsnoslqc drivers.
+ * driverCompliance.js — Shared compliance test suite for jsnosqlc drivers.
  *
  * Usage in a driver package:
  *
@@ -28,7 +28,7 @@ import { UnsupportedOperationError } from '../errors.js';
 export function runCompliance(clientFactory, options = {}) {
   const { skipFind = false } = options;
 
-  describe('jsnoslqc driver compliance', () => {
+  describe('jsnosqlc driver compliance', () => {
     let client;
     let col;
 

@@ -9,7 +9,7 @@ import CassandraCollection from './CassandraCollection.js';
 
 export default class CassandraClient extends Client {
   /**
-   * @param {string} url — jsnoslqc URL
+   * @param {string} url — jsnosqlc URL
    * @param {import('cassandra-driver').Client} cassandra — connected client
    */
   constructor(url, cassandra) {

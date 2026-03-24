@@ -11,7 +11,7 @@
  */
 export default class Driver {
   /**
-   * Check if this driver handles the given jsnoslqc URL.
+   * Check if this driver handles the given jsnosqlc URL.
    * @param {string} url — e.g. 'jsnosqlc:mongodb://localhost:27017/mydb'
    * @returns {boolean}
    */
@@ -21,7 +21,7 @@ export default class Driver {
 
   /**
    * Create a client connection to the database.
-   * @param {string} url — jsnoslqc URL
+   * @param {string} url — jsnosqlc URL
    * @param {Object} [properties] — { username, password, ...driverSpecific }
    * @returns {Promise<Client>}
    */

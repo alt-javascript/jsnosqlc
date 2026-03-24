@@ -1,5 +1,5 @@
 /**
- * CosmosFilterTranslator — Converts a jsnoslqc Filter AST to a Cosmos DB SQL query string.
+ * CosmosFilterTranslator — Converts a jsnosqlc Filter AST to a Cosmos DB SQL query string.
  *
  * Cosmos DB uses a SQL-like query language:
  *   SELECT * FROM c WHERE c.age > @v0 AND c.status = @v1

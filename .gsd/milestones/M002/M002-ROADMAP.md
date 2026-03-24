@@ -1,6 +1,6 @@
 # M002: Extended Drivers — Firestore, Cosmos DB, Redis, Cassandra
 
-**Vision:** Extend jsnoslqc's driver coverage to the major cloud and open-source NoSQL ecosystems:
+**Vision:** Extend jsnosqlc's driver coverage to the major cloud and open-source NoSQL ecosystems:
 Google Firestore (GCP), Azure Cosmos DB, Redis, and Apache Cassandra. Add `or`/`not` compound
 operators to the filter builder so all drivers can express richer queries natively.
 
@@ -59,7 +59,7 @@ operators to the filter builder so all drivers can express richer queries native
   > After this: `jsnosqlc:redis://localhost:6379` passes the compliance suite — find() uses in-memory scan, documented as not production-scalable.
 
 - [ ] **S05: Cassandra driver** `risk:medium` `depends:[S01]`
-  > After this: `jsnosqlc:cassandra:localhost:9042/jsnoslqc` passes the compliance suite — CQL WHERE for native operators, client-side filter for contains/in/nin/exists.
+  > After this: `jsnosqlc:cassandra:localhost:9042/jsnosqlc` passes the compliance suite — CQL WHERE for native operators, client-side filter for contains/in/nin/exists.
 
 - [ ] **S06: README, CI, and root wiring** `risk:low` `depends:[S02,S03,S04,S05]`
   > After this: README quick-starts cover all 7 drivers, CI adds 4 new integration jobs, `npm run test:integration` runs all drivers.

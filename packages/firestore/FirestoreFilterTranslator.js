@@ -1,5 +1,5 @@
 /**
- * FirestoreFilterTranslator — Converts a jsnoslqc Filter AST to Firestore SDK query calls.
+ * FirestoreFilterTranslator — Converts a jsnosqlc Filter AST to Firestore SDK query calls.
  *
  * Firestore queries are built by chaining .where() calls on a CollectionReference.
  * This translator takes the AST and returns a transformed Query object.
