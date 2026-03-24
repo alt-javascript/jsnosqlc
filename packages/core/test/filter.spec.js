@@ -126,4 +126,56 @@ describe('Filter builder', () => {
       assert.deepEqual(filter.build(), { type: 'and', conditions: [] });
     });
   });
+
+  describe('or compound', () => {
+    it('Filter.or() with two AST nodes wraps in or', () => {
+      const ast1 = Filter.where('status').eq('active').build();
+      const ast2 = Filter.where('status').eq('pending').build();
+      const or = Filter.or(ast1, ast2);
+      assert.deepEqual(or, {
+        type: 'or',
+        conditions: [
+          { type: 'condition', field: 'status', op: 'eq', value: 'active' },
+          { type: 'condition', field: 'status', op: 'eq', value: 'pending' },
+        ],
+      });
+    });
+
+    it('Filter.or() accepts Filter instances and calls build() automatically', () => {
+      const f1 = Filter.where('a').eq(1);
+      const f2 = Filter.where('b').eq(2);
+      const or = Filter.or(f1, f2);
+      assert.equal(or.type, 'or');
+      assert.equal(or.conditions.length, 2);
+      assert.equal(or.conditions[0].field, 'a');
+      assert.equal(or.conditions[1].field, 'b');
+    });
+
+    it('Filter.or() with three conditions', () => {
+      const or = Filter.or(
+        Filter.where('x').eq(1).build(),
+        Filter.where('x').eq(2).build(),
+        Filter.where('x').eq(3).build(),
+      );
+      assert.equal(or.type, 'or');
+      assert.equal(or.conditions.length, 3);
+    });
+  });
+
+  describe('not', () => {
+    it('filter.not() wraps build() in a not node', () => {
+      const not = Filter.where('status').eq('inactive').not();
+      assert.deepEqual(not, {
+        type: 'not',
+        condition: { type: 'condition', field: 'status', op: 'eq', value: 'inactive' },
+      });
+    });
+
+    it('compound filter not()', () => {
+      const not = Filter.where('age').lt(18).and('status').ne('active').not();
+      assert.equal(not.type, 'not');
+      assert.equal(not.condition.type, 'and');
+      assert.equal(not.condition.conditions.length, 2);
+    });
+  });
 });

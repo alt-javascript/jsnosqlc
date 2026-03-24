@@ -1,17 +1,17 @@
 # GSD State
 
-**Active Milestone:** M001 — jsnoslqc Foundation
-**Active Slice:** — (all slices complete)
-**Active Task:** — (complete)
-**Phase:** Complete
+**Active Milestone:** M002 — Extended Drivers (Firestore, Cosmos DB, Redis, Cassandra)
+**Active Slice:** S01 — Filter builder extension (or/not) + M1 translator updates
+**Active Task:** T01 — (not yet started)
+**Phase:** Planning → Executing
 
 ## Recent Decisions
 
-- `_store` is a reserved method name in Collection base class — use `_map` for backing store in MemoryCollection
-- insert() generates string ids (timestamp+random hex) for consistent get-by-id across all drivers
-- DynamoDB `in` operator emitted as OR chain of equality; `nin` as AND chain of inequality (no native $in)
-- MongoDB `contains` uses MongoDB's native array element matching (no $elemMatch needed)
-- DynamoDB tables created lazily on first operation via LazyDynamoCollection
+- M002 scope: Firestore, Cosmos DB, Redis, Cassandra + or/not filter operators
+- Cosmos DB: use vnext-preview Linux emulator (ARM/Apple Silicon compatible)
+- Redis find(): full SCAN + in-memory MemoryFilterEvaluator (document limitation)
+- Cassandra: fixed schema (pk text PRIMARY KEY, data text), ALLOW FILTERING for complex ops
+- Firestore: FIRESTORE_EMULATOR_HOST env var redirect pattern
 
 ## Blockers
 
@@ -19,4 +19,4 @@
 
 ## Next Action
 
-M001 complete. Consider M002 targets: additional drivers (Redis, Firestore, Cassandra), or/$or filter support, transaction API, streaming cursors.
+Execute S01: extend Filter with or/not AST nodes, update MongoDB and DynamoDB translators, add unit tests.

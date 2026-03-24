@@ -4,14 +4,16 @@
  * Usage:
  *   const filter = Filter.where('age').gt(18).and('name').eq('Alice');
  *   const ast = filter.build();
- *   // { type: 'and', conditions: [
- *   //   { type: 'condition', field: 'age', op: 'gt', value: 18 },
- *   //   { type: 'condition', field: 'name', op: 'eq', value: 'Alice' }
- *   // ]}
+ *
+ * Compound operators:
+ *   Filter.or(filter1, filter2)  → { type: 'or', conditions: [ast1, ast2] }
+ *   Filter.where('age').gt(18).not()  → { type: 'not', condition: ast }
  *
  * AST node shapes:
  *   Leaf:     { type: 'condition', field: string, op: string, value: * }
- *   Compound: { type: 'and', conditions: ConditionNode[] }
+ *   And:      { type: 'and', conditions: ConditionNode[] }
+ *   Or:       { type: 'or',  conditions: ConditionNode[] }
+ *   Not:      { type: 'not', condition: ConditionNode }
  */
 import FieldCondition from './FieldCondition.js';
 
@@ -31,12 +33,36 @@ export default class Filter {
   }
 
   /**
-   * Chain an additional condition on a new field.
+   * Create an OR compound of two or more already-built filter ASTs.
+   * Each argument should be a built AST node (the result of filter.build())
+   * or a Filter instance (build() is called automatically).
+   *
+   * @param {...(Object|Filter)} filters — AST nodes or Filter instances
+   * @returns {Object} { type: 'or', conditions: [...] }
+   */
+  static or(...filters) {
+    const conditions = filters.map((f) =>
+      f instanceof Filter ? f.build() : f
+    );
+    return { type: 'or', conditions };
+  }
+
+  /**
+   * Chain an additional AND condition on a new field.
    * @param {string} field
    * @returns {FieldCondition}
    */
   and(field) {
     return new FieldCondition(field, this);
+  }
+
+  /**
+   * Negate this filter.
+   * Calls build() internally and wraps the result in a not node.
+   * @returns {Object} { type: 'not', condition: ast }
+   */
+  not() {
+    return { type: 'not', condition: this.build() };
   }
 
   /**

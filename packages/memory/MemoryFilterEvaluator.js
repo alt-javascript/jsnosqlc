@@ -2,8 +2,10 @@
  * MemoryFilterEvaluator — Applies a Filter AST to an in-memory document.
  *
  * Handles:
- *   Leaf: { type: 'condition', field, op, value }
- *   Compound: { type: 'and', conditions: [...] }
+ *   Leaf:  { type: 'condition', field, op, value }
+ *   And:   { type: 'and', conditions: [...] }
+ *   Or:    { type: 'or',  conditions: [...] }
+ *   Not:   { type: 'not', condition: ... }
  *
  * Supported operators: eq, ne, gt, gte, lt, lte, contains, in, nin, exists
  */
@@ -20,6 +22,15 @@ export default class MemoryFilterEvaluator {
     if (ast.type === 'and') {
       if (!ast.conditions || ast.conditions.length === 0) return true;
       return ast.conditions.every((c) => MemoryFilterEvaluator.matches(doc, c));
+    }
+
+    if (ast.type === 'or') {
+      if (!ast.conditions || ast.conditions.length === 0) return false;
+      return ast.conditions.some((c) => MemoryFilterEvaluator.matches(doc, c));
+    }
+
+    if (ast.type === 'not') {
+      return !MemoryFilterEvaluator.matches(doc, ast.condition);
     }
 
     if (ast.type === 'condition') {

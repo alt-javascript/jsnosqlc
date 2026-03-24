@@ -47,6 +47,20 @@ export default class DynamoFilterTranslator {
       return parts.map((p) => `(${p})`).join(' AND ');
     }
 
+    if (ast.type === 'or') {
+      if (!ast.conditions || ast.conditions.length === 0) return null;
+      const parts = ast.conditions.map((c) => DynamoFilterTranslator._translate(c, ctx)).filter(Boolean);
+      if (parts.length === 0) return null;
+      if (parts.length === 1) return parts[0];
+      return parts.map((p) => `(${p})`).join(' OR ');
+    }
+
+    if (ast.type === 'not') {
+      const inner = DynamoFilterTranslator._translate(ast.condition, ctx);
+      if (!inner) return null;
+      return `NOT (${inner})`;
+    }
+
     if (ast.type === 'condition') {
       return DynamoFilterTranslator._translateCondition(ast, ctx);
     }

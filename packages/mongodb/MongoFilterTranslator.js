@@ -2,17 +2,19 @@
  * MongoFilterTranslator — Converts a jsnoslqc Filter AST to a MongoDB query document.
  *
  * Handles:
- *   Leaf: { type: 'condition', field, op, value }
- *   Compound: { type: 'and', conditions: [...] }
+ *   Leaf:     { type: 'condition', field, op, value }
+ *   And:      { type: 'and', conditions: [...] }
+ *   Or:       { type: 'or',  conditions: [...] }
+ *   Not:      { type: 'not', condition: ... }
  *
  * Operator mapping:
- *   eq       → { field: value }               (or { field: { $eq: value } })
+ *   eq       → { field: { $eq: value } }
  *   ne       → { field: { $ne: value } }
  *   gt       → { field: { $gt: value } }
  *   gte      → { field: { $gte: value } }
  *   lt       → { field: { $lt: value } }
  *   lte      → { field: { $lte: value } }
- *   contains → { field: value }  (string: $regex; array: $elemMatch or $in)
+ *   contains → { field: value }  (MongoDB native array element match)
  *   in       → { field: { $in: values } }
  *   nin      → { field: { $nin: values } }
  *   exists   → { field: { $exists: bool } }
@@ -31,6 +33,19 @@ export default class MongoFilterTranslator {
       const parts = ast.conditions.map((c) => MongoFilterTranslator.translate(c));
       if (parts.length === 1) return parts[0];
       return { $and: parts };
+    }
+
+    if (ast.type === 'or') {
+      if (!ast.conditions || ast.conditions.length === 0) return {};
+      const parts = ast.conditions.map((c) => MongoFilterTranslator.translate(c));
+      if (parts.length === 1) return parts[0];
+      return { $or: parts };
+    }
+
+    if (ast.type === 'not') {
+      // MongoDB $nor: [cond] is equivalent to NOT cond for a single condition
+      const inner = MongoFilterTranslator.translate(ast.condition);
+      return { $nor: [inner] };
     }
 
     if (ast.type === 'condition') {
@@ -63,17 +78,8 @@ export default class MongoFilterTranslator {
         return { [mongoField]: { $lte: value } };
 
       case 'contains':
-        // For array fields: check if array contains the value
-        // For string fields: check if string contains the substring (regex)
-        // MongoDB: $elemMatch for arrays, $regex for strings — but we don't know type at query time.
-        // Use $regex which works for strings; for arrays, use $eq on array elements (MongoDB auto-matches).
-        // The most portable approach: use both conditions with $or is complex.
-        // Simpler: use the native MongoDB behavior where { field: value } matches if value is in the array.
-        // This is MongoDB's default behavior for array fields. For string contains, use $regex.
-        // We'll use a $or: [{ field: value }, { field: { $regex: regexEscape(value) } }] — but this
-        // is awkward. The compliance test uses array contains. Use the simpler array form.
-        // Decision: for 'contains', emit { field: value } which MongoDB matches against array elements
-        // natively. String substring requires explicit $regex — the compliance test uses arrays.
+        // MongoDB natively matches { field: value } against array elements.
+        // For string substring, use $regex explicitly (out of scope for M1/M2 compliance tests).
         return { [mongoField]: value };
 
       case 'in':
