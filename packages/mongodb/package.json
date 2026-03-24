@@ -1,0 +1,40 @@
+{
+  "name": "@alt-javascript/jsnoslqc-mongodb",
+  "version": "1.0.0",
+  "description": "JSNOSLQC MongoDB driver via the official mongodb npm package",
+  "keywords": [
+    "jsnoslqc",
+    "nosql",
+    "mongodb",
+    "driver",
+    "database"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "homepage": "https://github.com/alt-javascript/jsnoslqc/tree/main/packages/mongodb#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alt-javascript/jsnoslqc",
+    "directory": "packages/mongodb"
+  },
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive 'test/**/*.spec.js' --timeout 10000"
+  },
+  "dependencies": {
+    "@alt-javascript/jsnoslqc-core": "*",
+    "mongodb": "^6.3.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
+  },
+  "author": "Craig Parravicini",
+  "contributors": [
+    "Claude (Anthropic)"
+  ],
+  "license": "MIT"
+}
