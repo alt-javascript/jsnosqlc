@@ -33,7 +33,7 @@ jobs:
     needs: test
     permissions:
       contents: write  # needed to create GitHub Release
-      id-token: write  # needed for provenance
+      id-token: write  # needed for npm provenance
 
     steps:
       - uses: actions/checkout@v4
@@ -47,12 +47,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Set version from tag
-        run: |
-          TAG="${GITHUB_REF#refs/tags/v}"
-          echo "Publishing version: $TAG"
-          npm version "$TAG" --workspaces --no-git-tag-version
 
       - name: Publish @alt-javascript/jsnoslqc-core
         run: npm publish --workspace=packages/core --access public --provenance
@@ -103,7 +97,6 @@ jobs:
             let body = '';
             try {
               const changelog = fs.readFileSync('CHANGELOG.md', 'utf8');
-              // Extract the first release section
               const match = changelog.match(/## \[[\d.]+\].*\n([\s\S]*?)(?=\n## \[|$)/);
               if (match) body = match[1].trim();
             } catch (e) {
