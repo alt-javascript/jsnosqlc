@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "JSNOSLQC Redis driver via ioredis",
   "keywords": [
-    "jsnoslqc",
+    "jsnosqlc",
     "nosql",
     "redis",
     "key-value",

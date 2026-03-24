@@ -13,7 +13,7 @@ Initial public release of all packages.
 ### Added
 
 **Core (`@alt-javascript/jsnosqlc-core`)**
-- `Driver` — abstract base class for all jsnoslqc drivers
+- `Driver` — abstract base class for all jsnosqlc drivers
 - `Client` — session abstraction with collection cache and lifecycle management
 - `Collection` — six-operation interface: `get`, `store`, `delete`, `insert`, `update`, `find`
 - `Cursor` — buffered result with cursor iteration, bulk access, and `for await...of` support

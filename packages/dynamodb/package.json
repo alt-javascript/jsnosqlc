@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "JSNOSLQC DynamoDB driver via @aws-sdk/client-dynamodb",
   "keywords": [
-    "jsnoslqc",
+    "jsnosqlc",
     "nosql",
     "dynamodb",
     "aws",

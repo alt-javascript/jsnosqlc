@@ -5,13 +5,13 @@
 [![CI](https://github.com/alt-javascript/jsnosqlc/actions/workflows/node.js.yml/badge.svg)](https://github.com/alt-javascript/jsnosqlc/actions/workflows/node.js.yml)
 [![npm version](https://img.shields.io/npm/v/%40alt-javascript%2Fjsnosqlc-core)](https://www.npmjs.com/package/@alt-javascript/jsnosqlc-core)
 
-A uniform, async NoSQL access facade for JavaScript inspired by Java's JDBC — and by [jsdbc](https://github.com/alt-javascript/jsdbc), its SQL counterpart. Write database code once against jsnoslqc interfaces, then plug in any supported driver — in-memory, MongoDB, DynamoDB, Firestore, Cosmos DB, Redis, Cassandra, and more.
+A uniform, async NoSQL access facade for JavaScript inspired by Java's JDBC — and by [jsdbc](https://github.com/alt-javascript/jsdbc), its SQL counterpart. Write database code once against jsnosqlc interfaces, then plug in any supported driver — in-memory, MongoDB, DynamoDB, Firestore, Cosmos DB, Redis, Cassandra, and more.
 
 **Part of the [@alt-javascript](https://github.com/alt-javascript) ecosystem.**
 
-## Why jsnoslqc?
+## Why jsnosqlc?
 
-JavaScript's NoSQL ecosystem is as fragmented as its SQL ecosystem. Every database — MongoDB, DynamoDB, Firestore, Redis, Cassandra — has its own incompatible API. jsnoslqc provides:
+JavaScript's NoSQL ecosystem is as fragmented as its SQL ecosystem. Every database — MongoDB, DynamoDB, Firestore, Redis, Cassandra — has its own incompatible API. jsnosqlc provides:
 
 - **One API across databases.** Switch from MongoDB to DynamoDB by changing a URL string
 - **Chainable filter builder.** `Filter.where('age').gt(18).and('status').eq('active')` — no raw query objects, no vendor-specific syntax
@@ -168,7 +168,7 @@ Filter.where('status').eq('inactive').not()
 // { type: 'not', condition: { type: 'condition', field: 'status', op: 'eq', value: 'inactive' } }
 ```
 
-## jsnoslqc URL Scheme
+## jsnosqlc URL Scheme
 
 ```
 jsnosqlc:<subprotocol>:<connection-details>
@@ -199,7 +199,7 @@ npm run test:integration
 # Start local services via Docker
 docker run --rm -d -p 27017:27017 mongo:7
 docker run --rm -d -p 8000:8000 amazon/dynamodb-local:latest
-docker run --rm -d -e FIRESTORE_PROJECT_ID=jsnoslqc-test -e PORT=8080 -p 8080:8080 mtlynch/firestore-emulator
+docker run --rm -d -e FIRESTORE_PROJECT_ID=jsnosqlc-test -e PORT=8080 -p 8080:8080 mtlynch/firestore-emulator
 docker run --rm -d -p 8081:8081 mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator:vnext-preview
 docker run --rm -d -p 6379:6379 redis:7
 docker run --rm -d -p 9042:9042 cassandra:4
@@ -315,7 +315,7 @@ await client.close();
 
 ## Filter Operators
 
-## Writing a jsnoslqc Driver
+## Writing a jsnosqlc Driver
 
 See the [Driver Guide](docs/driver-guide.md) and [`@alt-javascript/jsnosqlc-memory`](packages/memory/) for a complete minimal example. The pattern:
 
@@ -330,15 +330,15 @@ Run `runCompliance(clientFactory)` from `@alt-javascript/jsnosqlc-core/test/driv
 
 - [Getting Started](docs/getting-started.md) — tutorial: first operations, switching backends
 - [API Reference](docs/api-reference.md) — complete interface documentation
-- [Driver Guide](docs/driver-guide.md) — writing custom jsnoslqc drivers
-- [For JDBC Developers](docs/jdbc-migration.md) — mapping JDBC concepts to jsnoslqc
+- [Driver Guide](docs/driver-guide.md) — writing custom jsnosqlc drivers
+- [For JDBC Developers](docs/jdbc-migration.md) — mapping JDBC concepts to jsnosqlc
 - [Changelog](CHANGELOG.md) — release history
 
 ## Contributing
 
 ```bash
 git clone https://github.com/alt-javascript/jsnosqlc.git
-cd jsnoslqc
+cd jsnosqlc
 npm install
 
 npm test                  # CI-safe: core + memory (55 tests, no external deps)

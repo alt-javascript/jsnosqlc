@@ -64,14 +64,14 @@ jsnosqlc:cosmosdb:<endpoint-or-local>
 | Property | Description |
 |---|---|
 | `key` | Cosmos DB account key (required for non-emulator) |
-| `database` | Database name (default: `jsnoslqc`) |
+| `database` | Database name (default: `jsnosqlc`) |
 | `endpoint` | Override emulator endpoint (default: `http://localhost:8081`) |
 
 ## Database and Container Management
 
 Databases and containers are created automatically on first use:
 
-- **Database:** created with `createIfNotExists` (default name: `jsnoslqc`)
+- **Database:** created with `createIfNotExists` (default name: `jsnosqlc`)
 - **Container:** created with `createIfNotExists`, partition key `{ paths: ['/id'], kind: 'Hash' }`
 
 ## Local Development with Docker

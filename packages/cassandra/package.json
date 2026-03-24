@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "JSNOSLQC Apache Cassandra driver via cassandra-driver",
   "keywords": [
-    "jsnoslqc",
+    "jsnosqlc",
     "nosql",
     "cassandra",
     "apache",

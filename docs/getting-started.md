@@ -10,7 +10,7 @@ This tutorial walks you through your first JSNOSLQC operations — storing docum
 ## Install
 
 ```bash
-mkdir jsnoslqc-demo && cd jsnoslqc-demo
+mkdir jsnosqlc-demo && cd jsnosqlc-demo
 npm init -y
 npm install @alt-javascript/jsnosqlc-core @alt-javascript/jsnosqlc-memory
 ```

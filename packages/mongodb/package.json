@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "JSNOSLQC MongoDB driver via the official mongodb npm package",
   "keywords": [
-    "jsnoslqc",
+    "jsnosqlc",
     "nosql",
     "mongodb",
     "driver",

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "JSNOSLQC Google Firestore driver via @google-cloud/firestore",
   "keywords": [
-    "jsnoslqc",
+    "jsnosqlc",
     "nosql",
     "firestore",
     "google",

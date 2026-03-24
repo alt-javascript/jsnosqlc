@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "JSNOSLQC Azure Cosmos DB driver via @azure/cosmos",
   "keywords": [
-    "jsnoslqc",
+    "jsnosqlc",
     "nosql",
     "cosmosdb",
     "azure",

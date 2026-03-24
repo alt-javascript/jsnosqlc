@@ -271,7 +271,7 @@ Follow these conventions to be consistent with the built-in drivers:
 
 | Convention | Value |
 |---|---|
-| Package name | `@<scope>/jsnoslqc-<subprotocol>` |
+| Package name | `@<scope>/jsnosqlc-<subprotocol>` |
 | URL prefix | `jsnosqlc:<subprotocol>:` |
 | ESM | `"type": "module"` in `package.json` |
 | Self-register | `DriverManager.registerDriver(new MyDriver())` at module level |

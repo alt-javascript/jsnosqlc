@@ -66,7 +66,7 @@ const client = await ds.getClient();
 
 | Property | Type | Required | Description |
 |---|---|---|---|
-| `url` | `string` | Yes | jsnoslqc URL |
+| `url` | `string` | Yes | jsnosqlc URL |
 | `username` | `string` | No | Passed to driver as a property |
 | `password` | `string` | No | Passed to driver as a property |
 | `properties` | `Object` | No | Additional driver-specific properties |
@@ -321,7 +321,7 @@ The internal representation passed to driver translators.
 
 ---
 
-## jsnoslqc URL Scheme
+## jsnosqlc URL Scheme
 
 ```
 jsnosqlc:<subprotocol>:<connection-details>

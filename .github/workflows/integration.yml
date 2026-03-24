@@ -46,7 +46,7 @@ jobs:
 
       - name: Run integration tests (MongoDB)
         env:
-          MONGODB_URL: jsnosqlc:mongodb://localhost:27017/jsnoslqc_ci
+          MONGODB_URL: jsnosqlc:mongodb://localhost:27017/jsnosqlc_ci
         run: npm test --workspace=packages/mongodb
 
       - name: Run integration tests (DynamoDB)
@@ -68,7 +68,7 @@ jobs:
         ports:
           - 8080:8080
         env:
-          FIRESTORE_PROJECT_ID: jsnoslqc-ci
+          FIRESTORE_PROJECT_ID: jsnosqlc-ci
           PORT: 8080
 
       cosmosdb-emulator:
@@ -98,7 +98,7 @@ jobs:
       - name: Run integration tests (Firestore)
         env:
           FIRESTORE_EMULATOR_HOST: localhost:8080
-          FIRESTORE_PROJECT_ID: jsnoslqc-ci
+          FIRESTORE_PROJECT_ID: jsnosqlc-ci
         run: npm test --workspace=packages/firestore
 
       - name: Wait for Cosmos DB emulator

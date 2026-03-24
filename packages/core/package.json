@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "JSNOSLQC core interfaces — Driver, Client, Collection, Cursor, Filter, DriverManager",
   "keywords": [
-    "jsnoslqc",
+    "jsnosqlc",
     "nosql",
     "database",
     "driver",

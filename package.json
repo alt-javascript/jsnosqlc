@@ -1,5 +1,5 @@
 {
-  "name": "jsnoslqc",
+  "name": "jsnosqlc",
   "version": "1.0.0",
   "description": "JDBC-inspired unified NoSQL access layer for JavaScript",
   "private": true,
