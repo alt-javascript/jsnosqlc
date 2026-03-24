@@ -12,14 +12,14 @@
  * Skips all tests gracefully if DynamoDB is not reachable.
  */
 import { describe, it, before } from 'mocha';
-import { runCompliance } from '@alt-javascript/jsnoslqc-core/test/driverCompliance.js';
-import { DriverManager } from '@alt-javascript/jsnoslqc-core';
+import { runCompliance } from '@alt-javascript/jsnosqlc-core/test/driverCompliance.js';
+import { DriverManager } from '@alt-javascript/jsnosqlc-core';
 import DynamoDriver from '../DynamoDriver.js';
 import { DynamoDBClient, ListTablesCommand } from '@aws-sdk/client-dynamodb';
 
 const ENDPOINT = process.env.DYNAMODB_ENDPOINT ?? 'http://localhost:8000';
 const REGION = process.env.DYNAMODB_REGION ?? 'us-east-1';
-const URL = `jsnoslqc:dynamodb:${REGION}`;
+const URL = `jsnosqlc:dynamodb:${REGION}`;
 
 let dynamoAvailable = false;
 

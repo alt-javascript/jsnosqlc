@@ -2,7 +2,7 @@
  * compliance.spec.js — Runs the shared driver compliance suite against Azure Cosmos DB.
  *
  * Requires the Cosmos DB Linux emulator (vnext-preview):
- *   docker run --rm -d --name jsnoslqc-cosmosdb \
+ *   docker run --rm -d --name jsnosqlc-cosmosdb \
  *     -p 8081:8081 -p 1234:1234 \
  *     mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator:vnext-preview
  *
@@ -12,14 +12,14 @@
  * Skips all tests gracefully if Cosmos DB emulator is not reachable.
  */
 import { describe, it, before } from 'mocha';
-import { runCompliance } from '@alt-javascript/jsnoslqc-core/test/driverCompliance.js';
-import { DriverManager } from '@alt-javascript/jsnoslqc-core';
+import { runCompliance } from '@alt-javascript/jsnosqlc-core/test/driverCompliance.js';
+import { DriverManager } from '@alt-javascript/jsnosqlc-core';
 import CosmosDriver from '../CosmosDriver.js';
 
 // Allow self-signed TLS for the emulator
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
-const COSMOS_URL = 'jsnoslqc:cosmosdb:local';
+const COSMOS_URL = 'jsnosqlc:cosmosdb:local';
 let cosmosAvailable = false;
 
 describe('Cosmos DB driver — connectivity check', function () {

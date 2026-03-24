@@ -1,5 +1,5 @@
 /**
- * index.js — Public exports for @alt-javascript/jsnoslqc-core
+ * index.js — Public exports for @alt-javascript/jsnosqlc-core
  */
 
 export { default as Driver } from './Driver.js';

@@ -3,14 +3,14 @@
  *
  * Usage in a driver package:
  *
- *   import { runCompliance } from '@alt-javascript/jsnoslqc-core/test/driverCompliance.js';
+ *   import { runCompliance } from '@alt-javascript/jsnosqlc-core/test/driverCompliance.js';
  *   import MemoryDriver from '../MemoryDriver.js';
- *   import DriverManager from '@alt-javascript/jsnoslqc-core/DriverManager.js';
+ *   import DriverManager from '@alt-javascript/jsnosqlc-core/DriverManager.js';
  *
  *   runCompliance(async () => {
  *     DriverManager.clear();
  *     DriverManager.registerDriver(new MemoryDriver());
- *     return DriverManager.getClient('jsnoslqc:memory:');
+ *     return DriverManager.getClient('jsnosqlc:memory:');
  *   });
  *
  * The clientFactory is called once per describe block to produce a fresh client.

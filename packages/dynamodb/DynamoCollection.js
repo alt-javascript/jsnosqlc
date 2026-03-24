@@ -10,7 +10,7 @@
  * insert() generates a string id (no auto-increment in DynamoDB).
  * find() uses a Scan with FilterExpression.
  */
-import { Collection, Cursor } from '@alt-javascript/jsnoslqc-core';
+import { Collection, Cursor } from '@alt-javascript/jsnosqlc-core';
 import { GetCommand, PutCommand, DeleteCommand, ScanCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 import DynamoFilterTranslator from './DynamoFilterTranslator.js';
 

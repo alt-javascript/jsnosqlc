@@ -4,7 +4,7 @@
  * Manages the keyspace and collection (table) lifecycle.
  * Each collection is a table with schema: (pk text PRIMARY KEY, data text).
  */
-import { Client } from '@alt-javascript/jsnoslqc-core';
+import { Client } from '@alt-javascript/jsnosqlc-core';
 import CassandraCollection from './CassandraCollection.js';
 
 export default class CassandraClient extends Client {

@@ -2,7 +2,7 @@
  * compliance.spec.js — Runs the shared driver compliance suite against Firestore.
  *
  * Requires the Firestore emulator:
- *   docker run --rm -d --name jsnoslqc-firestore \
+ *   docker run --rm -d --name jsnosqlc-firestore \
  *     -e FIRESTORE_PROJECT_ID=jsnoslqc-test -e PORT=8080 \
  *     -p 8080:8080 mtlynch/firestore-emulator
  *
@@ -13,13 +13,13 @@
  * Skips all tests gracefully if Firestore emulator is not reachable.
  */
 import { describe, it, before } from 'mocha';
-import { runCompliance } from '@alt-javascript/jsnoslqc-core/test/driverCompliance.js';
-import { DriverManager } from '@alt-javascript/jsnoslqc-core';
+import { runCompliance } from '@alt-javascript/jsnosqlc-core/test/driverCompliance.js';
+import { DriverManager } from '@alt-javascript/jsnosqlc-core';
 import FirestoreDriver from '../FirestoreDriver.js';
 
 const EMULATOR_HOST = process.env.FIRESTORE_EMULATOR_HOST ?? 'localhost:8080';
 const PROJECT_ID = process.env.FIRESTORE_PROJECT_ID ?? 'jsnoslqc-test';
-const URL = `jsnoslqc:firestore:${PROJECT_ID}`;
+const URL = `jsnosqlc:firestore:${PROJECT_ID}`;
 
 let firestoreAvailable = false;
 

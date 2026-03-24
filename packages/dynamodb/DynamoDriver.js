@@ -1,8 +1,8 @@
 /**
  * DynamoDriver — DynamoDB jsnoslqc driver.
  *
- * URL format: jsnoslqc:dynamodb:<region>
- * e.g. jsnoslqc:dynamodb:us-east-1
+ * URL format: jsnosqlc:dynamodb:<region>
+ * e.g. jsnosqlc:dynamodb:us-east-1
  *
  * For DynamoDB Local (testing): set endpoint via properties or env:
  *   properties.endpoint = 'http://localhost:8000'
@@ -10,13 +10,13 @@
  *
  * Auto-registers with DriverManager on import.
  */
-import { Driver, DriverManager } from '@alt-javascript/jsnoslqc-core';
+import { Driver, DriverManager } from '@alt-javascript/jsnosqlc-core';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
 import DynamoClient from './DynamoClient.js';
 
 export default class DynamoDriver extends Driver {
-  static URL_PREFIX = 'jsnoslqc:dynamodb:';
+  static URL_PREFIX = 'jsnosqlc:dynamodb:';
 
   acceptsURL(url) {
     return typeof url === 'string' && url.startsWith(DynamoDriver.URL_PREFIX);

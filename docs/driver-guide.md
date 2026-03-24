@@ -24,14 +24,14 @@ import MyDbClient from './MyDbClient.js';
 import { MyNativeClient } from 'my-native-sdk';
 
 export default class MyDriver extends Driver {
-  // Match URLs starting with 'jsnoslqc:mydb:'
+  // Match URLs starting with 'jsnosqlc:mydb:'
   acceptsURL(url) {
-    return typeof url === 'string' && url.startsWith('jsnoslqc:mydb:');
+    return typeof url === 'string' && url.startsWith('jsnosqlc:mydb:');
   }
 
   async connect(url, properties = {}) {
     // Parse connection details from the URL
-    const nativeUrl = url.substring('jsnoslqc:mydb:'.length);
+    const nativeUrl = url.substring('jsnosqlc:mydb:'.length);
     const nativeClient = new MyNativeClient({ url: nativeUrl, ...properties });
     await nativeClient.connect();
     return new MyDbClient(url, nativeClient);
@@ -258,7 +258,7 @@ describe('My driver compliance', function () {
   runCompliance(async () => {
     DriverManager.clear();
     DriverManager.registerDriver(new MyDriver());
-    return DriverManager.getClient('jsnoslqc:mydb:...');
+    return DriverManager.getClient('jsnosqlc:mydb:...');
   });
 });
 ```
@@ -272,7 +272,7 @@ Follow these conventions to be consistent with the built-in drivers:
 | Convention | Value |
 |---|---|
 | Package name | `@<scope>/jsnoslqc-<subprotocol>` |
-| URL prefix | `jsnoslqc:<subprotocol>:` |
+| URL prefix | `jsnosqlc:<subprotocol>:` |
 | ESM | `"type": "module"` in `package.json` |
 | Self-register | `DriverManager.registerDriver(new MyDriver())` at module level |
 | String IDs | `Date.now().toString(16)_Math.random()...` |
@@ -284,10 +284,10 @@ All built-in drivers are open source and good reading:
 
 | Driver | Notable technique |
 |---|---|
-| [`jsnoslqc-memory`](../packages/memory/) | Simplest possible implementation — start here |
-| [`jsnoslqc-mongodb`](../packages/mongodb/) | Native query translation |
-| [`jsnoslqc-dynamodb`](../packages/dynamodb/) | Auto-table creation, DynamoDB expression builder |
-| [`jsnoslqc-firestore`](../packages/firestore/) | Native SDK filter chaining + partial client-side fallback |
-| [`jsnoslqc-cosmosdb`](../packages/cosmosdb/) | Parameterised SQL query construction |
-| [`jsnoslqc-redis`](../packages/redis/) | Secondary key index for collection scan |
-| [`jsnoslqc-cassandra`](../packages/cassandra/) | JSON-column schema, full table scan + client-side filter |
+| [`jsnosqlc-memory`](../packages/memory/) | Simplest possible implementation — start here |
+| [`jsnosqlc-mongodb`](../packages/mongodb/) | Native query translation |
+| [`jsnosqlc-dynamodb`](../packages/dynamodb/) | Auto-table creation, DynamoDB expression builder |
+| [`jsnosqlc-firestore`](../packages/firestore/) | Native SDK filter chaining + partial client-side fallback |
+| [`jsnosqlc-cosmosdb`](../packages/cosmosdb/) | Parameterised SQL query construction |
+| [`jsnosqlc-redis`](../packages/redis/) | Secondary key index for collection scan |
+| [`jsnosqlc-cassandra`](../packages/cassandra/) | JSON-column schema, full table scan + client-side filter |

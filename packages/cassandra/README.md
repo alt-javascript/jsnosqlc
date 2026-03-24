@@ -1,7 +1,7 @@
 # @alt-javascript/jsnosqlc-cassandra
 
 [![Language](https://img.shields.io/badge/language-JavaScript-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![npm version](https://img.shields.io/npm/v/%40alt-javascript%2Fjsnoslqc-cassandra)](https://www.npmjs.com/package/@alt-javascript/jsnosqlc-cassandra)
+[![npm version](https://img.shields.io/npm/v/%40alt-javascript%2Fjsnosqlc-cassandra)](https://www.npmjs.com/package/@alt-javascript/jsnosqlc-cassandra)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/alt-javascript/jsnosqlc/actions/workflows/node.js.yml/badge.svg)](https://github.com/alt-javascript/jsnosqlc/actions/workflows/node.js.yml)
 
@@ -22,7 +22,7 @@ import { DriverManager, Filter } from '@alt-javascript/jsnosqlc-core';
 import '@alt-javascript/jsnosqlc-cassandra'; // self-registers with DriverManager
 
 // Keyspace created automatically (SimpleStrategy, replication_factor: 1)
-const client = await DriverManager.getClient('jsnoslqc:cassandra:localhost:9042/myapp');
+const client = await DriverManager.getClient('jsnosqlc:cassandra:localhost:9042/myapp');
 const metrics = client.getCollection('metrics');
 
 // Store and retrieve
@@ -51,13 +51,13 @@ await client.close();
 ## URL Scheme
 
 ```
-jsnoslqc:cassandra:<host>:<port>/<keyspace>
+jsnosqlc:cassandra:<host>:<port>/<keyspace>
 ```
 
 | URL | Description |
 |---|---|
-| `jsnoslqc:cassandra:localhost:9042/myapp` | Local Cassandra, keyspace `myapp` |
-| `jsnoslqc:cassandra:cassandra.example.com:9042/prod` | Remote Cassandra |
+| `jsnosqlc:cassandra:localhost:9042/myapp` | Local Cassandra, keyspace `myapp` |
+| `jsnosqlc:cassandra:cassandra.example.com:9042/prod` | Remote Cassandra |
 
 ## Connection Properties
 
@@ -68,7 +68,7 @@ jsnoslqc:cassandra:<host>:<port>/<keyspace>
 
 ```javascript
 const client = await DriverManager.getClient(
-  'jsnoslqc:cassandra:localhost:9042/myapp',
+  'jsnosqlc:cassandra:localhost:9042/myapp',
   { localDataCenter: 'DC1' }
 );
 ```

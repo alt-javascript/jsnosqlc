@@ -2,7 +2,7 @@
  * compliance.spec.js — Runs the shared driver compliance suite against Cassandra.
  *
  * Requires Cassandra:
- *   docker run --rm -d --name jsnoslqc-cassandra -p 9042:9042 cassandra:4
+ *   docker run --rm -d --name jsnosqlc-cassandra -p 9042:9042 cassandra:4
  *
  * Cassandra takes 30-60 seconds to become ready after container start.
  *
@@ -13,11 +13,11 @@
  * Skips all tests gracefully if Cassandra is not reachable.
  */
 import { describe, it, before } from 'mocha';
-import { runCompliance } from '@alt-javascript/jsnoslqc-core/test/driverCompliance.js';
-import { DriverManager } from '@alt-javascript/jsnoslqc-core';
+import { runCompliance } from '@alt-javascript/jsnosqlc-core/test/driverCompliance.js';
+import { DriverManager } from '@alt-javascript/jsnosqlc-core';
 import CassandraDriver from '../CassandraDriver.js';
 
-const CASSANDRA_URL = process.env.CASSANDRA_URL ?? 'jsnoslqc:cassandra:localhost:9042/jsnoslqc_test';
+const CASSANDRA_URL = process.env.CASSANDRA_URL ?? 'jsnosqlc:cassandra:localhost:9042/jsnoslqc_test';
 let cassandraAvailable = false;
 
 describe('Cassandra driver — connectivity check', function () {

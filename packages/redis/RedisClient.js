@@ -1,7 +1,7 @@
 /**
  * RedisClient — Redis Client implementation.
  */
-import { Client } from '@alt-javascript/jsnoslqc-core';
+import { Client } from '@alt-javascript/jsnosqlc-core';
 import RedisCollection from './RedisCollection.js';
 
 export default class RedisClient extends Client {

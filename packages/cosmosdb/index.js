@@ -1,5 +1,5 @@
 /**
- * index.js — Public exports for @alt-javascript/jsnoslqc-cosmosdb
+ * index.js — Public exports for @alt-javascript/jsnosqlc-cosmosdb
  */
 
 export { default as CosmosDriver, CosmosClient, _driver } from './CosmosDriver.js';

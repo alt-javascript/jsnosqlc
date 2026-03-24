@@ -12,7 +12,7 @@
  *   - update(key, patch): read → merge → upsert
  *   - find(ast): SQL query via CosmosFilterTranslator
  */
-import { Collection, Cursor } from '@alt-javascript/jsnoslqc-core';
+import { Collection, Cursor } from '@alt-javascript/jsnosqlc-core';
 import CosmosFilterTranslator from './CosmosFilterTranslator.js';
 
 export default class CosmosCollection extends Collection {

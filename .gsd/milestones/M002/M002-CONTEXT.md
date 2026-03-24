@@ -15,7 +15,7 @@ Plus: **filter builder extension** with `or` compound operator and `not` negatio
 - Local testing: `mtlynch/firestore-emulator` Docker image (Java-based, standalone)
   - Connect via `FIRESTORE_EMULATOR_HOST=localhost:8080` env var
   - SDK auto-detects the env var and redirects to emulator
-- URL scheme: `jsnoslqc:firestore:<project-id>`
+- URL scheme: `jsnosqlc:firestore:<project-id>`
 - Filter: Firestore has a native `.where()` chain — all 10 operators + compound supported
 - `or` filter: Firestore supports `Query.or()` (introduced in SDK v7+) — M2 filter extension will map to this
 - Note: Firestore collections don't have a pre-creation step — documents create them
@@ -26,7 +26,7 @@ Plus: **filter builder extension** with `or` compound operator and `not` negatio
   - Runs on port 8081, HTTPS only, self-signed cert → needs `NODE_TLS_REJECT_UNAUTHORIZED=0`
   - Apple Silicon compatible
   - Only NoSQL API supported in preview
-- URL scheme: `jsnoslqc:cosmosdb:<endpoint>` or `jsnoslqc:cosmosdb:local`
+- URL scheme: `jsnosqlc:cosmosdb:<endpoint>` or `jsnosqlc:cosmosdb:local`
 - Filter: Cosmos DB uses SQL-like query strings — e.g. `SELECT * FROM c WHERE c.age > 18 AND c.status = 'active'`
 - Containers (≈ collections) must exist — create on demand like DynamoDB pattern
 - Emulator well-known key: `C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==`
@@ -34,7 +34,7 @@ Plus: **filter builder extension** with `or` compound operator and `not` negatio
 ### Redis
 - SDK: `ioredis@5.10.1`
 - Local testing: `redis:7` Docker, port 6379 — trivial
-- URL scheme: `jsnoslqc:redis:localhost:6379` or `jsnoslqc:redis://localhost:6379`
+- URL scheme: `jsnosqlc:redis:localhost:6379` or `jsnosqlc:redis://localhost:6379`
 - Operations: `get`/`store`/`delete` → native `GET`/`SET`/`DEL`
 - `find()`: Redis has no native scan filter beyond `SCAN` + pattern match. Use `SCAN 0 MATCH *` to get all keys, then filter in-memory using `MemoryFilterEvaluator`. This is known to be expensive at scale — document it clearly. For Redis, `find()` is a full-scan fallback.
 - Values stored as JSON strings (JSON.stringify/parse)
@@ -43,7 +43,7 @@ Plus: **filter builder extension** with `or` compound operator and `not` negatio
 ### Cassandra
 - SDK: `cassandra-driver@4.8.0`
 - Local testing: `cassandra:4` Docker, port 9042
-- URL scheme: `jsnoslqc:cassandra:localhost:9042/keyspace`
+- URL scheme: `jsnosqlc:cassandra:localhost:9042/keyspace`
 - Cassandra is CQL (SQL-like) — filter translates to CQL WHERE clause
 - Collections = tables. Tables must be created with a schema. jsnoslqc uses a fixed schema:
   `CREATE TABLE IF NOT EXISTS collection (pk text PRIMARY KEY, data text)` — stores doc as JSON in `data`

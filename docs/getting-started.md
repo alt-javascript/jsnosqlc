@@ -25,7 +25,7 @@ Create `demo.js`:
 import { DriverManager } from '@alt-javascript/jsnosqlc-core';
 import '@alt-javascript/jsnosqlc-memory';
 
-const client = await DriverManager.getClient('jsnoslqc:memory:');
+const client = await DriverManager.getClient('jsnosqlc:memory:');
 const users = client.getCollection('users');
 
 await users.store('u1', { name: 'Alice', age: 30, role: 'admin' });
@@ -95,7 +95,7 @@ Change the URL in `demo.js` — no other code changes required:
 ```javascript
 import '@alt-javascript/jsnosqlc-mongodb';
 
-const client = await DriverManager.getClient('jsnoslqc:mongodb://localhost:27017/demo');
+const client = await DriverManager.getClient('jsnosqlc:mongodb://localhost:27017/demo');
 ```
 
 All `store`, `get`, `insert`, `update`, `find`, and `delete` calls behave identically. The only change is the URL and the import.

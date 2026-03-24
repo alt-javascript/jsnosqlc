@@ -1,5 +1,5 @@
 /**
- * index.js — Public exports for @alt-javascript/jsnoslqc-cassandra
+ * index.js — Public exports for @alt-javascript/jsnosqlc-cassandra
  */
 
 export { default as CassandraDriver, CassandraClient, _driver } from './CassandraDriver.js';

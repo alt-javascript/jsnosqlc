@@ -1,11 +1,11 @@
 # S02: In-Memory Driver
 
-**Goal:** Ship a working `jsnoslqc:memory:` driver that passes the full compliance suite with zero external dependencies.
+**Goal:** Ship a working `jsnosqlc:memory:` driver that passes the full compliance suite with zero external dependencies.
 **Demo:** `npm test` in `packages/memory` runs the compliance suite — all find/store/get/delete/insert/update/find tests pass.
 
 ## Must-Haves
 
-- `packages/memory/MemoryDriver.js` self-registers on import under `jsnoslqc:memory:` prefix
+- `packages/memory/MemoryDriver.js` self-registers on import under `jsnosqlc:memory:` prefix
 - `MemoryCollection` implements all 6 operations: get, store, delete, insert, update, find
 - `find()` applies the full Filter AST — all 10 operators, compound `and`
 - `insert()` generates a unique id (uuid or random hex) and returns it

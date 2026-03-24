@@ -2,10 +2,10 @@
  * RedisCollection — Redis Collection implementation.
  *
  * Redis is a key-value store. Documents are stored as JSON strings under
- * namespaced keys: `jsnoslqc:<collectionName>:<key>`.
+ * namespaced keys: `jsnosqlc:<collectionName>:<key>`.
  *
  * A secondary index (a Redis Set) tracks all keys in a collection:
- *   `jsnoslqc:<collectionName>:_keys` — Set of all document keys
+ *   `jsnosqlc:<collectionName>:_keys` — Set of all document keys
  *
  * This enables find() without a full SCAN of the entire keyspace.
  *
@@ -16,8 +16,8 @@
  * insert() generates a string id.
  * update() is a read-merge-write (not atomic — no transactions in M2).
  */
-import { Collection, Cursor } from '@alt-javascript/jsnoslqc-core';
-import MemoryFilterEvaluator from '@alt-javascript/jsnoslqc-memory/MemoryFilterEvaluator.js';
+import { Collection, Cursor } from '@alt-javascript/jsnosqlc-core';
+import MemoryFilterEvaluator from '@alt-javascript/jsnosqlc-memory/MemoryFilterEvaluator.js';
 
 export default class RedisCollection extends Collection {
   /**
@@ -28,8 +28,8 @@ export default class RedisCollection extends Collection {
   constructor(client, name, redis) {
     super(client, name);
     this._redis = redis;
-    this._prefix = `jsnoslqc:${name}:`;
-    this._indexKey = `jsnoslqc:${name}:_keys`;
+    this._prefix = `jsnosqlc:${name}:`;
+    this._indexKey = `jsnosqlc:${name}:_keys`;
   }
 
   _docKey(key) {

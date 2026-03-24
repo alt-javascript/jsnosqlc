@@ -1,8 +1,8 @@
 /**
  * FirestoreDriver — Google Firestore jsnoslqc driver.
  *
- * URL format: jsnoslqc:firestore:<project-id>
- * e.g. jsnoslqc:firestore:my-gcp-project
+ * URL format: jsnosqlc:firestore:<project-id>
+ * e.g. jsnosqlc:firestore:my-gcp-project
  *
  * Emulator support:
  *   Set FIRESTORE_EMULATOR_HOST=localhost:8080 to redirect to local emulator.
@@ -10,12 +10,12 @@
  *
  * Auto-registers with DriverManager on import.
  */
-import { Driver, DriverManager } from '@alt-javascript/jsnoslqc-core';
+import { Driver, DriverManager } from '@alt-javascript/jsnosqlc-core';
 import { Firestore } from '@google-cloud/firestore';
 import FirestoreClient from './FirestoreClient.js';
 
 export default class FirestoreDriver extends Driver {
-  static URL_PREFIX = 'jsnoslqc:firestore:';
+  static URL_PREFIX = 'jsnosqlc:firestore:';
 
   acceptsURL(url) {
     return typeof url === 'string' && url.startsWith(FirestoreDriver.URL_PREFIX);

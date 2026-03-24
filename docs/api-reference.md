@@ -15,9 +15,9 @@ Returns a `Client` from the first registered driver that accepts the URL.
 ```javascript
 import { DriverManager } from '@alt-javascript/jsnosqlc-core';
 
-const client = await DriverManager.getClient('jsnoslqc:memory:');
-const client = await DriverManager.getClient('jsnoslqc:mongodb://localhost:27017/mydb');
-const client = await DriverManager.getClient('jsnoslqc:dynamodb:us-east-1', {
+const client = await DriverManager.getClient('jsnosqlc:memory:');
+const client = await DriverManager.getClient('jsnosqlc:mongodb://localhost:27017/mydb');
+const client = await DriverManager.getClient('jsnosqlc:dynamodb:us-east-1', {
   endpoint: 'http://localhost:8000',
   credentials: { accessKeyId: 'local', secretAccessKey: 'local' },
 });
@@ -27,7 +27,7 @@ const client = await DriverManager.getClient('jsnoslqc:dynamodb:us-east-1', {
 
 | Name | Type | Required | Description |
 |---|---|---|---|
-| `url` | `string` | Yes | A `jsnoslqc:` URL |
+| `url` | `string` | Yes | A `jsnosqlc:` URL |
 | `properties` | `Object` | No | Driver-specific connection properties |
 
 **Throws:** `Error` if no registered driver accepts the URL.
@@ -58,7 +58,7 @@ Convenience factory that encapsulates connection configuration. Mirrors the `Dat
 import { ClientDataSource } from '@alt-javascript/jsnosqlc-core';
 import '@alt-javascript/jsnosqlc-memory';
 
-const ds = new ClientDataSource({ url: 'jsnoslqc:memory:' });
+const ds = new ClientDataSource({ url: 'jsnosqlc:memory:' });
 const client = await ds.getClient();
 ```
 
@@ -103,7 +103,7 @@ Returns `boolean`. `true` after `close()` has been called.
 
 ### `client.getUrl()`
 
-Returns the `jsnoslqc:` URL string this client was opened with.
+Returns the `jsnosqlc:` URL string this client was opened with.
 
 ---
 
@@ -324,19 +324,19 @@ The internal representation passed to driver translators.
 ## jsnoslqc URL Scheme
 
 ```
-jsnoslqc:<subprotocol>:<connection-details>
+jsnosqlc:<subprotocol>:<connection-details>
 ```
 
 | URL | Driver Package |
 |---|---|
-| `jsnoslqc:memory:` | `@alt-javascript/jsnosqlc-memory` |
-| `jsnoslqc:mongodb://<host>:<port>/<db>` | `@alt-javascript/jsnosqlc-mongodb` |
-| `jsnoslqc:dynamodb:<region>` | `@alt-javascript/jsnosqlc-dynamodb` |
-| `jsnoslqc:firestore:<project-id>` | `@alt-javascript/jsnosqlc-firestore` |
-| `jsnoslqc:cosmosdb:local` | `@alt-javascript/jsnosqlc-cosmosdb` |
-| `jsnoslqc:cosmosdb:<https-endpoint>` | `@alt-javascript/jsnosqlc-cosmosdb` |
-| `jsnoslqc:redis://<host>:<port>[/<db>]` | `@alt-javascript/jsnosqlc-redis` |
-| `jsnoslqc:cassandra:<host>:<port>/<keyspace>` | `@alt-javascript/jsnosqlc-cassandra` |
+| `jsnosqlc:memory:` | `@alt-javascript/jsnosqlc-memory` |
+| `jsnosqlc:mongodb://<host>:<port>/<db>` | `@alt-javascript/jsnosqlc-mongodb` |
+| `jsnosqlc:dynamodb:<region>` | `@alt-javascript/jsnosqlc-dynamodb` |
+| `jsnosqlc:firestore:<project-id>` | `@alt-javascript/jsnosqlc-firestore` |
+| `jsnosqlc:cosmosdb:local` | `@alt-javascript/jsnosqlc-cosmosdb` |
+| `jsnosqlc:cosmosdb:<https-endpoint>` | `@alt-javascript/jsnosqlc-cosmosdb` |
+| `jsnosqlc:redis://<host>:<port>[/<db>]` | `@alt-javascript/jsnosqlc-redis` |
+| `jsnosqlc:cassandra:<host>:<port>/<keyspace>` | `@alt-javascript/jsnosqlc-cassandra` |
 
 ---
 

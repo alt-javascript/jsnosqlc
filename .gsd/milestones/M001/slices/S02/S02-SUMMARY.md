@@ -2,7 +2,7 @@
 id: S02
 milestone: M001
 provides:
-  - MemoryDriver self-registers under jsnoslqc:memory: prefix
+  - MemoryDriver self-registers under jsnosqlc:memory: prefix
   - MemoryCollection: get/store/delete/insert/update backed by a Map
   - MemoryFilterEvaluator: applies Filter AST to in-memory documents (all 10 operators + and)
   - 24 compliance tests passing (full suite, no skips)

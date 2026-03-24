@@ -4,7 +4,7 @@
  * Creates containers on demand (like DynamoDB's table creation).
  * Partition key is '/id' — simple, matches our key strategy.
  */
-import { Client } from '@alt-javascript/jsnoslqc-core';
+import { Client } from '@alt-javascript/jsnosqlc-core';
 import CosmosCollection from './CosmosCollection.js';
 
 export default class CosmosClient extends Client {

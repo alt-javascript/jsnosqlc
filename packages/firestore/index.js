@@ -1,5 +1,5 @@
 /**
- * index.js — Public exports for @alt-javascript/jsnoslqc-firestore
+ * index.js — Public exports for @alt-javascript/jsnosqlc-firestore
  */
 
 export { default as FirestoreDriver, FirestoreClient, _driver } from './FirestoreDriver.js';

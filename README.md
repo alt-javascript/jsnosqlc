@@ -3,7 +3,7 @@
 [![Language](https://img.shields.io/badge/language-JavaScript-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/alt-javascript/jsnosqlc/actions/workflows/node.js.yml/badge.svg)](https://github.com/alt-javascript/jsnosqlc/actions/workflows/node.js.yml)
-[![npm version](https://img.shields.io/npm/v/%40alt-javascript%2Fjsnoslqc-core)](https://www.npmjs.com/package/@alt-javascript/jsnosqlc-core)
+[![npm version](https://img.shields.io/npm/v/%40alt-javascript%2Fjsnosqlc-core)](https://www.npmjs.com/package/@alt-javascript/jsnosqlc-core)
 
 A uniform, async NoSQL access facade for JavaScript inspired by Java's JDBC — and by [jsdbc](https://github.com/alt-javascript/jsdbc), its SQL counterpart. Write database code once against jsnoslqc interfaces, then plug in any supported driver — in-memory, MongoDB, DynamoDB, Firestore, Cosmos DB, Redis, Cassandra, and more.
 
@@ -42,7 +42,7 @@ npm install @alt-javascript/jsnosqlc-core @alt-javascript/jsnosqlc-memory
 import { DriverManager, Filter } from '@alt-javascript/jsnosqlc-core';
 import '@alt-javascript/jsnosqlc-memory'; // self-registers
 
-const client = await DriverManager.getClient('jsnoslqc:memory:');
+const client = await DriverManager.getClient('jsnosqlc:memory:');
 const users = client.getCollection('users');
 
 // Key-value ops
@@ -83,7 +83,7 @@ npm install @alt-javascript/jsnosqlc-core @alt-javascript/jsnosqlc-mongodb
 import { DriverManager, Filter } from '@alt-javascript/jsnosqlc-core';
 import '@alt-javascript/jsnosqlc-mongodb'; // self-registers
 
-const client = await DriverManager.getClient('jsnoslqc:mongodb://localhost:27017/myapp');
+const client = await DriverManager.getClient('jsnosqlc:mongodb://localhost:27017/myapp');
 const products = client.getCollection('products');
 
 await products.store('p1', { name: 'Widget', price: 9.99, tags: ['sale', 'new'] });
@@ -106,10 +106,10 @@ import { DriverManager, Filter } from '@alt-javascript/jsnosqlc-core';
 import '@alt-javascript/jsnosqlc-dynamodb'; // self-registers
 
 // Real AWS DynamoDB (uses AWS SDK credential chain — env vars, ~/.aws/credentials, etc.)
-const client = await DriverManager.getClient('jsnoslqc:dynamodb:us-east-1');
+const client = await DriverManager.getClient('jsnosqlc:dynamodb:us-east-1');
 
 // DynamoDB Local (for development/testing)
-const localClient = await DriverManager.getClient('jsnoslqc:dynamodb:us-east-1', {
+const localClient = await DriverManager.getClient('jsnosqlc:dynamodb:us-east-1', {
   endpoint: 'http://localhost:8000',
   accessKeyId: 'local',
   secretAccessKey: 'local',
@@ -171,19 +171,19 @@ Filter.where('status').eq('inactive').not()
 ## jsnoslqc URL Scheme
 
 ```
-jsnoslqc:<subprotocol>:<connection-details>
+jsnosqlc:<subprotocol>:<connection-details>
 ```
 
 | URL | Driver |
 |---|---|
-| `jsnoslqc:memory:` | In-memory (no connection) |
-| `jsnoslqc:mongodb://host:port/database` | MongoDB |
-| `jsnoslqc:dynamodb:us-east-1` | AWS DynamoDB |
-| `jsnoslqc:firestore:my-gcp-project` | Google Firestore |
-| `jsnoslqc:cosmosdb:local` | Azure Cosmos DB (local emulator) |
-| `jsnoslqc:cosmosdb:https://account.documents.azure.com:443/` | Azure Cosmos DB (real) |
-| `jsnoslqc:redis://localhost:6379` | Redis |
-| `jsnoslqc:cassandra:localhost:9042/keyspace` | Apache Cassandra |
+| `jsnosqlc:memory:` | In-memory (no connection) |
+| `jsnosqlc:mongodb://host:port/database` | MongoDB |
+| `jsnosqlc:dynamodb:us-east-1` | AWS DynamoDB |
+| `jsnosqlc:firestore:my-gcp-project` | Google Firestore |
+| `jsnosqlc:cosmosdb:local` | Azure Cosmos DB (local emulator) |
+| `jsnosqlc:cosmosdb:https://account.documents.azure.com:443/` | Azure Cosmos DB (real) |
+| `jsnosqlc:redis://localhost:6379` | Redis |
+| `jsnosqlc:cassandra:localhost:9042/keyspace` | Apache Cassandra |
 
 ## Running Tests
 
@@ -219,7 +219,7 @@ import '@alt-javascript/jsnosqlc-firestore'; // self-registers
 process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080';
 
 // Real GCP — set GOOGLE_APPLICATION_CREDENTIALS or pass keyFilename
-const client = await DriverManager.getClient('jsnoslqc:firestore:my-gcp-project');
+const client = await DriverManager.getClient('jsnosqlc:firestore:my-gcp-project');
 const users = client.getCollection('users');
 
 await users.store('u1', { name: 'Alice', age: 30, tags: ['admin'] });
@@ -241,11 +241,11 @@ import { DriverManager, Filter } from '@alt-javascript/jsnosqlc-core';
 import '@alt-javascript/jsnosqlc-cosmosdb'; // self-registers
 
 // Local emulator (vnext-preview serves HTTP on 8081)
-const client = await DriverManager.getClient('jsnoslqc:cosmosdb:local');
+const client = await DriverManager.getClient('jsnosqlc:cosmosdb:local');
 
 // Real Azure — provide your account endpoint and key
 const prodClient = await DriverManager.getClient(
-  'jsnoslqc:cosmosdb:https://myaccount.documents.azure.com:443/',
+  'jsnosqlc:cosmosdb:https://myaccount.documents.azure.com:443/',
   { key: 'your-account-key', database: 'myapp' }
 );
 
@@ -269,7 +269,7 @@ npm install @alt-javascript/jsnosqlc-core @alt-javascript/jsnosqlc-redis
 import { DriverManager, Filter } from '@alt-javascript/jsnosqlc-core';
 import '@alt-javascript/jsnosqlc-redis'; // self-registers
 
-const client = await DriverManager.getClient('jsnoslqc:redis://localhost:6379');
+const client = await DriverManager.getClient('jsnosqlc:redis://localhost:6379');
 const cache = client.getCollection('sessions');
 
 await cache.store('sess-1', { userId: 'u1', token: 'abc123', active: true });
@@ -296,7 +296,7 @@ import { DriverManager, Filter } from '@alt-javascript/jsnosqlc-core';
 import '@alt-javascript/jsnosqlc-cassandra'; // self-registers
 
 // Keyspace is created automatically if it doesn't exist
-const client = await DriverManager.getClient('jsnoslqc:cassandra:localhost:9042/myapp');
+const client = await DriverManager.getClient('jsnosqlc:cassandra:localhost:9042/myapp');
 const events = client.getCollection('events');
 
 await events.store('evt-1', { type: 'login', userId: 'u1', score: 10 });

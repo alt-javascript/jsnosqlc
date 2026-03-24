@@ -7,7 +7,7 @@
  * insert() generates a random hex id. update() shallow-merges the patch.
  * find() applies the Filter AST via MemoryFilterEvaluator.
  */
-import { Collection, Cursor } from '@alt-javascript/jsnoslqc-core';
+import { Collection, Cursor } from '@alt-javascript/jsnosqlc-core';
 import MemoryFilterEvaluator from './MemoryFilterEvaluator.js';
 
 let _idCounter = 0;

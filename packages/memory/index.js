@@ -1,5 +1,5 @@
 /**
- * index.js — Public exports for @alt-javascript/jsnoslqc-memory
+ * index.js — Public exports for @alt-javascript/jsnosqlc-memory
  */
 
 export { default as MemoryDriver, MemoryClient, _driver } from './MemoryDriver.js';

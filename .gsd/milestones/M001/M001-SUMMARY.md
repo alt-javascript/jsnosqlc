@@ -35,7 +35,7 @@ patterns_established:
   - "Auto-registration: DriverManager.registerDriver(new MyDriver()) at bottom of driver file"
   - "runCompliance(clientFactory) in test/driverCompliance.js — all drivers must pass it"
   - "LazyDynamoCollection — ensures table existence before first operation"
-  - "URL scheme: jsnoslqc:<subprotocol>:<details>"
+  - "URL scheme: jsnosqlc:<subprotocol>:<details>"
 drill_down_paths:
   - .gsd/milestones/M001/slices/S01/S01-SUMMARY.md
   - .gsd/milestones/M001/slices/S02/S02-SUMMARY.md

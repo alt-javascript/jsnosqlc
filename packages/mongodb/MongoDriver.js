@@ -1,28 +1,28 @@
 /**
  * MongoDriver — MongoDB jsnoslqc driver.
  *
- * Handles URLs with prefix: jsnoslqc:mongodb://
- * Strips the jsnoslqc: prefix and passes the remainder to the native MongoDB client.
+ * Handles URLs with prefix: jsnosqlc:mongodb://
+ * Strips the jsnosqlc: prefix and passes the remainder to the native MongoDB client.
  *
- * URL format: jsnoslqc:mongodb://host:port/database
- * e.g. jsnoslqc:mongodb://localhost:27017/myapp
+ * URL format: jsnosqlc:mongodb://host:port/database
+ * e.g. jsnosqlc:mongodb://localhost:27017/myapp
  *
  * Auto-registers with DriverManager on import.
  */
-import { Driver, DriverManager } from '@alt-javascript/jsnoslqc-core';
+import { Driver, DriverManager } from '@alt-javascript/jsnosqlc-core';
 import { MongoClient as NativeMongoClient } from 'mongodb';
 import MongoClient from './MongoClient.js';
 
 export default class MongoDriver extends Driver {
-  static URL_PREFIX = 'jsnoslqc:';
+  static URL_PREFIX = 'jsnosqlc:';
 
   acceptsURL(url) {
-    return typeof url === 'string' && url.startsWith('jsnoslqc:mongodb://');
+    return typeof url === 'string' && url.startsWith('jsnosqlc:mongodb://');
   }
 
   async connect(url, properties = {}) {
-    // Strip 'jsnoslqc:' prefix → gives us 'mongodb://host:port/database'
-    const nativeUrl = url.substring('jsnoslqc:'.length);
+    // Strip 'jsnosqlc:' prefix → gives us 'mongodb://host:port/database'
+    const nativeUrl = url.substring('jsnosqlc:'.length);
 
     // Extract database name from URL path
     const urlObj = new URL(nativeUrl);

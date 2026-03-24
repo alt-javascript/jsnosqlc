@@ -2,8 +2,8 @@
  * CosmosDriver — Azure Cosmos DB jsnoslqc driver.
  *
  * URL formats:
- *   jsnoslqc:cosmosdb:local                  — local emulator (http://localhost:8081)
- *   jsnoslqc:cosmosdb:https://account.documents.azure.com:443/
+ *   jsnosqlc:cosmosdb:local                  — local emulator (http://localhost:8081)
+ *   jsnosqlc:cosmosdb:https://account.documents.azure.com:443/
  *
  * The emulator uses a well-known key. For real Azure, supply via properties:
  *   { key: 'your-account-key' }
@@ -14,7 +14,7 @@
  *
  * Auto-registers with DriverManager on import.
  */
-import { Driver, DriverManager } from '@alt-javascript/jsnoslqc-core';
+import { Driver, DriverManager } from '@alt-javascript/jsnosqlc-core';
 import { CosmosClient as NativeCosmosClient } from '@azure/cosmos';
 import CosmosClient from './CosmosClient.js';
 
@@ -23,7 +23,7 @@ const EMULATOR_KEY = 'C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8
 const EMULATOR_ENDPOINT = 'https://localhost:8081';
 
 export default class CosmosDriver extends Driver {
-  static URL_PREFIX = 'jsnoslqc:cosmosdb:';
+  static URL_PREFIX = 'jsnosqlc:cosmosdb:';
 
   acceptsURL(url) {
     return typeof url === 'string' && url.startsWith(CosmosDriver.URL_PREFIX);

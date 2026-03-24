@@ -1,7 +1,7 @@
 # @alt-javascript/jsnosqlc-dynamodb
 
 [![Language](https://img.shields.io/badge/language-JavaScript-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![npm version](https://img.shields.io/npm/v/%40alt-javascript%2Fjsnoslqc-dynamodb)](https://www.npmjs.com/package/@alt-javascript/jsnosqlc-dynamodb)
+[![npm version](https://img.shields.io/npm/v/%40alt-javascript%2Fjsnosqlc-dynamodb)](https://www.npmjs.com/package/@alt-javascript/jsnosqlc-dynamodb)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/alt-javascript/jsnosqlc/actions/workflows/node.js.yml/badge.svg)](https://github.com/alt-javascript/jsnosqlc/actions/workflows/node.js.yml)
 
@@ -22,13 +22,13 @@ import { DriverManager, Filter } from '@alt-javascript/jsnosqlc-core';
 import '@alt-javascript/jsnosqlc-dynamodb'; // self-registers with DriverManager
 
 // Local DynamoDB (DynamoDB Local)
-const client = await DriverManager.getClient('jsnoslqc:dynamodb:us-east-1', {
+const client = await DriverManager.getClient('jsnosqlc:dynamodb:us-east-1', {
   endpoint: 'http://localhost:8000',
   credentials: { accessKeyId: 'local', secretAccessKey: 'local' },
 });
 
 // AWS production — uses standard AWS credential chain
-const client = await DriverManager.getClient('jsnoslqc:dynamodb:us-east-1');
+const client = await DriverManager.getClient('jsnosqlc:dynamodb:us-east-1');
 
 const orders = client.getCollection('orders');
 
@@ -48,13 +48,13 @@ await client.close();
 ## URL Scheme
 
 ```
-jsnoslqc:dynamodb:<region>
+jsnosqlc:dynamodb:<region>
 ```
 
 | URL | Description |
 |---|---|
-| `jsnoslqc:dynamodb:us-east-1` | AWS DynamoDB in us-east-1 |
-| `jsnoslqc:dynamodb:eu-west-1` | AWS DynamoDB in eu-west-1 |
+| `jsnosqlc:dynamodb:us-east-1` | AWS DynamoDB in us-east-1 |
+| `jsnosqlc:dynamodb:eu-west-1` | AWS DynamoDB in eu-west-1 |
 
 ## Connection Properties
 
@@ -64,7 +64,7 @@ jsnoslqc:dynamodb:<region>
 | `credentials` | `{ accessKeyId, secretAccessKey }` (falls back to standard AWS credential chain) |
 
 ```javascript
-const client = await DriverManager.getClient('jsnoslqc:dynamodb:us-east-1', {
+const client = await DriverManager.getClient('jsnosqlc:dynamodb:us-east-1', {
   endpoint: process.env.DYNAMODB_ENDPOINT, // e.g. 'http://localhost:8000'
 });
 ```
@@ -83,7 +83,7 @@ export DYNAMODB_ENDPOINT=http://localhost:8000
 ```
 
 ```javascript
-const client = await DriverManager.getClient('jsnoslqc:dynamodb:us-east-1', {
+const client = await DriverManager.getClient('jsnosqlc:dynamodb:us-east-1', {
   endpoint: process.env.DYNAMODB_ENDPOINT,
   credentials: { accessKeyId: 'local', secretAccessKey: 'local' },
 });

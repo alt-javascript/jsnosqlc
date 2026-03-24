@@ -14,9 +14,9 @@
  * Note: Firestore documents are identified by their document ID, not a '_pk' field.
  * The id returned by insert() is the Firestore document ID string.
  */
-import { Collection, Cursor } from '@alt-javascript/jsnoslqc-core';
+import { Collection, Cursor } from '@alt-javascript/jsnosqlc-core';
 import FirestoreFilterTranslator from './FirestoreFilterTranslator.js';
-import MemoryFilterEvaluator from '@alt-javascript/jsnoslqc-memory/MemoryFilterEvaluator.js';
+import MemoryFilterEvaluator from '@alt-javascript/jsnosqlc-memory/MemoryFilterEvaluator.js';
 
 export default class FirestoreCollection extends Collection {
   /**

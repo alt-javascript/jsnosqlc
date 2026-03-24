@@ -1,7 +1,7 @@
 /**
  * FirestoreClient — Google Firestore Client implementation.
  */
-import { Client } from '@alt-javascript/jsnoslqc-core';
+import { Client } from '@alt-javascript/jsnosqlc-core';
 import FirestoreCollection from './FirestoreCollection.js';
 
 export default class FirestoreClient extends Client {

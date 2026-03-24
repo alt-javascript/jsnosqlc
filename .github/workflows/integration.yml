@@ -46,7 +46,7 @@ jobs:
 
       - name: Run integration tests (MongoDB)
         env:
-          MONGODB_URL: jsnoslqc:mongodb://localhost:27017/jsnoslqc_ci
+          MONGODB_URL: jsnosqlc:mongodb://localhost:27017/jsnoslqc_ci
         run: npm test --workspace=packages/mongodb
 
       - name: Run integration tests (DynamoDB)

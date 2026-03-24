@@ -15,8 +15,8 @@
  *    ALLOW FILTERING is not used — it's unsafe for large tables.
  *    For production, model your tables to support the access patterns you need.
  */
-import { Collection, Cursor } from '@alt-javascript/jsnoslqc-core';
-import MemoryFilterEvaluator from '@alt-javascript/jsnoslqc-memory/MemoryFilterEvaluator.js';
+import { Collection, Cursor } from '@alt-javascript/jsnosqlc-core';
+import MemoryFilterEvaluator from '@alt-javascript/jsnosqlc-memory/MemoryFilterEvaluator.js';
 import CassandraFilterTranslator from './CassandraFilterTranslator.js';
 
 export default class CassandraCollection extends Collection {

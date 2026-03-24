@@ -1,5 +1,5 @@
 /**
- * index.js — Public exports for @alt-javascript/jsnoslqc-redis
+ * index.js — Public exports for @alt-javascript/jsnosqlc-redis
  */
 
 export { default as RedisDriver, RedisClient, _driver } from './RedisDriver.js';

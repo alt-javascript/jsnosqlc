@@ -7,9 +7,9 @@ radically different storage paradigms.
 
 ## Success Criteria
 
-- `jsnoslqc:memory:` driver passes full compliance suite: get, store, delete, find with filter
-- `jsnoslqc:mongodb://...` driver connects to a real MongoDB instance and passes compliance suite
-- `jsnoslqc:dynamodb:...` driver connects to a real DynamoDB endpoint and passes compliance suite
+- `jsnosqlc:memory:` driver passes full compliance suite: get, store, delete, find with filter
+- `jsnosqlc:mongodb://...` driver connects to a real MongoDB instance and passes compliance suite
+- `jsnosqlc:dynamodb:...` driver connects to a real DynamoDB endpoint and passes compliance suite
 - Filter builder compiles `where('age').gt(18).and('name').eq('Alice')` to correct native queries on both MongoDB and DynamoDB
 - Driver auto-registration works: import the driver package, then open a client via URL — no manual setup
 - CI runs core + memory + mongodb + dynamodb (integration tests gated on available services)
@@ -47,13 +47,13 @@ radically different storage paradigms.
   > After this: the complete interface contract (Driver, Client, Collection, Cursor, Filter, DriverManager) exists with full test coverage of the filter builder and compliance suite skeleton.
 
 - [ ] **S02: In-Memory Driver** `risk:low` `depends:[S01]`
-  > After this: `jsnoslqc:memory:` driver passes 100% of the compliance suite — you can get, store, delete, and find with filter in pure JavaScript with no external dependencies.
+  > After this: `jsnosqlc:memory:` driver passes 100% of the compliance suite — you can get, store, delete, and find with filter in pure JavaScript with no external dependencies.
 
 - [ ] **S03: MongoDB Driver** `risk:medium` `depends:[S01]`
-  > After this: `jsnoslqc:mongodb://...` connects to a real MongoDB instance and passes the full compliance suite — filter builder operators translate correctly to MongoDB query documents.
+  > After this: `jsnosqlc:mongodb://...` connects to a real MongoDB instance and passes the full compliance suite — filter builder operators translate correctly to MongoDB query documents.
 
 - [ ] **S04: DynamoDB Driver** `risk:high` `depends:[S01]`
-  > After this: `jsnoslqc:dynamodb:...` connects to DynamoDB Local and passes the compliance suite — filter builder operators translate to DynamoDB FilterExpression syntax correctly.
+  > After this: `jsnosqlc:dynamodb:...` connects to DynamoDB Local and passes the compliance suite — filter builder operators translate to DynamoDB FilterExpression syntax correctly.
 
 - [ ] **S05: Monorepo Wiring, README, and CI** `risk:low` `depends:[S02,S03,S04]`
   > After this: root `package.json` scripts work, README quick-start runs as written, and the CI workflow runs the correct test tiers.
@@ -75,20 +75,20 @@ Produces:
 ### S02 → S05
 
 Produces:
-- `@alt-javascript/jsnosqlc-memory` package, self-registers `jsnoslqc:memory:` URL prefix
+- `@alt-javascript/jsnosqlc-memory` package, self-registers `jsnosqlc:memory:` URL prefix
 - Passes driverCompliance fully
 
 ### S03 → S05
 
 Produces:
-- `@alt-javascript/jsnosqlc-mongodb` package, self-registers `jsnoslqc:mongodb:` URL prefix
+- `@alt-javascript/jsnosqlc-mongodb` package, self-registers `jsnosqlc:mongodb:` URL prefix
 - Passes driverCompliance against real mongod
 - Filter AST → MongoDB query document translator
 
 ### S04 → S05
 
 Produces:
-- `@alt-javascript/jsnosqlc-dynamodb` package, self-registers `jsnoslqc:dynamodb:` URL prefix
+- `@alt-javascript/jsnosqlc-dynamodb` package, self-registers `jsnosqlc:dynamodb:` URL prefix
 - Passes driverCompliance against DynamoDB Local
 - Filter AST → DynamoDB FilterExpression + ExpressionAttributeNames + ExpressionAttributeValues translator
 

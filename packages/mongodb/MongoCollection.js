@@ -5,7 +5,7 @@
  * get/store/delete operations. insert() lets MongoDB generate the ObjectId
  * but we return it as a string.
  */
-import { Collection, Cursor } from '@alt-javascript/jsnoslqc-core';
+import { Collection, Cursor } from '@alt-javascript/jsnosqlc-core';
 import MongoFilterTranslator from './MongoFilterTranslator.js';
 
 export default class MongoCollection extends Collection {

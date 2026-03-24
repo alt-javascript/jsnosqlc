@@ -22,8 +22,8 @@ and key-value/wide-column) to validate the abstraction boundary.
   `packages/dynamodb`
 - ESM throughout (`"type": "module"`)
 - Driver auto-registration on import (same pattern as jsdbc)
-- URL scheme: `jsnoslqc:<subprotocol>:<connection-details>`
-  e.g. `jsnoslqc:mongodb://localhost:27017/mydb`, `jsnoslqc:dynamodb:us-east-1`
+- URL scheme: `jsnosqlc:<subprotocol>:<connection-details>`
+  e.g. `jsnosqlc:mongodb://localhost:27017/mydb`, `jsnosqlc:dynamodb:us-east-1`
 - **Filter syntax:** Chainable builder API
   `Filter.where('age').gt(18).and('name').eq('Alice')`
 - Collections (not tables): `client.getCollection('users')`

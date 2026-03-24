@@ -9,7 +9,7 @@
  * Table names = collection names. Tables are created the first time
  * getCollection() is called for a name that doesn't exist yet.
  */
-import { Client } from '@alt-javascript/jsnoslqc-core';
+import { Client } from '@alt-javascript/jsnosqlc-core';
 import DynamoCollection from './DynamoCollection.js';
 import { DynamoDBClient, CreateTableCommand, DescribeTableCommand, ResourceInUseException } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';

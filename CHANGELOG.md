@@ -29,46 +29,46 @@ Initial public release of all packages.
 **In-memory driver (`@alt-javascript/jsnosqlc-memory`)**
 - `MemoryDriver`, `MemoryClient`, `MemoryCollection` — zero-dependency in-memory implementation
 - `MemoryFilterEvaluator` — in-memory filter evaluation for all 10 operators + `or`/`not`
-- URL: `jsnoslqc:memory:`
+- URL: `jsnosqlc:memory:`
 
 **MongoDB driver (`@alt-javascript/jsnosqlc-mongodb`)**
 - `MongoDriver`, `MongoClient`, `MongoCollection`, `MongoFilterTranslator`
 - Full compliance suite passing against MongoDB 7
-- URL: `jsnoslqc:mongodb://<host>:<port>/<database>`
+- URL: `jsnosqlc:mongodb://<host>:<port>/<database>`
 
 **DynamoDB driver (`@alt-javascript/jsnosqlc-dynamodb`)**
 - `DynamoDriver`, `DynamoClient`, `LazyDynamoCollection`, `DynamoCollection`, `DynamoFilterTranslator`
 - Auto-creates DynamoDB tables on first collection use
 - Full compliance suite passing against DynamoDB Local
-- URL: `jsnoslqc:dynamodb:<region>`
+- URL: `jsnosqlc:dynamodb:<region>`
 
 **Google Firestore driver (`@alt-javascript/jsnosqlc-firestore`)**
 - `FirestoreDriver`, `FirestoreClient`, `FirestoreCollection`, `FirestoreFilterTranslator`
 - Native SDK filter chaining for `eq`, `ne`, `gt`, `gte`, `lt`, `lte`, `contains`, `in`, `nin`
 - Client-side fallback for `or` and `not` via `MemoryFilterEvaluator`
 - Full compliance suite passing against Firestore Emulator
-- URL: `jsnoslqc:firestore:<gcp-project-id>`
+- URL: `jsnosqlc:firestore:<gcp-project-id>`
 
 **Azure Cosmos DB driver (`@alt-javascript/jsnosqlc-cosmosdb`)**
 - `CosmosDriver`, `CosmosClient`, `CosmosCollection`, `CosmosFilterTranslator`
 - Parameterised Cosmos DB SQL query construction for all 10 operators + `or`/`not`
 - Auto-creates Cosmos DB database and container on first use
 - Full compliance suite passing against Cosmos DB Linux Emulator (vnext-preview)
-- URL: `jsnoslqc:cosmosdb:local` / `jsnoslqc:cosmosdb:<https-endpoint>`
+- URL: `jsnosqlc:cosmosdb:local` / `jsnosqlc:cosmosdb:<https-endpoint>`
 
 **Redis driver (`@alt-javascript/jsnosqlc-redis`)**
 - `RedisDriver`, `RedisClient`, `RedisCollection` — Redis storage via ioredis
 - Secondary key index (Redis Set) per collection for efficient full-collection fetch
 - In-memory filter evaluation for `find()` via `MemoryFilterEvaluator`
 - Full compliance suite passing against Redis 7
-- URL: `jsnoslqc:redis://<host>:<port>[/<db>]`
+- URL: `jsnosqlc:redis://<host>:<port>[/<db>]`
 
 **Apache Cassandra driver (`@alt-javascript/jsnosqlc-cassandra`)**
 - `CassandraDriver`, `CassandraClient`, `CassandraCollection`, `CassandraFilterTranslator`
 - JSON-column schema: `CREATE TABLE (pk text PRIMARY KEY, data text)`
 - Auto-creates keyspace (SimpleStrategy) and tables on first use
 - Full compliance suite passing against Cassandra 4
-- URL: `jsnoslqc:cassandra:<host>:<port>/<keyspace>`
+- URL: `jsnosqlc:cassandra:<host>:<port>/<keyspace>`
 
 **Documentation**
 - Root `README.md` with quick-start for all 8 drivers

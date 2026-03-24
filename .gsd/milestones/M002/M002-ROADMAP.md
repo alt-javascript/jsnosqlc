@@ -50,16 +50,16 @@ operators to the filter builder so all drivers can express richer queries native
   > After this: `Filter.or(f1, f2)` and `filter.not()` work, unit-tested, MongoDB and DynamoDB translators handle the new AST nodes.
 
 - [ ] **S02: Google Firestore driver** `risk:medium` `depends:[S01]`
-  > After this: `jsnoslqc:firestore:<project>` connects to the Firestore emulator and passes the full compliance suite including `or` filter.
+  > After this: `jsnosqlc:firestore:<project>` connects to the Firestore emulator and passes the full compliance suite including `or` filter.
 
 - [ ] **S03: Azure Cosmos DB driver** `risk:high` `depends:[S01]`
-  > After this: `jsnoslqc:cosmosdb:local` connects to the Cosmos DB Linux emulator (vnext-preview) and passes the compliance suite — TLS risk retired.
+  > After this: `jsnosqlc:cosmosdb:local` connects to the Cosmos DB Linux emulator (vnext-preview) and passes the compliance suite — TLS risk retired.
 
 - [ ] **S04: Redis driver** `risk:low` `depends:[S01]`
-  > After this: `jsnoslqc:redis://localhost:6379` passes the compliance suite — find() uses in-memory scan, documented as not production-scalable.
+  > After this: `jsnosqlc:redis://localhost:6379` passes the compliance suite — find() uses in-memory scan, documented as not production-scalable.
 
 - [ ] **S05: Cassandra driver** `risk:medium` `depends:[S01]`
-  > After this: `jsnoslqc:cassandra:localhost:9042/jsnoslqc` passes the compliance suite — CQL WHERE for native operators, client-side filter for contains/in/nin/exists.
+  > After this: `jsnosqlc:cassandra:localhost:9042/jsnoslqc` passes the compliance suite — CQL WHERE for native operators, client-side filter for contains/in/nin/exists.
 
 - [ ] **S06: README, CI, and root wiring** `risk:low` `depends:[S02,S03,S04,S05]`
   > After this: README quick-starts cover all 7 drivers, CI adds 4 new integration jobs, `npm run test:integration` runs all drivers.
@@ -78,28 +78,28 @@ Produces:
 ### S02 → S06
 
 Produces:
-- `@alt-javascript/jsnosqlc-firestore` — self-registers `jsnoslqc:firestore:` prefix
+- `@alt-javascript/jsnosqlc-firestore` — self-registers `jsnosqlc:firestore:` prefix
 - `FirestoreFilterTranslator`: AST → Firestore SDK `.where()` chain (including `.or()`)
 - Passes full compliance suite against Firestore emulator
 
 ### S03 → S06
 
 Produces:
-- `@alt-javascript/jsnosqlc-cosmosdb` — self-registers `jsnoslqc:cosmosdb:` prefix
+- `@alt-javascript/jsnosqlc-cosmosdb` — self-registers `jsnosqlc:cosmosdb:` prefix
 - `CosmosFilterTranslator`: AST → Cosmos DB SQL query string (parameterized)
 - Passes full compliance suite against Cosmos DB Linux emulator (vnext-preview)
 
 ### S04 → S06
 
 Produces:
-- `@alt-javascript/jsnosqlc-redis` — self-registers `jsnoslqc:redis:` prefix
+- `@alt-javascript/jsnosqlc-redis` — self-registers `jsnosqlc:redis:` prefix
 - `find()` implemented via SCAN + in-memory MemoryFilterEvaluator
 - Passes compliance suite; find() documented as full-scan
 
 ### S05 → S06
 
 Produces:
-- `@alt-javascript/jsnosqlc-cassandra` — self-registers `jsnoslqc:cassandra:` prefix
+- `@alt-javascript/jsnosqlc-cassandra` — self-registers `jsnosqlc:cassandra:` prefix
 - CQL translator for native operators; MemoryFilterEvaluator fallback for contains/in/nin/exists
 - Passes compliance suite
 

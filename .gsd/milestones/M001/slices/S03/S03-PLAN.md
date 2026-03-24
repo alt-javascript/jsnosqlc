@@ -1,12 +1,12 @@
 # S03: MongoDB Driver
 
-**Goal:** Ship a working `jsnoslqc:mongodb://...` driver that passes the full compliance suite against a real MongoDB instance.
+**Goal:** Ship a working `jsnosqlc:mongodb://...` driver that passes the full compliance suite against a real MongoDB instance.
 **Demo:** `npm test` in `packages/mongodb` runs the compliance suite against MongoDB and all 24 tests pass.
 
 ## Must-Haves
 
-- `packages/mongodb/MongoDriver.js` self-registers under `jsnoslqc:mongodb:` prefix
-- URL scheme: `jsnoslqc:mongodb://host:port/database` (strips prefix, passes remainder to `mongodb` driver)
+- `packages/mongodb/MongoDriver.js` self-registers under `jsnosqlc:mongodb:` prefix
+- URL scheme: `jsnosqlc:mongodb://host:port/database` (strips prefix, passes remainder to `mongodb` driver)
 - `MongoCollection` implements all 6 operations via official `mongodb` npm package
 - Filter AST → MongoDB query document translator handles all 10 operators and compound `and`
 - `store(key, doc)` upserts by `_id: key`; `get(key)` finds by `_id: key`

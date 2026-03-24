@@ -1,5 +1,5 @@
 /**
- * index.js — Public exports for @alt-javascript/jsnoslqc-mongodb
+ * index.js — Public exports for @alt-javascript/jsnosqlc-mongodb
  */
 
 export { default as MongoDriver, MongoClient, _driver } from './MongoDriver.js';

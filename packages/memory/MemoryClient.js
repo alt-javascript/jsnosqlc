@@ -4,7 +4,7 @@
  * Each collection gets its own isolated Map. Collections are cached by name
  * on the parent Client (via Client.getCollection() caching).
  */
-import { Client } from '@alt-javascript/jsnoslqc-core';
+import { Client } from '@alt-javascript/jsnosqlc-core';
 import MemoryCollection from './MemoryCollection.js';
 
 export default class MemoryClient extends Client {

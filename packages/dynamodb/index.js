@@ -1,5 +1,5 @@
 /**
- * index.js — Public exports for @alt-javascript/jsnoslqc-dynamodb
+ * index.js — Public exports for @alt-javascript/jsnosqlc-dynamodb
  */
 
 export { default as DynamoDriver, DynamoClient, _driver } from './DynamoDriver.js';

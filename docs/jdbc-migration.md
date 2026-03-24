@@ -101,8 +101,8 @@ import '@alt-javascript/jsnosqlc-mongodb'; // side-effect import → DriverManag
 JDBC URLs use `jdbc:<subprotocol>:<details>`. JSNOSLQC URLs mirror this:
 
 ```
-jdbc:postgresql://localhost:5432/mydb   →   jsnoslqc:mongodb://localhost:27017/mydb
-jdbc:mysql://localhost:3306/mydb        →   jsnoslqc:cassandra:localhost:9042/mykeyspace
+jdbc:postgresql://localhost:5432/mydb   →   jsnosqlc:mongodb://localhost:27017/mydb
+jdbc:mysql://localhost:3306/mydb        →   jsnosqlc:cassandra:localhost:9042/mykeyspace
 ```
 
 ## ResultSet → Cursor
@@ -131,10 +131,10 @@ import { DriverManager, ClientDataSource, Filter } from '@alt-javascript/jsnosql
 import '@alt-javascript/jsnosqlc-memory'; // any driver
 
 // DriverManager.getClient — like DriverManager.getConnection in JDBC
-const client = await DriverManager.getClient('jsnoslqc:memory:');
+const client = await DriverManager.getClient('jsnosqlc:memory:');
 
 // ClientDataSource — like DataSource in JDBC
-const ds = new ClientDataSource({ url: 'jsnoslqc:memory:' });
+const ds = new ClientDataSource({ url: 'jsnosqlc:memory:' });
 const client2 = await ds.getClient();
 
 // getCollection — like createStatement, but named
