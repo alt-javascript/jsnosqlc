@@ -1,6 +1,6 @@
 {
   "name": "@alt-javascript/jsnosqlc-firestore",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JSNOSLQC Google Firestore driver via @google-cloud/firestore",
   "keywords": [
     "jsnosqlc",

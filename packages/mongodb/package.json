@@ -1,6 +1,6 @@
 {
   "name": "@alt-javascript/jsnosqlc-mongodb",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JSNOSLQC MongoDB driver via the official mongodb npm package",
   "keywords": [
     "jsnosqlc",

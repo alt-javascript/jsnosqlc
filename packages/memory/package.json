@@ -1,6 +1,6 @@
 {
   "name": "@alt-javascript/jsnosqlc-memory",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JSNOSLQC in-memory driver — for testing and offline development",
   "keywords": [
     "jsnosqlc",

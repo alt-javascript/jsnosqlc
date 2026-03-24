@@ -6,6 +6,18 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). Versioning: [S
 
 ---
 
+## [1.0.1] — 2026-03-24
+
+### Fixed
+
+- Corrected project name typo throughout: `jsnoslqc` → `jsnosqlc` in all source comments,
+  JSDoc, test strings, default values, CI workflows, GSD milestone files, and documentation
+- `repository.url` in all `package.json` files now matches the GitHub repository name (`jsnosqlc`)
+  — required for npm provenance validation
+- Regenerated `package-lock.json` against correct package names
+
+---
+
 ## [1.0.0] — 2026-03-24
 
 Initial public release of all packages.
