@@ -1,0 +1,41 @@
+{
+  "name": "@alt-javascript/jsnoslqc-firestore",
+  "version": "1.0.0",
+  "description": "JSNOSLQC Google Firestore driver via @google-cloud/firestore",
+  "keywords": [
+    "jsnoslqc",
+    "nosql",
+    "firestore",
+    "google",
+    "gcp",
+    "driver"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "homepage": "https://github.com/alt-javascript/jsnoslqc/tree/main/packages/firestore#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alt-javascript/jsnoslqc",
+    "directory": "packages/firestore"
+  },
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive 'test/**/*.spec.js' --timeout 30000"
+  },
+  "dependencies": {
+    "@alt-javascript/jsnoslqc-core": "*",
+    "@google-cloud/firestore": "^8.3.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
+  },
+  "author": "Craig Parravicini",
+  "contributors": [
+    "Claude (Anthropic)"
+  ],
+  "license": "MIT"
+}

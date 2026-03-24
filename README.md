@@ -25,6 +25,10 @@ JavaScript's NoSQL ecosystem is as fragmented as its SQL ecosystem. Every databa
 | [`@alt-javascript/jsnoslqc-memory`](packages/memory/) | In-memory driver — zero dependencies, for testing and dev | In-process |
 | [`@alt-javascript/jsnoslqc-mongodb`](packages/mongodb/) | MongoDB driver via [mongodb](https://www.npmjs.com/package/mongodb) | MongoDB |
 | [`@alt-javascript/jsnoslqc-dynamodb`](packages/dynamodb/) | DynamoDB driver via [@aws-sdk/client-dynamodb](https://www.npmjs.com/package/@aws-sdk/client-dynamodb) | AWS DynamoDB |
+| [`@alt-javascript/jsnoslqc-firestore`](packages/firestore/) | Google Firestore driver via [@google-cloud/firestore](https://www.npmjs.com/package/@google-cloud/firestore) | GCP Firestore |
+| [`@alt-javascript/jsnoslqc-cosmosdb`](packages/cosmosdb/) | Azure Cosmos DB driver via [@azure/cosmos](https://www.npmjs.com/package/@azure/cosmos) | Azure Cosmos DB |
+| [`@alt-javascript/jsnoslqc-redis`](packages/redis/) | Redis driver via [ioredis](https://www.npmjs.com/package/ioredis) | Redis |
+| [`@alt-javascript/jsnoslqc-cassandra`](packages/cassandra/) | Apache Cassandra driver via [cassandra-driver](https://www.npmjs.com/package/cassandra-driver) | Cassandra |
 
 ## Quick Start: In-Memory Driver
 
@@ -136,13 +140,30 @@ await localClient.close();
 | `nin` | `.nin(['x', 'y'])` | Field is not one of the values |
 | `exists` | `.exists(true)` | Field is present (true) or absent (false) |
 
-Compound filters: chain multiple conditions with `.and(field)`:
+Compound filters — AND (implicit chaining):
 
 ```javascript
 Filter.where('age').gt(18)
   .and('status').eq('active')
   .and('country').eq('AU')
   .build()
+```
+
+OR compound:
+
+```javascript
+Filter.or(
+  Filter.where('status').eq('active').build(),
+  Filter.where('status').eq('pending').build()
+)
+// { type: 'or', conditions: [ ...active..., ...pending... ] }
+```
+
+NOT negation:
+
+```javascript
+Filter.where('status').eq('inactive').not()
+// { type: 'not', condition: { type: 'condition', field: 'status', op: 'eq', value: 'inactive' } }
 ```
 
 ## jsnoslqc URL Scheme
@@ -156,6 +177,11 @@ jsnoslqc:<subprotocol>:<connection-details>
 | `jsnoslqc:memory:` | In-memory (no connection) |
 | `jsnoslqc:mongodb://host:port/database` | MongoDB |
 | `jsnoslqc:dynamodb:us-east-1` | AWS DynamoDB |
+| `jsnoslqc:firestore:my-gcp-project` | Google Firestore |
+| `jsnoslqc:cosmosdb:local` | Azure Cosmos DB (local emulator) |
+| `jsnoslqc:cosmosdb:https://account.documents.azure.com:443/` | Azure Cosmos DB (real) |
+| `jsnoslqc:redis://localhost:6379` | Redis |
+| `jsnoslqc:cassandra:localhost:9042/keyspace` | Apache Cassandra |
 
 ## Running Tests
 
@@ -171,9 +197,121 @@ npm run test:integration
 # Start local services via Docker
 docker run --rm -d -p 27017:27017 mongo:7
 docker run --rm -d -p 8000:8000 amazon/dynamodb-local:latest
+docker run --rm -d -e FIRESTORE_PROJECT_ID=jsnoslqc-test -e PORT=8080 -p 8080:8080 mtlynch/firestore-emulator
+docker run --rm -d -p 8081:8081 mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator:vnext-preview
+docker run --rm -d -p 6379:6379 redis:7
+docker run --rm -d -p 9042:9042 cassandra:4
 ```
 
-## Writing a jsnoslqc Driver
+## Quick Start: Google Firestore
+
+```bash
+npm install @alt-javascript/jsnoslqc-core @alt-javascript/jsnoslqc-firestore
+```
+
+```javascript
+import { DriverManager, Filter } from '@alt-javascript/jsnoslqc-core';
+import '@alt-javascript/jsnoslqc-firestore'; // self-registers
+
+// Emulator — set env var before importing the driver
+process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080';
+
+// Real GCP — set GOOGLE_APPLICATION_CREDENTIALS or pass keyFilename
+const client = await DriverManager.getClient('jsnoslqc:firestore:my-gcp-project');
+const users = client.getCollection('users');
+
+await users.store('u1', { name: 'Alice', age: 30, tags: ['admin'] });
+const filter = Filter.where('age').gt(25).and('tags').contains('admin').build();
+const cursor = await users.find(filter);
+const admins = cursor.getDocuments();
+
+await client.close();
+```
+
+## Quick Start: Azure Cosmos DB
+
+```bash
+npm install @alt-javascript/jsnoslqc-core @alt-javascript/jsnoslqc-cosmosdb
+```
+
+```javascript
+import { DriverManager, Filter } from '@alt-javascript/jsnoslqc-core';
+import '@alt-javascript/jsnoslqc-cosmosdb'; // self-registers
+
+// Local emulator (vnext-preview serves HTTP on 8081)
+const client = await DriverManager.getClient('jsnoslqc:cosmosdb:local');
+
+// Real Azure — provide your account endpoint and key
+const prodClient = await DriverManager.getClient(
+  'jsnoslqc:cosmosdb:https://myaccount.documents.azure.com:443/',
+  { key: 'your-account-key', database: 'myapp' }
+);
+
+const items = client.getCollection('items');
+await items.store('i1', { name: 'Widget', price: 9.99, category: 'tools' });
+
+const filter = Filter.where('price').lt(20).and('category').eq('tools').build();
+const cursor = await items.find(filter);
+const cheap = cursor.getDocuments();
+
+await client.close();
+```
+
+## Quick Start: Redis
+
+```bash
+npm install @alt-javascript/jsnoslqc-core @alt-javascript/jsnoslqc-redis
+```
+
+```javascript
+import { DriverManager, Filter } from '@alt-javascript/jsnoslqc-core';
+import '@alt-javascript/jsnoslqc-redis'; // self-registers
+
+const client = await DriverManager.getClient('jsnoslqc:redis://localhost:6379');
+const cache = client.getCollection('sessions');
+
+await cache.store('sess-1', { userId: 'u1', token: 'abc123', active: true });
+
+const filter = Filter.where('active').eq(true).build();
+const cursor = await cache.find(filter); // ⚠ full scan — see docs
+const activeSessions = cursor.getDocuments();
+
+await client.close();
+```
+
+> ⚠ **Redis `find()` limitation:** The Redis driver performs a full collection scan
+> and filters results in-memory. This is suitable for development and small datasets.
+> For production filter queries, use [RediSearch](https://redis.io/docs/stack/search/).
+
+## Quick Start: Apache Cassandra
+
+```bash
+npm install @alt-javascript/jsnoslqc-core @alt-javascript/jsnoslqc-cassandra
+```
+
+```javascript
+import { DriverManager, Filter } from '@alt-javascript/jsnoslqc-core';
+import '@alt-javascript/jsnoslqc-cassandra'; // self-registers
+
+// Keyspace is created automatically if it doesn't exist
+const client = await DriverManager.getClient('jsnoslqc:cassandra:localhost:9042/myapp');
+const events = client.getCollection('events');
+
+await events.store('evt-1', { type: 'login', userId: 'u1', score: 10 });
+await events.insert({ type: 'click', userId: 'u2', score: 5 });
+
+const filter = Filter.where('score').gt(7).build();
+const cursor = await events.find(filter); // full scan + in-memory filter
+const highScore = cursor.getDocuments();
+
+await client.close();
+```
+
+> ⚠ **Cassandra `find()` limitation:** Documents are stored as JSON in a single
+> column. Non-pk field filtering is done client-side after a full table scan.
+> For production, model your tables to support your access patterns natively in CQL.
+
+## Filter Operators
 
 See [packages/memory](packages/memory/) for a complete minimal example. The pattern:
 

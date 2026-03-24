@@ -1,0 +1,41 @@
+{
+  "name": "@alt-javascript/jsnoslqc-cosmosdb",
+  "version": "1.0.0",
+  "description": "JSNOSLQC Azure Cosmos DB driver via @azure/cosmos",
+  "keywords": [
+    "jsnoslqc",
+    "nosql",
+    "cosmosdb",
+    "azure",
+    "microsoft",
+    "driver"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "homepage": "https://github.com/alt-javascript/jsnoslqc/tree/main/packages/cosmosdb#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alt-javascript/jsnoslqc",
+    "directory": "packages/cosmosdb"
+  },
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive 'test/**/*.spec.js' --timeout 30000"
+  },
+  "dependencies": {
+    "@alt-javascript/jsnoslqc-core": "*",
+    "@azure/cosmos": "^4.9.2"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
+  },
+  "author": "Craig Parravicini",
+  "contributors": [
+    "Claude (Anthropic)"
+  ],
+  "license": "MIT"
+}

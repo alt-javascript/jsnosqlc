@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "test": "npm test --workspace=packages/core --workspace=packages/memory",
-    "test:integration": "npm test --workspace=packages/mongodb --workspace=packages/dynamodb"
+    "test:integration": "npm test --workspace=packages/mongodb --workspace=packages/dynamodb --workspace=packages/firestore --workspace=packages/cosmosdb --workspace=packages/redis --workspace=packages/cassandra"
   },
   "keywords": [
     "nosql",

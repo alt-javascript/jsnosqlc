@@ -1,0 +1,41 @@
+{
+  "name": "@alt-javascript/jsnoslqc-redis",
+  "version": "1.0.0",
+  "description": "JSNOSLQC Redis driver via ioredis",
+  "keywords": [
+    "jsnoslqc",
+    "nosql",
+    "redis",
+    "key-value",
+    "driver"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "homepage": "https://github.com/alt-javascript/jsnoslqc/tree/main/packages/redis#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alt-javascript/jsnoslqc",
+    "directory": "packages/redis"
+  },
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive 'test/**/*.spec.js' --timeout 15000"
+  },
+  "dependencies": {
+    "@alt-javascript/jsnoslqc-core": "*",
+    "@alt-javascript/jsnoslqc-memory": "*",
+    "ioredis": "^5.10.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
+  },
+  "author": "Craig Parravicini",
+  "contributors": [
+    "Claude (Anthropic)"
+  ],
+  "license": "MIT"
+}
