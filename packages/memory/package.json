@@ -1,0 +1,40 @@
+{
+  "name": "@alt-javascript/jsnoslqc-memory",
+  "version": "1.0.0",
+  "description": "JSNOSLQC in-memory driver — for testing and offline development",
+  "keywords": [
+    "jsnoslqc",
+    "nosql",
+    "memory",
+    "in-memory",
+    "driver",
+    "testing"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "homepage": "https://github.com/alt-javascript/jsnoslqc/tree/main/packages/memory#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alt-javascript/jsnoslqc",
+    "directory": "packages/memory"
+  },
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive 'test/**/*.spec.js'"
+  },
+  "dependencies": {
+    "@alt-javascript/jsnoslqc-core": "*"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
+  },
+  "author": "Craig Parravicini",
+  "contributors": [
+    "Claude (Anthropic)"
+  ],
+  "license": "MIT"
+}
