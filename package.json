@@ -1,0 +1,27 @@
+{
+  "name": "jsnoslqc",
+  "version": "1.0.0",
+  "description": "JDBC-inspired unified NoSQL access layer for JavaScript",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "npm test --workspace=packages/core --workspace=packages/memory",
+    "test:integration": "npm test --workspace=packages/mongodb --workspace=packages/dynamodb"
+  },
+  "keywords": [
+    "nosql",
+    "mongodb",
+    "dynamodb",
+    "database",
+    "driver",
+    "jsdbc"
+  ],
+  "author": "Craig Parravicini",
+  "contributors": [
+    "Claude (Anthropic)"
+  ],
+  "license": "MIT"
+}

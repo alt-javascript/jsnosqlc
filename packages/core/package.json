@@ -1,0 +1,42 @@
+{
+  "name": "@alt-javascript/jsnoslqc-core",
+  "version": "1.0.0",
+  "description": "JSNOSLQC core interfaces — Driver, Client, Collection, Cursor, Filter, DriverManager",
+  "keywords": [
+    "jsnoslqc",
+    "nosql",
+    "database",
+    "driver",
+    "filter",
+    "mongodb",
+    "dynamodb"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "homepage": "https://github.com/alt-javascript/jsnoslqc/tree/main/packages/core#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alt-javascript/jsnoslqc",
+    "directory": "packages/core"
+  },
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./test/driverCompliance.js": "./test/driverCompliance.js"
+  },
+  "scripts": {
+    "test": "mocha --recursive 'test/**/*.spec.js'"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
+  },
+  "author": "Craig Parravicini",
+  "contributors": [
+    "Claude (Anthropic)"
+  ],
+  "license": "MIT"
+}
