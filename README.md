@@ -2,8 +2,10 @@
 
 [![Language](https://img.shields.io/badge/language-JavaScript-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/alt-javascript/jsnoslqc/actions/workflows/node.js.yml/badge.svg)](https://github.com/alt-javascript/jsnoslqc/actions/workflows/node.js.yml)
+[![npm version](https://img.shields.io/npm/v/%40alt-javascript%2Fjsnoslqc-core)](https://www.npmjs.com/package/@alt-javascript/jsnoslqc-core)
 
-A uniform, async NoSQL access facade for JavaScript inspired by Java's JDBC — and by [jsdbc](https://github.com/alt-javascript/jsdbc), its SQL counterpart. Write database code once against jsnoslqc interfaces, then plug in any supported driver — in-memory, MongoDB, DynamoDB, and more.
+A uniform, async NoSQL access facade for JavaScript inspired by Java's JDBC — and by [jsdbc](https://github.com/alt-javascript/jsdbc), its SQL counterpart. Write database code once against jsnoslqc interfaces, then plug in any supported driver — in-memory, MongoDB, DynamoDB, Firestore, Cosmos DB, Redis, Cassandra, and more.
 
 **Part of the [@alt-javascript](https://github.com/alt-javascript) ecosystem.**
 
@@ -313,7 +315,9 @@ await client.close();
 
 ## Filter Operators
 
-See [packages/memory](packages/memory/) for a complete minimal example. The pattern:
+## Writing a jsnoslqc Driver
+
+See the [Driver Guide](docs/driver-guide.md) and [`@alt-javascript/jsnoslqc-memory`](packages/memory/) for a complete minimal example. The pattern:
 
 1. Extend `Driver`, implement `acceptsURL(url)` and `connect(url, props): Promise<Client>`
 2. Extend `Client`, implement `_getCollection(name): Collection` and `_close()`
@@ -321,6 +325,27 @@ See [packages/memory](packages/memory/) for a complete minimal example. The patt
 4. At the bottom of your driver file: `DriverManager.registerDriver(new MyDriver())`
 
 Run `runCompliance(clientFactory)` from `@alt-javascript/jsnoslqc-core/test/driverCompliance.js` to verify your driver against the full compliance suite.
+
+## Documentation
+
+- [Getting Started](docs/getting-started.md) — tutorial: first operations, switching backends
+- [API Reference](docs/api-reference.md) — complete interface documentation
+- [Driver Guide](docs/driver-guide.md) — writing custom jsnoslqc drivers
+- [For JDBC Developers](docs/jdbc-migration.md) — mapping JDBC concepts to jsnoslqc
+- [Changelog](CHANGELOG.md) — release history
+
+## Contributing
+
+```bash
+git clone https://github.com/alt-javascript/jsnoslqc.git
+cd jsnoslqc
+npm install
+
+npm test                  # CI-safe: core + memory (55 tests, no external deps)
+npm run test:integration  # all drivers (requires Docker)
+```
+
+See [Driver Guide](docs/driver-guide.md) for instructions on contributing a new driver.
 
 ## License
 

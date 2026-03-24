@@ -1,0 +1,120 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  # Verify unit tests pass before publishing
+  test:
+    name: Pre-publish verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm test
+
+  # Publish all packages to npm
+  publish:
+    name: Publish packages
+    runs-on: ubuntu-latest
+    needs: test
+    permissions:
+      contents: write  # needed to create GitHub Release
+      id-token: write  # needed for provenance
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: npm
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set version from tag
+        run: |
+          TAG="${GITHUB_REF#refs/tags/v}"
+          echo "Publishing version: $TAG"
+          npm version "$TAG" --workspaces --no-git-tag-version
+
+      - name: Publish @alt-javascript/jsnoslqc-core
+        run: npm publish --workspace=packages/core --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish @alt-javascript/jsnoslqc-memory
+        run: npm publish --workspace=packages/memory --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish @alt-javascript/jsnoslqc-mongodb
+        run: npm publish --workspace=packages/mongodb --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish @alt-javascript/jsnoslqc-dynamodb
+        run: npm publish --workspace=packages/dynamodb --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish @alt-javascript/jsnoslqc-firestore
+        run: npm publish --workspace=packages/firestore --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish @alt-javascript/jsnoslqc-cosmosdb
+        run: npm publish --workspace=packages/cosmosdb --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish @alt-javascript/jsnoslqc-redis
+        run: npm publish --workspace=packages/redis --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish @alt-javascript/jsnoslqc-cassandra
+        run: npm publish --workspace=packages/cassandra --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const tag = context.ref.replace('refs/tags/', '');
+            const fs = require('fs');
+            let body = '';
+            try {
+              const changelog = fs.readFileSync('CHANGELOG.md', 'utf8');
+              // Extract the first release section
+              const match = changelog.match(/## \[[\d.]+\].*\n([\s\S]*?)(?=\n## \[|$)/);
+              if (match) body = match[1].trim();
+            } catch (e) {
+              body = `Release ${tag}`;
+            }
+            await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: tag,
+              name: `Release ${tag}`,
+              body,
+              draft: false,
+              prerelease: tag.includes('-'),
+            });
