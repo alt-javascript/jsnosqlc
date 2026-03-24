@@ -1,17 +1,17 @@
 # GSD State
 
-**Active Milestone:** M002 — Extended Drivers (Firestore, Cosmos DB, Redis, Cassandra)
-**Active Slice:** S01 — Filter builder extension (or/not) + M1 translator updates
-**Active Task:** T01 — (not yet started)
-**Phase:** Planning → Executing
+**Active Milestone:** M002 — Extended Drivers
+**Active Slice:** — (all slices complete)
+**Active Task:** — (complete)
+**Phase:** Complete
 
 ## Recent Decisions
 
-- M002 scope: Firestore, Cosmos DB, Redis, Cassandra + or/not filter operators
-- Cosmos DB: use vnext-preview Linux emulator (ARM/Apple Silicon compatible)
-- Redis find(): full SCAN + in-memory MemoryFilterEvaluator (document limitation)
-- Cassandra: fixed schema (pk text PRIMARY KEY, data text), ALLOW FILTERING for complex ops
-- Firestore: FIRESTORE_EMULATOR_HOST env var redirect pattern
+- Cosmos DB vnext-preview emulator serves HTTP (not HTTPS) on 8081 — drop TLS agent for local connections
+- Cosmos DB partition key spec requires `{ paths: ['/id'], kind: 'Hash' }` — vnext-preview validates `kind`
+- Redis find() uses secondary key index (Set) per collection, not SCAN of full keyspace
+- Cassandra find() uses full table SELECT + client-side filter — documents this limitation
+- Firestore `not` operator not supported natively — falls back to client-side filter via MemoryFilterEvaluator
 
 ## Blockers
 
@@ -19,4 +19,5 @@
 
 ## Next Action
 
-Execute S01: extend Filter with or/not AST nodes, update MongoDB and DynamoDB translators, add unit tests.
+M002 complete. 8 drivers shipped (memory, MongoDB, DynamoDB, Firestore, Cosmos DB, Redis, Cassandra).
+Consider M003: streaming cursors, transaction API, or/not compliance test extension, connection pooling.
