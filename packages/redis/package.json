@@ -1,5 +1,5 @@
 {
-  "name": "@alt-javascript/jsnoslqc-redis",
+  "name": "@alt-javascript/jsnosqlc-redis",
   "version": "1.0.0",
   "description": "JSNOSLQC Redis driver via ioredis",
   "keywords": [
@@ -13,10 +13,10 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "homepage": "https://github.com/alt-javascript/jsnoslqc/tree/main/packages/redis#readme",
+  "homepage": "https://github.com/alt-javascript/jsnosqlc/tree/main/packages/redis#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alt-javascript/jsnoslqc",
+    "url": "https://github.com/alt-javascript/jsnosqlc",
     "directory": "packages/redis"
   },
   "type": "module",
@@ -25,8 +25,8 @@
     "test": "mocha --recursive 'test/**/*.spec.js' --timeout 15000"
   },
   "dependencies": {
-    "@alt-javascript/jsnoslqc-core": "*",
-    "@alt-javascript/jsnoslqc-memory": "*",
+    "@alt-javascript/jsnosqlc-core": "*",
+    "@alt-javascript/jsnosqlc-memory": "*",
     "ioredis": "^5.10.1"
   },
   "devDependencies": {

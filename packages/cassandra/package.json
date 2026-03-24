@@ -1,5 +1,5 @@
 {
-  "name": "@alt-javascript/jsnoslqc-cassandra",
+  "name": "@alt-javascript/jsnosqlc-cassandra",
   "version": "1.0.0",
   "description": "JSNOSLQC Apache Cassandra driver via cassandra-driver",
   "keywords": [
@@ -13,10 +13,10 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "homepage": "https://github.com/alt-javascript/jsnoslqc/tree/main/packages/cassandra#readme",
+  "homepage": "https://github.com/alt-javascript/jsnosqlc/tree/main/packages/cassandra#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alt-javascript/jsnoslqc",
+    "url": "https://github.com/alt-javascript/jsnosqlc",
     "directory": "packages/cassandra"
   },
   "type": "module",
@@ -25,8 +25,8 @@
     "test": "mocha --recursive 'test/**/*.spec.js' --timeout 60000"
   },
   "dependencies": {
-    "@alt-javascript/jsnoslqc-core": "*",
-    "@alt-javascript/jsnoslqc-memory": "*",
+    "@alt-javascript/jsnosqlc-core": "*",
+    "@alt-javascript/jsnosqlc-memory": "*",
     "cassandra-driver": "^4.8.0"
   },
   "devDependencies": {

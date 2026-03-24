@@ -1,5 +1,5 @@
 {
-  "name": "@alt-javascript/jsnoslqc-core",
+  "name": "@alt-javascript/jsnosqlc-core",
   "version": "1.0.0",
   "description": "JSNOSLQC core interfaces — Driver, Client, Collection, Cursor, Filter, DriverManager",
   "keywords": [
@@ -15,10 +15,10 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "homepage": "https://github.com/alt-javascript/jsnoslqc/tree/main/packages/core#readme",
+  "homepage": "https://github.com/alt-javascript/jsnosqlc/tree/main/packages/core#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alt-javascript/jsnoslqc",
+    "url": "https://github.com/alt-javascript/jsnosqlc",
     "directory": "packages/core"
   },
   "type": "module",

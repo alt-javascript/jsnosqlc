@@ -12,7 +12,7 @@ This tutorial walks you through your first JSNOSLQC operations — storing docum
 ```bash
 mkdir jsnoslqc-demo && cd jsnoslqc-demo
 npm init -y
-npm install @alt-javascript/jsnoslqc-core @alt-javascript/jsnoslqc-memory
+npm install @alt-javascript/jsnosqlc-core @alt-javascript/jsnosqlc-memory
 ```
 
 Add `"type": "module"` to your `package.json`.
@@ -22,8 +22,8 @@ Add `"type": "module"` to your `package.json`.
 Create `demo.js`:
 
 ```javascript
-import { DriverManager } from '@alt-javascript/jsnoslqc-core';
-import '@alt-javascript/jsnoslqc-memory';
+import { DriverManager } from '@alt-javascript/jsnosqlc-core';
+import '@alt-javascript/jsnosqlc-memory';
 
 const client = await DriverManager.getClient('jsnoslqc:memory:');
 const users = client.getCollection('users');
@@ -40,7 +40,7 @@ node demo.js
 # Stored and retrieved: Alice 30
 ```
 
-Importing `@alt-javascript/jsnoslqc-memory` registers the in-memory driver with `DriverManager`. The `store()` call writes the document under the key `u1`. `get()` retrieves it.
+Importing `@alt-javascript/jsnosqlc-memory` registers the in-memory driver with `DriverManager`. The `store()` call writes the document under the key `u1`. `get()` retrieves it.
 
 ## Step 2: Insert and Update
 
@@ -58,7 +58,7 @@ console.log('Updated role:', bob.role); // editor
 ## Step 3: Query with a Filter
 
 ```javascript
-import { Filter } from '@alt-javascript/jsnoslqc-core';
+import { Filter } from '@alt-javascript/jsnosqlc-core';
 
 // Find all users aged over 25 with the 'admin' role
 const filter = Filter.where('age').gt(25).and('role').eq('admin').build();
@@ -86,14 +86,14 @@ for await (const user of await users.find(Filter.where('role').ne('admin').build
 Install the MongoDB driver and start a local instance:
 
 ```bash
-npm install @alt-javascript/jsnoslqc-mongodb
+npm install @alt-javascript/jsnosqlc-mongodb
 docker run --rm -d -p 27017:27017 mongo:7
 ```
 
 Change the URL in `demo.js` — no other code changes required:
 
 ```javascript
-import '@alt-javascript/jsnoslqc-mongodb';
+import '@alt-javascript/jsnosqlc-mongodb';
 
 const client = await DriverManager.getClient('jsnoslqc:mongodb://localhost:27017/demo');
 ```
@@ -112,4 +112,4 @@ All `store`, `get`, `insert`, `update`, `find`, and `delete` calls behave identi
 
 - [API Reference](api-reference.md) — full interface documentation
 - [Driver Guide](driver-guide.md) — write a driver for any database
-- [Choosing a Driver](https://github.com/alt-javascript/jsnoslqc#packages) — compare all eight drivers
+- [Choosing a Driver](https://github.com/alt-javascript/jsnosqlc#packages) — compare all eight drivers

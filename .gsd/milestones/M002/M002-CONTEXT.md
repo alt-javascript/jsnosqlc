@@ -66,10 +66,10 @@ Add to `packages/core/Filter.js`:
 
 ```
 packages/
-  firestore/   — @alt-javascript/jsnoslqc-firestore
-  cosmosdb/    — @alt-javascript/jsnoslqc-cosmosdb
-  redis/       — @alt-javascript/jsnoslqc-redis
-  cassandra/   — @alt-javascript/jsnoslqc-cassandra
+  firestore/   — @alt-javascript/jsnosqlc-firestore
+  cosmosdb/    — @alt-javascript/jsnosqlc-cosmosdb
+  redis/       — @alt-javascript/jsnosqlc-redis
+  cassandra/   — @alt-javascript/jsnosqlc-cassandra
 ```
 
 ## Key Risks

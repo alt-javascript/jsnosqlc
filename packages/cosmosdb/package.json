@@ -1,5 +1,5 @@
 {
-  "name": "@alt-javascript/jsnoslqc-cosmosdb",
+  "name": "@alt-javascript/jsnosqlc-cosmosdb",
   "version": "1.0.0",
   "description": "JSNOSLQC Azure Cosmos DB driver via @azure/cosmos",
   "keywords": [
@@ -14,10 +14,10 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "homepage": "https://github.com/alt-javascript/jsnoslqc/tree/main/packages/cosmosdb#readme",
+  "homepage": "https://github.com/alt-javascript/jsnosqlc/tree/main/packages/cosmosdb#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alt-javascript/jsnoslqc",
+    "url": "https://github.com/alt-javascript/jsnosqlc",
     "directory": "packages/cosmosdb"
   },
   "type": "module",
@@ -26,7 +26,7 @@
     "test": "mocha --recursive 'test/**/*.spec.js' --timeout 30000"
   },
   "dependencies": {
-    "@alt-javascript/jsnoslqc-core": "*",
+    "@alt-javascript/jsnosqlc-core": "*",
     "@azure/cosmos": "^4.9.2"
   },
   "devDependencies": {

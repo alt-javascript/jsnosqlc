@@ -1,5 +1,5 @@
 {
-  "name": "@alt-javascript/jsnoslqc-dynamodb",
+  "name": "@alt-javascript/jsnosqlc-dynamodb",
   "version": "1.0.0",
   "description": "JSNOSLQC DynamoDB driver via @aws-sdk/client-dynamodb",
   "keywords": [
@@ -14,10 +14,10 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "homepage": "https://github.com/alt-javascript/jsnoslqc/tree/main/packages/dynamodb#readme",
+  "homepage": "https://github.com/alt-javascript/jsnosqlc/tree/main/packages/dynamodb#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alt-javascript/jsnoslqc",
+    "url": "https://github.com/alt-javascript/jsnosqlc",
     "directory": "packages/dynamodb"
   },
   "type": "module",
@@ -26,7 +26,7 @@
     "test": "mocha --recursive 'test/**/*.spec.js' --timeout 20000"
   },
   "dependencies": {
-    "@alt-javascript/jsnoslqc-core": "*",
+    "@alt-javascript/jsnosqlc-core": "*",
     "@aws-sdk/client-dynamodb": "^3.500.0",
     "@aws-sdk/lib-dynamodb": "^3.500.0"
   },

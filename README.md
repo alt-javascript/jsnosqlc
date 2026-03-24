@@ -2,8 +2,8 @@
 
 [![Language](https://img.shields.io/badge/language-JavaScript-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![CI](https://github.com/alt-javascript/jsnoslqc/actions/workflows/node.js.yml/badge.svg)](https://github.com/alt-javascript/jsnoslqc/actions/workflows/node.js.yml)
-[![npm version](https://img.shields.io/npm/v/%40alt-javascript%2Fjsnoslqc-core)](https://www.npmjs.com/package/@alt-javascript/jsnoslqc-core)
+[![CI](https://github.com/alt-javascript/jsnosqlc/actions/workflows/node.js.yml/badge.svg)](https://github.com/alt-javascript/jsnosqlc/actions/workflows/node.js.yml)
+[![npm version](https://img.shields.io/npm/v/%40alt-javascript%2Fjsnoslqc-core)](https://www.npmjs.com/package/@alt-javascript/jsnosqlc-core)
 
 A uniform, async NoSQL access facade for JavaScript inspired by Java's JDBC — and by [jsdbc](https://github.com/alt-javascript/jsdbc), its SQL counterpart. Write database code once against jsnoslqc interfaces, then plug in any supported driver — in-memory, MongoDB, DynamoDB, Firestore, Cosmos DB, Redis, Cassandra, and more.
 
@@ -23,24 +23,24 @@ JavaScript's NoSQL ecosystem is as fragmented as its SQL ecosystem. Every databa
 
 | Package | Description | Backend |
 |---|---|---|
-| [`@alt-javascript/jsnoslqc-core`](packages/core/) | Interfaces: Driver, Client, Collection, Cursor, Filter, DriverManager | Any |
-| [`@alt-javascript/jsnoslqc-memory`](packages/memory/) | In-memory driver — zero dependencies, for testing and dev | In-process |
-| [`@alt-javascript/jsnoslqc-mongodb`](packages/mongodb/) | MongoDB driver via [mongodb](https://www.npmjs.com/package/mongodb) | MongoDB |
-| [`@alt-javascript/jsnoslqc-dynamodb`](packages/dynamodb/) | DynamoDB driver via [@aws-sdk/client-dynamodb](https://www.npmjs.com/package/@aws-sdk/client-dynamodb) | AWS DynamoDB |
-| [`@alt-javascript/jsnoslqc-firestore`](packages/firestore/) | Google Firestore driver via [@google-cloud/firestore](https://www.npmjs.com/package/@google-cloud/firestore) | GCP Firestore |
-| [`@alt-javascript/jsnoslqc-cosmosdb`](packages/cosmosdb/) | Azure Cosmos DB driver via [@azure/cosmos](https://www.npmjs.com/package/@azure/cosmos) | Azure Cosmos DB |
-| [`@alt-javascript/jsnoslqc-redis`](packages/redis/) | Redis driver via [ioredis](https://www.npmjs.com/package/ioredis) | Redis |
-| [`@alt-javascript/jsnoslqc-cassandra`](packages/cassandra/) | Apache Cassandra driver via [cassandra-driver](https://www.npmjs.com/package/cassandra-driver) | Cassandra |
+| [`@alt-javascript/jsnosqlc-core`](packages/core/) | Interfaces: Driver, Client, Collection, Cursor, Filter, DriverManager | Any |
+| [`@alt-javascript/jsnosqlc-memory`](packages/memory/) | In-memory driver — zero dependencies, for testing and dev | In-process |
+| [`@alt-javascript/jsnosqlc-mongodb`](packages/mongodb/) | MongoDB driver via [mongodb](https://www.npmjs.com/package/mongodb) | MongoDB |
+| [`@alt-javascript/jsnosqlc-dynamodb`](packages/dynamodb/) | DynamoDB driver via [@aws-sdk/client-dynamodb](https://www.npmjs.com/package/@aws-sdk/client-dynamodb) | AWS DynamoDB |
+| [`@alt-javascript/jsnosqlc-firestore`](packages/firestore/) | Google Firestore driver via [@google-cloud/firestore](https://www.npmjs.com/package/@google-cloud/firestore) | GCP Firestore |
+| [`@alt-javascript/jsnosqlc-cosmosdb`](packages/cosmosdb/) | Azure Cosmos DB driver via [@azure/cosmos](https://www.npmjs.com/package/@azure/cosmos) | Azure Cosmos DB |
+| [`@alt-javascript/jsnosqlc-redis`](packages/redis/) | Redis driver via [ioredis](https://www.npmjs.com/package/ioredis) | Redis |
+| [`@alt-javascript/jsnosqlc-cassandra`](packages/cassandra/) | Apache Cassandra driver via [cassandra-driver](https://www.npmjs.com/package/cassandra-driver) | Cassandra |
 
 ## Quick Start: In-Memory Driver
 
 ```bash
-npm install @alt-javascript/jsnoslqc-core @alt-javascript/jsnoslqc-memory
+npm install @alt-javascript/jsnosqlc-core @alt-javascript/jsnosqlc-memory
 ```
 
 ```javascript
-import { DriverManager, Filter } from '@alt-javascript/jsnoslqc-core';
-import '@alt-javascript/jsnoslqc-memory'; // self-registers
+import { DriverManager, Filter } from '@alt-javascript/jsnosqlc-core';
+import '@alt-javascript/jsnosqlc-memory'; // self-registers
 
 const client = await DriverManager.getClient('jsnoslqc:memory:');
 const users = client.getCollection('users');
@@ -76,12 +76,12 @@ await client.close();
 ## Quick Start: MongoDB Driver
 
 ```bash
-npm install @alt-javascript/jsnoslqc-core @alt-javascript/jsnoslqc-mongodb
+npm install @alt-javascript/jsnosqlc-core @alt-javascript/jsnosqlc-mongodb
 ```
 
 ```javascript
-import { DriverManager, Filter } from '@alt-javascript/jsnoslqc-core';
-import '@alt-javascript/jsnoslqc-mongodb'; // self-registers
+import { DriverManager, Filter } from '@alt-javascript/jsnosqlc-core';
+import '@alt-javascript/jsnosqlc-mongodb'; // self-registers
 
 const client = await DriverManager.getClient('jsnoslqc:mongodb://localhost:27017/myapp');
 const products = client.getCollection('products');
@@ -98,12 +98,12 @@ await client.close();
 ## Quick Start: DynamoDB Driver
 
 ```bash
-npm install @alt-javascript/jsnoslqc-core @alt-javascript/jsnoslqc-dynamodb
+npm install @alt-javascript/jsnosqlc-core @alt-javascript/jsnosqlc-dynamodb
 ```
 
 ```javascript
-import { DriverManager, Filter } from '@alt-javascript/jsnoslqc-core';
-import '@alt-javascript/jsnoslqc-dynamodb'; // self-registers
+import { DriverManager, Filter } from '@alt-javascript/jsnosqlc-core';
+import '@alt-javascript/jsnosqlc-dynamodb'; // self-registers
 
 // Real AWS DynamoDB (uses AWS SDK credential chain — env vars, ~/.aws/credentials, etc.)
 const client = await DriverManager.getClient('jsnoslqc:dynamodb:us-east-1');
@@ -208,12 +208,12 @@ docker run --rm -d -p 9042:9042 cassandra:4
 ## Quick Start: Google Firestore
 
 ```bash
-npm install @alt-javascript/jsnoslqc-core @alt-javascript/jsnoslqc-firestore
+npm install @alt-javascript/jsnosqlc-core @alt-javascript/jsnosqlc-firestore
 ```
 
 ```javascript
-import { DriverManager, Filter } from '@alt-javascript/jsnoslqc-core';
-import '@alt-javascript/jsnoslqc-firestore'; // self-registers
+import { DriverManager, Filter } from '@alt-javascript/jsnosqlc-core';
+import '@alt-javascript/jsnosqlc-firestore'; // self-registers
 
 // Emulator — set env var before importing the driver
 process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080';
@@ -233,12 +233,12 @@ await client.close();
 ## Quick Start: Azure Cosmos DB
 
 ```bash
-npm install @alt-javascript/jsnoslqc-core @alt-javascript/jsnoslqc-cosmosdb
+npm install @alt-javascript/jsnosqlc-core @alt-javascript/jsnosqlc-cosmosdb
 ```
 
 ```javascript
-import { DriverManager, Filter } from '@alt-javascript/jsnoslqc-core';
-import '@alt-javascript/jsnoslqc-cosmosdb'; // self-registers
+import { DriverManager, Filter } from '@alt-javascript/jsnosqlc-core';
+import '@alt-javascript/jsnosqlc-cosmosdb'; // self-registers
 
 // Local emulator (vnext-preview serves HTTP on 8081)
 const client = await DriverManager.getClient('jsnoslqc:cosmosdb:local');
@@ -262,12 +262,12 @@ await client.close();
 ## Quick Start: Redis
 
 ```bash
-npm install @alt-javascript/jsnoslqc-core @alt-javascript/jsnoslqc-redis
+npm install @alt-javascript/jsnosqlc-core @alt-javascript/jsnosqlc-redis
 ```
 
 ```javascript
-import { DriverManager, Filter } from '@alt-javascript/jsnoslqc-core';
-import '@alt-javascript/jsnoslqc-redis'; // self-registers
+import { DriverManager, Filter } from '@alt-javascript/jsnosqlc-core';
+import '@alt-javascript/jsnosqlc-redis'; // self-registers
 
 const client = await DriverManager.getClient('jsnoslqc:redis://localhost:6379');
 const cache = client.getCollection('sessions');
@@ -288,12 +288,12 @@ await client.close();
 ## Quick Start: Apache Cassandra
 
 ```bash
-npm install @alt-javascript/jsnoslqc-core @alt-javascript/jsnoslqc-cassandra
+npm install @alt-javascript/jsnosqlc-core @alt-javascript/jsnosqlc-cassandra
 ```
 
 ```javascript
-import { DriverManager, Filter } from '@alt-javascript/jsnoslqc-core';
-import '@alt-javascript/jsnoslqc-cassandra'; // self-registers
+import { DriverManager, Filter } from '@alt-javascript/jsnosqlc-core';
+import '@alt-javascript/jsnosqlc-cassandra'; // self-registers
 
 // Keyspace is created automatically if it doesn't exist
 const client = await DriverManager.getClient('jsnoslqc:cassandra:localhost:9042/myapp');
@@ -317,14 +317,14 @@ await client.close();
 
 ## Writing a jsnoslqc Driver
 
-See the [Driver Guide](docs/driver-guide.md) and [`@alt-javascript/jsnoslqc-memory`](packages/memory/) for a complete minimal example. The pattern:
+See the [Driver Guide](docs/driver-guide.md) and [`@alt-javascript/jsnosqlc-memory`](packages/memory/) for a complete minimal example. The pattern:
 
 1. Extend `Driver`, implement `acceptsURL(url)` and `connect(url, props): Promise<Client>`
 2. Extend `Client`, implement `_getCollection(name): Collection` and `_close()`
 3. Extend `Collection`, implement `_get`, `_store`, `_delete`, `_insert`, `_update`, `_find`
 4. At the bottom of your driver file: `DriverManager.registerDriver(new MyDriver())`
 
-Run `runCompliance(clientFactory)` from `@alt-javascript/jsnoslqc-core/test/driverCompliance.js` to verify your driver against the full compliance suite.
+Run `runCompliance(clientFactory)` from `@alt-javascript/jsnosqlc-core/test/driverCompliance.js` to verify your driver against the full compliance suite.
 
 ## Documentation
 
@@ -337,7 +337,7 @@ Run `runCompliance(clientFactory)` from `@alt-javascript/jsnoslqc-core/test/driv
 ## Contributing
 
 ```bash
-git clone https://github.com/alt-javascript/jsnoslqc.git
+git clone https://github.com/alt-javascript/jsnosqlc.git
 cd jsnoslqc
 npm install
 

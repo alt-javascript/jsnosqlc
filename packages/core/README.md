@@ -1,24 +1,24 @@
-# @alt-javascript/jsnoslqc-core
+# @alt-javascript/jsnosqlc-core
 
 [![Language](https://img.shields.io/badge/language-JavaScript-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![npm version](https://img.shields.io/npm/v/%40alt-javascript%2Fjsnoslqc-core)](https://www.npmjs.com/package/@alt-javascript/jsnoslqc-core)
+[![npm version](https://img.shields.io/npm/v/%40alt-javascript%2Fjsnoslqc-core)](https://www.npmjs.com/package/@alt-javascript/jsnosqlc-core)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![CI](https://github.com/alt-javascript/jsnoslqc/actions/workflows/node.js.yml/badge.svg)](https://github.com/alt-javascript/jsnoslqc/actions/workflows/node.js.yml)
+[![CI](https://github.com/alt-javascript/jsnosqlc/actions/workflows/node.js.yml/badge.svg)](https://github.com/alt-javascript/jsnosqlc/actions/workflows/node.js.yml)
 
 Core interfaces for the JSNOSLQC unified NoSQL access layer: `Driver`, `Client`, `Collection`, `Cursor`, `Filter`, `FieldCondition`, and `DriverManager`.
 
-**Part of the [@alt-javascript/jsnoslqc](https://github.com/alt-javascript/jsnoslqc) monorepo.**
+**Part of the [@alt-javascript/jsnosqlc](https://github.com/alt-javascript/jsnosqlc) monorepo.**
 
 ## Install
 
 ```bash
-npm install @alt-javascript/jsnoslqc-core
+npm install @alt-javascript/jsnosqlc-core
 ```
 
 Install a driver alongside core:
 
 ```bash
-npm install @alt-javascript/jsnoslqc-core @alt-javascript/jsnoslqc-memory
+npm install @alt-javascript/jsnosqlc-core @alt-javascript/jsnosqlc-memory
 ```
 
 ## Core API
@@ -28,8 +28,8 @@ npm install @alt-javascript/jsnoslqc-core @alt-javascript/jsnoslqc-memory
 Routes connection requests to the appropriate registered driver.
 
 ```javascript
-import { DriverManager } from '@alt-javascript/jsnoslqc-core';
-import '@alt-javascript/jsnoslqc-mongodb'; // self-registers on import
+import { DriverManager } from '@alt-javascript/jsnosqlc-core';
+import '@alt-javascript/jsnosqlc-mongodb'; // self-registers on import
 
 const client = await DriverManager.getClient('jsnoslqc:mongodb://localhost:27017/mydb');
 ```
@@ -39,8 +39,8 @@ const client = await DriverManager.getClient('jsnoslqc:mongodb://localhost:27017
 Convenience factory that mirrors the `DataSource` pattern from [jsdbc](https://github.com/alt-javascript/jsdbc).
 
 ```javascript
-import { ClientDataSource } from '@alt-javascript/jsnoslqc-core';
-import '@alt-javascript/jsnoslqc-memory';
+import { ClientDataSource } from '@alt-javascript/jsnosqlc-core';
+import '@alt-javascript/jsnosqlc-memory';
 
 const ds = new ClientDataSource({ url: 'jsnoslqc:memory:' });
 const client = await ds.getClient();
@@ -106,7 +106,7 @@ for await (const doc of cursor) {
 Chainable filter builder. Produces an AST consumed by driver translators.
 
 ```javascript
-import { Filter } from '@alt-javascript/jsnoslqc-core';
+import { Filter } from '@alt-javascript/jsnosqlc-core';
 
 // Single condition
 const f1 = Filter.where('status').eq('active').build();
@@ -141,14 +141,14 @@ const f4 = Filter.where('status').eq('inactive').not();
 
 ## Writing a Driver
 
-See the [Driver Guide](https://github.com/alt-javascript/jsnoslqc/blob/main/docs/driver-guide.md) and [`@alt-javascript/jsnoslqc-memory`](https://www.npmjs.com/package/@alt-javascript/jsnoslqc-memory) for a complete minimal example.
+See the [Driver Guide](https://github.com/alt-javascript/jsnosqlc/blob/main/docs/driver-guide.md) and [`@alt-javascript/jsnosqlc-memory`](https://www.npmjs.com/package/@alt-javascript/jsnosqlc-memory) for a complete minimal example.
 
 ## Running Compliance Tests
 
 The compliance suite is importable for third-party drivers:
 
 ```javascript
-import { runCompliance } from '@alt-javascript/jsnoslqc-core/test/driverCompliance.js';
+import { runCompliance } from '@alt-javascript/jsnosqlc-core/test/driverCompliance.js';
 
 runCompliance(async () => {
   const client = await DriverManager.getClient('jsnoslqc:mydriver:...');

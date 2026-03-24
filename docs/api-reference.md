@@ -13,7 +13,7 @@ Static registry that routes connection requests to registered drivers.
 Returns a `Client` from the first registered driver that accepts the URL.
 
 ```javascript
-import { DriverManager } from '@alt-javascript/jsnoslqc-core';
+import { DriverManager } from '@alt-javascript/jsnosqlc-core';
 
 const client = await DriverManager.getClient('jsnoslqc:memory:');
 const client = await DriverManager.getClient('jsnoslqc:mongodb://localhost:27017/mydb');
@@ -55,8 +55,8 @@ Return a shallow copy of the registered drivers array.
 Convenience factory that encapsulates connection configuration. Mirrors the `DataSource` pattern from [jsdbc](https://github.com/alt-javascript/jsdbc).
 
 ```javascript
-import { ClientDataSource } from '@alt-javascript/jsnoslqc-core';
-import '@alt-javascript/jsnoslqc-memory';
+import { ClientDataSource } from '@alt-javascript/jsnosqlc-core';
+import '@alt-javascript/jsnosqlc-memory';
 
 const ds = new ClientDataSource({ url: 'jsnoslqc:memory:' });
 const client = await ds.getClient();
@@ -329,14 +329,14 @@ jsnoslqc:<subprotocol>:<connection-details>
 
 | URL | Driver Package |
 |---|---|
-| `jsnoslqc:memory:` | `@alt-javascript/jsnoslqc-memory` |
-| `jsnoslqc:mongodb://<host>:<port>/<db>` | `@alt-javascript/jsnoslqc-mongodb` |
-| `jsnoslqc:dynamodb:<region>` | `@alt-javascript/jsnoslqc-dynamodb` |
-| `jsnoslqc:firestore:<project-id>` | `@alt-javascript/jsnoslqc-firestore` |
-| `jsnoslqc:cosmosdb:local` | `@alt-javascript/jsnoslqc-cosmosdb` |
-| `jsnoslqc:cosmosdb:<https-endpoint>` | `@alt-javascript/jsnoslqc-cosmosdb` |
-| `jsnoslqc:redis://<host>:<port>[/<db>]` | `@alt-javascript/jsnoslqc-redis` |
-| `jsnoslqc:cassandra:<host>:<port>/<keyspace>` | `@alt-javascript/jsnoslqc-cassandra` |
+| `jsnoslqc:memory:` | `@alt-javascript/jsnosqlc-memory` |
+| `jsnoslqc:mongodb://<host>:<port>/<db>` | `@alt-javascript/jsnosqlc-mongodb` |
+| `jsnoslqc:dynamodb:<region>` | `@alt-javascript/jsnosqlc-dynamodb` |
+| `jsnoslqc:firestore:<project-id>` | `@alt-javascript/jsnosqlc-firestore` |
+| `jsnoslqc:cosmosdb:local` | `@alt-javascript/jsnosqlc-cosmosdb` |
+| `jsnoslqc:cosmosdb:<https-endpoint>` | `@alt-javascript/jsnosqlc-cosmosdb` |
+| `jsnoslqc:redis://<host>:<port>[/<db>]` | `@alt-javascript/jsnosqlc-redis` |
+| `jsnoslqc:cassandra:<host>:<port>/<keyspace>` | `@alt-javascript/jsnosqlc-cassandra` |
 
 ---
 
@@ -347,7 +347,7 @@ jsnoslqc:<subprotocol>:<connection-details>
 Thrown when a Collection method is called that the underlying driver does not support.
 
 ```javascript
-import { UnsupportedOperationError } from '@alt-javascript/jsnoslqc-core';
+import { UnsupportedOperationError } from '@alt-javascript/jsnosqlc-core';
 ```
 
 All six Collection operations are supported by all eight built-in drivers.

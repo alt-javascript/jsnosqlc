@@ -10,7 +10,7 @@ Set up the monorepo root and `packages/core` package. Implement all base classes
 ## Must-Haves
 
 ### Truths
-- `packages/core/package.json` has `"type": "module"`, `"name": "@alt-javascript/jsnoslqc-core"`, mocha test script
+- `packages/core/package.json` has `"type": "module"`, `"name": "@alt-javascript/jsnosqlc-core"`, mocha test script
 - `packages/core/index.js` exports all public symbols
 - `DriverManager.registerDriver()`, `getClient()`, `deregisterDriver()`, `clear()` work correctly
 - `DriverManager.getClient()` throws `No suitable driver` when no driver accepts the URL

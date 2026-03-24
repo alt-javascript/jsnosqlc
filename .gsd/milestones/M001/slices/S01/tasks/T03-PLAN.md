@@ -22,8 +22,8 @@ Write the shared `driverCompliance.js` test suite that all driver packages will 
 - Updated `packages/core/package.json` — test script covers all `test/**/*.spec.js`
 
 ### Key Links
-- `driverCompliance.js` imports `Collection`, `Cursor`, `Filter` from `@alt-javascript/jsnoslqc-core` (relative in core package, absolute in driver packages)
-- Driver packages will: `import { runCompliance } from '@alt-javascript/jsnoslqc-core/test/driverCompliance.js'`
+- `driverCompliance.js` imports `Collection`, `Cursor`, `Filter` from `@alt-javascript/jsnosqlc-core` (relative in core package, absolute in driver packages)
+- Driver packages will: `import { runCompliance } from '@alt-javascript/jsnosqlc-core/test/driverCompliance.js'`
 
 ## Steps
 

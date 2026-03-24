@@ -93,7 +93,7 @@ Class.forName("org.postgresql.Driver"); // triggers static initialiser → regis
 
 ```javascript
 // JSNOSLQC
-import '@alt-javascript/jsnoslqc-mongodb'; // side-effect import → DriverManager.registerDriver()
+import '@alt-javascript/jsnosqlc-mongodb'; // side-effect import → DriverManager.registerDriver()
 ```
 
 ## URL Scheme
@@ -127,8 +127,8 @@ while (await cursor.next()) {
 ## Cheat Sheet
 
 ```javascript
-import { DriverManager, ClientDataSource, Filter } from '@alt-javascript/jsnoslqc-core';
-import '@alt-javascript/jsnoslqc-memory'; // any driver
+import { DriverManager, ClientDataSource, Filter } from '@alt-javascript/jsnosqlc-core';
+import '@alt-javascript/jsnosqlc-memory'; // any driver
 
 // DriverManager.getClient — like DriverManager.getConnection in JDBC
 const client = await DriverManager.getClient('jsnoslqc:memory:');

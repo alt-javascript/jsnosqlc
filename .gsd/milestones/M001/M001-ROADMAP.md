@@ -75,20 +75,20 @@ Produces:
 ### S02 → S05
 
 Produces:
-- `@alt-javascript/jsnoslqc-memory` package, self-registers `jsnoslqc:memory:` URL prefix
+- `@alt-javascript/jsnosqlc-memory` package, self-registers `jsnoslqc:memory:` URL prefix
 - Passes driverCompliance fully
 
 ### S03 → S05
 
 Produces:
-- `@alt-javascript/jsnoslqc-mongodb` package, self-registers `jsnoslqc:mongodb:` URL prefix
+- `@alt-javascript/jsnosqlc-mongodb` package, self-registers `jsnoslqc:mongodb:` URL prefix
 - Passes driverCompliance against real mongod
 - Filter AST → MongoDB query document translator
 
 ### S04 → S05
 
 Produces:
-- `@alt-javascript/jsnoslqc-dynamodb` package, self-registers `jsnoslqc:dynamodb:` URL prefix
+- `@alt-javascript/jsnosqlc-dynamodb` package, self-registers `jsnoslqc:dynamodb:` URL prefix
 - Passes driverCompliance against DynamoDB Local
 - Filter AST → DynamoDB FilterExpression + ExpressionAttributeNames + ExpressionAttributeValues translator
 

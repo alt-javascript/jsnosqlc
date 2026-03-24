@@ -1,5 +1,5 @@
 {
-  "name": "@alt-javascript/jsnoslqc-memory",
+  "name": "@alt-javascript/jsnosqlc-memory",
   "version": "1.0.0",
   "description": "JSNOSLQC in-memory driver — for testing and offline development",
   "keywords": [
@@ -14,10 +14,10 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "homepage": "https://github.com/alt-javascript/jsnoslqc/tree/main/packages/memory#readme",
+  "homepage": "https://github.com/alt-javascript/jsnosqlc/tree/main/packages/memory#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alt-javascript/jsnoslqc",
+    "url": "https://github.com/alt-javascript/jsnosqlc",
     "directory": "packages/memory"
   },
   "type": "module",
@@ -26,7 +26,7 @@
     "test": "mocha --recursive 'test/**/*.spec.js'"
   },
   "dependencies": {
-    "@alt-javascript/jsnoslqc-core": "*"
+    "@alt-javascript/jsnosqlc-core": "*"
   },
   "devDependencies": {
     "chai": "^4.3.7",

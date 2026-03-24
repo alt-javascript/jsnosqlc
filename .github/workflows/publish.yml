@@ -48,42 +48,42 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Publish @alt-javascript/jsnoslqc-core
+      - name: Publish @alt-javascript/jsnosqlc-core
         run: npm publish --workspace=packages/core --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @alt-javascript/jsnoslqc-memory
+      - name: Publish @alt-javascript/jsnosqlc-memory
         run: npm publish --workspace=packages/memory --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @alt-javascript/jsnoslqc-mongodb
+      - name: Publish @alt-javascript/jsnosqlc-mongodb
         run: npm publish --workspace=packages/mongodb --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @alt-javascript/jsnoslqc-dynamodb
+      - name: Publish @alt-javascript/jsnosqlc-dynamodb
         run: npm publish --workspace=packages/dynamodb --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @alt-javascript/jsnoslqc-firestore
+      - name: Publish @alt-javascript/jsnosqlc-firestore
         run: npm publish --workspace=packages/firestore --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @alt-javascript/jsnoslqc-cosmosdb
+      - name: Publish @alt-javascript/jsnosqlc-cosmosdb
         run: npm publish --workspace=packages/cosmosdb --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @alt-javascript/jsnoslqc-redis
+      - name: Publish @alt-javascript/jsnosqlc-redis
         run: npm publish --workspace=packages/redis --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @alt-javascript/jsnoslqc-cassandra
+      - name: Publish @alt-javascript/jsnosqlc-cassandra
         run: npm publish --workspace=packages/cassandra --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

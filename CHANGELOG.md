@@ -12,7 +12,7 @@ Initial public release of all packages.
 
 ### Added
 
-**Core (`@alt-javascript/jsnoslqc-core`)**
+**Core (`@alt-javascript/jsnosqlc-core`)**
 - `Driver` — abstract base class for all jsnoslqc drivers
 - `Client` — session abstraction with collection cache and lifecycle management
 - `Collection` — six-operation interface: `get`, `store`, `delete`, `insert`, `update`, `find`
@@ -26,44 +26,44 @@ Initial public release of all packages.
 - `UnsupportedOperationError` — thrown when a driver does not support an operation
 - Shared compliance test suite (`test/driverCompliance.js`) — 25 tests for any driver
 
-**In-memory driver (`@alt-javascript/jsnoslqc-memory`)**
+**In-memory driver (`@alt-javascript/jsnosqlc-memory`)**
 - `MemoryDriver`, `MemoryClient`, `MemoryCollection` — zero-dependency in-memory implementation
 - `MemoryFilterEvaluator` — in-memory filter evaluation for all 10 operators + `or`/`not`
 - URL: `jsnoslqc:memory:`
 
-**MongoDB driver (`@alt-javascript/jsnoslqc-mongodb`)**
+**MongoDB driver (`@alt-javascript/jsnosqlc-mongodb`)**
 - `MongoDriver`, `MongoClient`, `MongoCollection`, `MongoFilterTranslator`
 - Full compliance suite passing against MongoDB 7
 - URL: `jsnoslqc:mongodb://<host>:<port>/<database>`
 
-**DynamoDB driver (`@alt-javascript/jsnoslqc-dynamodb`)**
+**DynamoDB driver (`@alt-javascript/jsnosqlc-dynamodb`)**
 - `DynamoDriver`, `DynamoClient`, `LazyDynamoCollection`, `DynamoCollection`, `DynamoFilterTranslator`
 - Auto-creates DynamoDB tables on first collection use
 - Full compliance suite passing against DynamoDB Local
 - URL: `jsnoslqc:dynamodb:<region>`
 
-**Google Firestore driver (`@alt-javascript/jsnoslqc-firestore`)**
+**Google Firestore driver (`@alt-javascript/jsnosqlc-firestore`)**
 - `FirestoreDriver`, `FirestoreClient`, `FirestoreCollection`, `FirestoreFilterTranslator`
 - Native SDK filter chaining for `eq`, `ne`, `gt`, `gte`, `lt`, `lte`, `contains`, `in`, `nin`
 - Client-side fallback for `or` and `not` via `MemoryFilterEvaluator`
 - Full compliance suite passing against Firestore Emulator
 - URL: `jsnoslqc:firestore:<gcp-project-id>`
 
-**Azure Cosmos DB driver (`@alt-javascript/jsnoslqc-cosmosdb`)**
+**Azure Cosmos DB driver (`@alt-javascript/jsnosqlc-cosmosdb`)**
 - `CosmosDriver`, `CosmosClient`, `CosmosCollection`, `CosmosFilterTranslator`
 - Parameterised Cosmos DB SQL query construction for all 10 operators + `or`/`not`
 - Auto-creates Cosmos DB database and container on first use
 - Full compliance suite passing against Cosmos DB Linux Emulator (vnext-preview)
 - URL: `jsnoslqc:cosmosdb:local` / `jsnoslqc:cosmosdb:<https-endpoint>`
 
-**Redis driver (`@alt-javascript/jsnoslqc-redis`)**
+**Redis driver (`@alt-javascript/jsnosqlc-redis`)**
 - `RedisDriver`, `RedisClient`, `RedisCollection` — Redis storage via ioredis
 - Secondary key index (Redis Set) per collection for efficient full-collection fetch
 - In-memory filter evaluation for `find()` via `MemoryFilterEvaluator`
 - Full compliance suite passing against Redis 7
 - URL: `jsnoslqc:redis://<host>:<port>[/<db>]`
 
-**Apache Cassandra driver (`@alt-javascript/jsnoslqc-cassandra`)**
+**Apache Cassandra driver (`@alt-javascript/jsnosqlc-cassandra`)**
 - `CassandraDriver`, `CassandraClient`, `CassandraCollection`, `CassandraFilterTranslator`
 - JSON-column schema: `CREATE TABLE (pk text PRIMARY KEY, data text)`
 - Auto-creates keyspace (SimpleStrategy) and tables on first use
@@ -85,4 +85,4 @@ Initial public release of all packages.
 - GitHub Actions workflow: integration tests for Redis + Cassandra
 - GitHub Actions publish workflow: publishes all 8 packages to npm on `v*` tag
 
-[1.0.0]: https://github.com/alt-javascript/jsnoslqc/releases/tag/v1.0.0
+[1.0.0]: https://github.com/alt-javascript/jsnosqlc/releases/tag/v1.0.0

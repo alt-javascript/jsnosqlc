@@ -19,7 +19,7 @@ JSNOSLQC core provides abstract base classes. Your driver extends them and overr
 The `Driver` class declares which URLs it handles and creates clients.
 
 ```javascript
-import { Driver, DriverManager } from '@alt-javascript/jsnoslqc-core';
+import { Driver, DriverManager } from '@alt-javascript/jsnosqlc-core';
 import MyDbClient from './MyDbClient.js';
 import { MyNativeClient } from 'my-native-sdk';
 
@@ -56,7 +56,7 @@ export { _driver };
 Extend `Client` and override two methods.
 
 ```javascript
-import { Client } from '@alt-javascript/jsnoslqc-core';
+import { Client } from '@alt-javascript/jsnosqlc-core';
 import MyDbCollection from './MyDbCollection.js';
 
 export default class MyDbClient extends Client {
@@ -91,7 +91,7 @@ The base class handles caching (`getCollection()` returns the same instance on r
 Extend `Collection` and override the six `_`-prefixed operation methods.
 
 ```javascript
-import { Collection, Cursor } from '@alt-javascript/jsnoslqc-core';
+import { Collection, Cursor } from '@alt-javascript/jsnosqlc-core';
 import MyDbFilterTranslator from './MyDbFilterTranslator.js';
 
 export default class MyDbCollection extends Collection {
@@ -222,7 +222,7 @@ export default class MyDbFilterTranslator {
 For operators your backend doesn't support natively, use `MemoryFilterEvaluator` as a client-side fallback:
 
 ```javascript
-import MemoryFilterEvaluator from '@alt-javascript/jsnoslqc-memory/MemoryFilterEvaluator.js';
+import MemoryFilterEvaluator from '@alt-javascript/jsnosqlc-memory/MemoryFilterEvaluator.js';
 
 // In _find():
 const allDocs = await this._db.fetchAll();
@@ -242,7 +242,7 @@ export { default as MyDbFilterTranslator } from './MyDbFilterTranslator.js';
 The import of `MyDriver.js` triggers `DriverManager.registerDriver()`. Users write:
 
 ```javascript
-import '@alt-javascript/jsnoslqc-mydb'; // self-registers
+import '@alt-javascript/jsnosqlc-mydb'; // self-registers
 ```
 
 ## Step 6: Run the Compliance Suite
@@ -250,8 +250,8 @@ import '@alt-javascript/jsnoslqc-mydb'; // self-registers
 Use the shared compliance suite to verify your driver passes all standard behaviours:
 
 ```javascript
-import { runCompliance } from '@alt-javascript/jsnoslqc-core/test/driverCompliance.js';
-import { DriverManager } from '@alt-javascript/jsnoslqc-core';
+import { runCompliance } from '@alt-javascript/jsnosqlc-core/test/driverCompliance.js';
+import { DriverManager } from '@alt-javascript/jsnosqlc-core';
 import MyDriver from '../MyDriver.js';
 
 describe('My driver compliance', function () {

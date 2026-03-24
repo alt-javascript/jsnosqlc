@@ -1,25 +1,25 @@
-# @alt-javascript/jsnoslqc-memory
+# @alt-javascript/jsnosqlc-memory
 
 [![Language](https://img.shields.io/badge/language-JavaScript-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![npm version](https://img.shields.io/npm/v/%40alt-javascript%2Fjsnoslqc-memory)](https://www.npmjs.com/package/@alt-javascript/jsnoslqc-memory)
+[![npm version](https://img.shields.io/npm/v/%40alt-javascript%2Fjsnoslqc-memory)](https://www.npmjs.com/package/@alt-javascript/jsnosqlc-memory)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![CI](https://github.com/alt-javascript/jsnoslqc/actions/workflows/node.js.yml/badge.svg)](https://github.com/alt-javascript/jsnoslqc/actions/workflows/node.js.yml)
+[![CI](https://github.com/alt-javascript/jsnosqlc/actions/workflows/node.js.yml/badge.svg)](https://github.com/alt-javascript/jsnosqlc/actions/workflows/node.js.yml)
 
 In-memory JSNOSLQC driver. Zero external dependencies. No server required. Ideal for unit tests and local development.
 
-**Part of the [@alt-javascript/jsnoslqc](https://github.com/alt-javascript/jsnoslqc) monorepo.**
+**Part of the [@alt-javascript/jsnosqlc](https://github.com/alt-javascript/jsnosqlc) monorepo.**
 
 ## Install
 
 ```bash
-npm install @alt-javascript/jsnoslqc-core @alt-javascript/jsnoslqc-memory
+npm install @alt-javascript/jsnosqlc-core @alt-javascript/jsnosqlc-memory
 ```
 
 ## Usage
 
 ```javascript
-import { DriverManager, Filter } from '@alt-javascript/jsnoslqc-core';
-import '@alt-javascript/jsnoslqc-memory'; // self-registers with DriverManager
+import { DriverManager, Filter } from '@alt-javascript/jsnosqlc-core';
+import '@alt-javascript/jsnosqlc-memory'; // self-registers with DriverManager
 
 const client = await DriverManager.getClient('jsnoslqc:memory:');
 const users = client.getCollection('users');
@@ -59,8 +59,8 @@ Each call to `DriverManager.getClient('jsnoslqc:memory:')` creates an independen
 ## ClientDataSource
 
 ```javascript
-import { ClientDataSource } from '@alt-javascript/jsnoslqc-core';
-import '@alt-javascript/jsnoslqc-memory';
+import { ClientDataSource } from '@alt-javascript/jsnosqlc-core';
+import '@alt-javascript/jsnosqlc-memory';
 
 const ds = new ClientDataSource({ url: 'jsnoslqc:memory:' });
 const client = await ds.getClient();

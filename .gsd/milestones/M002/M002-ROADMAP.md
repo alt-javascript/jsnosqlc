@@ -78,28 +78,28 @@ Produces:
 ### S02 → S06
 
 Produces:
-- `@alt-javascript/jsnoslqc-firestore` — self-registers `jsnoslqc:firestore:` prefix
+- `@alt-javascript/jsnosqlc-firestore` — self-registers `jsnoslqc:firestore:` prefix
 - `FirestoreFilterTranslator`: AST → Firestore SDK `.where()` chain (including `.or()`)
 - Passes full compliance suite against Firestore emulator
 
 ### S03 → S06
 
 Produces:
-- `@alt-javascript/jsnoslqc-cosmosdb` — self-registers `jsnoslqc:cosmosdb:` prefix
+- `@alt-javascript/jsnosqlc-cosmosdb` — self-registers `jsnoslqc:cosmosdb:` prefix
 - `CosmosFilterTranslator`: AST → Cosmos DB SQL query string (parameterized)
 - Passes full compliance suite against Cosmos DB Linux emulator (vnext-preview)
 
 ### S04 → S06
 
 Produces:
-- `@alt-javascript/jsnoslqc-redis` — self-registers `jsnoslqc:redis:` prefix
+- `@alt-javascript/jsnosqlc-redis` — self-registers `jsnoslqc:redis:` prefix
 - `find()` implemented via SCAN + in-memory MemoryFilterEvaluator
 - Passes compliance suite; find() documented as full-scan
 
 ### S05 → S06
 
 Produces:
-- `@alt-javascript/jsnoslqc-cassandra` — self-registers `jsnoslqc:cassandra:` prefix
+- `@alt-javascript/jsnosqlc-cassandra` — self-registers `jsnoslqc:cassandra:` prefix
 - CQL translator for native operators; MemoryFilterEvaluator fallback for contains/in/nin/exists
 - Passes compliance suite
 

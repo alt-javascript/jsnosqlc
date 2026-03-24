@@ -1,5 +1,5 @@
 {
-  "name": "@alt-javascript/jsnoslqc-mongodb",
+  "name": "@alt-javascript/jsnosqlc-mongodb",
   "version": "1.0.0",
   "description": "JSNOSLQC MongoDB driver via the official mongodb npm package",
   "keywords": [
@@ -13,10 +13,10 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "homepage": "https://github.com/alt-javascript/jsnoslqc/tree/main/packages/mongodb#readme",
+  "homepage": "https://github.com/alt-javascript/jsnosqlc/tree/main/packages/mongodb#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alt-javascript/jsnoslqc",
+    "url": "https://github.com/alt-javascript/jsnosqlc",
     "directory": "packages/mongodb"
   },
   "type": "module",
@@ -25,7 +25,7 @@
     "test": "mocha --recursive 'test/**/*.spec.js' --timeout 10000"
   },
   "dependencies": {
-    "@alt-javascript/jsnoslqc-core": "*",
+    "@alt-javascript/jsnosqlc-core": "*",
     "mongodb": "^6.3.0"
   },
   "devDependencies": {

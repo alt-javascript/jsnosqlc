@@ -1,7 +1,7 @@
 # S01: Core Interfaces and Filter Builder
 
 **Goal:** Establish the complete interface contract and filter builder that all drivers depend on.
-**Demo:** Import `@alt-javascript/jsnoslqc-core`, build a filter with the chainable API, inspect its AST, and run the compliance suite skeleton — all with zero external dependencies.
+**Demo:** Import `@alt-javascript/jsnosqlc-core`, build a filter with the chainable API, inspect its AST, and run the compliance suite skeleton — all with zero external dependencies.
 
 ## Must-Haves
 

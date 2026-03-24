@@ -1,5 +1,5 @@
 {
-  "name": "@alt-javascript/jsnoslqc-firestore",
+  "name": "@alt-javascript/jsnosqlc-firestore",
   "version": "1.0.0",
   "description": "JSNOSLQC Google Firestore driver via @google-cloud/firestore",
   "keywords": [
@@ -14,10 +14,10 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "homepage": "https://github.com/alt-javascript/jsnoslqc/tree/main/packages/firestore#readme",
+  "homepage": "https://github.com/alt-javascript/jsnosqlc/tree/main/packages/firestore#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alt-javascript/jsnoslqc",
+    "url": "https://github.com/alt-javascript/jsnosqlc",
     "directory": "packages/firestore"
   },
   "type": "module",
@@ -26,7 +26,7 @@
     "test": "mocha --recursive 'test/**/*.spec.js' --timeout 30000"
   },
   "dependencies": {
-    "@alt-javascript/jsnoslqc-core": "*",
+    "@alt-javascript/jsnosqlc-core": "*",
     "@google-cloud/firestore": "^8.3.0"
   },
   "devDependencies": {
