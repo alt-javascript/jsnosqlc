@@ -6,6 +6,25 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). Versioning: [S
 
 ---
 
+## [1.1.1] — 2026-03-26
+
+### Changed
+
+- Bumped all nine driver packages (`core`, `memory`, `localstorage`, `mongodb`, `dynamodb`,
+  `firestore`, `cosmosdb`, `redis`, `cassandra`) to **1.1.1** — aligns the version across
+  the entire monorepo following the browser-support release (1.1.0 was only applied to the
+  three new/updated packages; the six server-side driver packages were inadvertently left at
+  1.0.1)
+- Updated `package-lock.json` to reflect the unified version
+
+### Notes
+
+- `npm audit` reports 5 dev-dependency vulnerabilities (3 low, 2 high) in `mocha` and
+  transitive dependencies. These affect the test runner only — no published package exposes
+  them at runtime. A mocha upgrade will be addressed in a future maintenance release.
+
+---
+
 ## [1.1.0] — 2026-03-26
 
 ### Added
@@ -163,5 +182,6 @@ Initial public release of all packages.
 - GitHub Actions workflow: integration tests for Redis + Cassandra
 - GitHub Actions publish workflow: publishes all 8 packages to npm on `v*` tag
 
+[1.1.1]: https://github.com/alt-javascript/jsnosqlc/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/alt-javascript/jsnosqlc/compare/v1.0.1...v1.1.0
 [1.0.0]: https://github.com/alt-javascript/jsnosqlc/releases/tag/v1.0.0

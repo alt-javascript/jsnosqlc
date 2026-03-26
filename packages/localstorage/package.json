@@ -1,6 +1,6 @@
 {
   "name": "@alt-javascript/jsnosqlc-localstorage",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "JSNOSLQC localStorage/sessionStorage driver — isomorphic browser storage with NoSQL semantics",
   "keywords": [
     "jsnosqlc",
