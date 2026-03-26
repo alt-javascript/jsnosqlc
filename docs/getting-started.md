@@ -100,6 +100,44 @@ const client = await DriverManager.getClient('jsnosqlc:mongodb://localhost:27017
 
 All `store`, `get`, `insert`, `update`, `find`, and `delete` calls behave identically. The only change is the URL and the import.
 
+## Step 6: Use localStorage in the Browser
+
+The in-memory and localStorage drivers ship as pre-built ESM bundles — no bundler required. Create `demo.html`:
+
+```html
+<!DOCTYPE html>
+<html>
+<head><title>jsnosqlc browser demo</title></head>
+<body>
+<script type="module">
+  import { DriverManager, Filter } from
+    'https://unpkg.com/@alt-javascript/jsnosqlc-localstorage/dist/jsnosqlc-localstorage.esm.js';
+
+  const client = await DriverManager.getClient('jsnosqlc:localstorage:');
+  const users = client.getCollection('users');
+
+  await users.store('u1', { name: 'Alice', age: 30 });
+  const alice = await users.get('u1');
+  console.log('Retrieved:', alice.name); // Alice — persists across reloads
+
+  const filter = Filter.where('age').gte(18).build();
+  const cursor = await users.find(filter);
+  console.log('Found:', cursor.getDocuments().length);
+
+  await client.close();
+</script>
+</body>
+</html>
+```
+
+Open `demo.html` in a browser. The documents survive page reload — they live in `localStorage`. Open DevTools → Application → Local Storage to see the raw key/value pairs.
+
+To use `sessionStorage` instead (cleared when the tab closes), change the URL:
+
+```javascript
+const client = await DriverManager.getClient('jsnosqlc:sessionstorage:');
+```
+
 ## What You've Learned
 
 - How to connect to a driver with `DriverManager.getClient(url)`
@@ -112,4 +150,4 @@ All `store`, `get`, `insert`, `update`, `find`, and `delete` calls behave identi
 
 - [API Reference](api-reference.md) — full interface documentation
 - [Driver Guide](driver-guide.md) — write a driver for any database
-- [Choosing a Driver](https://github.com/alt-javascript/jsnosqlc#packages) — compare all eight drivers
+- [Choosing a Driver](https://github.com/alt-javascript/jsnosqlc#packages) — compare all nine drivers

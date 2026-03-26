@@ -1,23 +1,20 @@
 # GSD State
 
-**Active Milestone:** M002 — Extended Drivers
-**Active Slice:** — (all slices complete)
-**Active Task:** — (complete)
-**Phase:** Complete
+**Active Milestone:** M002: Extended Drivers — Firestore, Cosmos DB, Redis, Cassandra
+**Active Slice:** S01: Filter builder extension (or/not) + M1 translator updates
+**Phase:** planning
+**Requirements Status:** 0 active · 0 validated · 0 deferred · 0 out of scope
+
+## Milestone Registry
+- ✅ **M001:** jsnosqlc Foundation
+- 🔄 **M002:** Extended Drivers — Firestore, Cosmos DB, Redis, Cassandra
+- ✅ **M003:** M003: Browser Support — LocalStorage Driver + ESM Bundles
 
 ## Recent Decisions
-
-- Cosmos DB vnext-preview emulator serves HTTP (not HTTPS) on 8081 — drop TLS agent for local connections
-- Cosmos DB partition key spec requires `{ paths: ['/id'], kind: 'Hash' }` — vnext-preview validates `kind`
-- Redis find() uses secondary key index (Set) per collection, not SCAN of full keyspace
-- Cassandra find() uses full table SELECT + client-side filter — documents this limitation
-- Firestore `not` operator not supported natively — falls back to client-side filter via MemoryFilterEvaluator
+- None recorded
 
 ## Blockers
-
 - None
 
 ## Next Action
-
-M002 complete. 8 drivers shipped (memory, MongoDB, DynamoDB, Firestore, Cosmos DB, Redis, Cassandra).
-Consider M003: streaming cursors, transaction API, or/not compliance test extension, connection pooling.
+Plan slice S01 (Filter builder extension (or/not) + M1 translator updates).

@@ -25,6 +25,7 @@ JavaScript's NoSQL ecosystem is as fragmented as its SQL ecosystem. Every databa
 |---|---|---|
 | [`@alt-javascript/jsnosqlc-core`](packages/core/) | Interfaces: Driver, Client, Collection, Cursor, Filter, DriverManager | Any |
 | [`@alt-javascript/jsnosqlc-memory`](packages/memory/) | In-memory driver — zero dependencies, for testing and dev | In-process |
+| [`@alt-javascript/jsnosqlc-localstorage`](packages/localstorage/) | localStorage / sessionStorage driver — browser and Node.js (via MockStorage injection) | Web Storage |
 | [`@alt-javascript/jsnosqlc-mongodb`](packages/mongodb/) | MongoDB driver via [mongodb](https://www.npmjs.com/package/mongodb) | MongoDB |
 | [`@alt-javascript/jsnosqlc-dynamodb`](packages/dynamodb/) | DynamoDB driver via [@aws-sdk/client-dynamodb](https://www.npmjs.com/package/@aws-sdk/client-dynamodb) | AWS DynamoDB |
 | [`@alt-javascript/jsnosqlc-firestore`](packages/firestore/) | Google Firestore driver via [@google-cloud/firestore](https://www.npmjs.com/package/@google-cloud/firestore) | GCP Firestore |
@@ -313,6 +314,68 @@ await client.close();
 > column. Non-pk field filtering is done client-side after a full table scan.
 > For production, model your tables to support your access patterns natively in CQL.
 
+## Browser Quick-Start
+
+jsnosqlc includes ESM bundles for `@alt-javascript/jsnosqlc-memory` and `@alt-javascript/jsnosqlc-localstorage` that work directly in the browser via `<script type="module">` — no bundler or build step required.
+
+### LocalStorage driver (persistent browser storage)
+
+```html
+<script type="module">
+  import { DriverManager, Filter } from
+    'https://unpkg.com/@alt-javascript/jsnosqlc-localstorage/dist/jsnosqlc-localstorage.esm.js';
+
+  const client = await DriverManager.getClient('jsnosqlc:localstorage:');
+  const users = client.getCollection('users');
+
+  await users.store('u1', { name: 'Alice', age: 30 });
+  const alice = await users.get('u1');   // { name: 'Alice', age: 30 }
+
+  const id = await users.insert({ name: 'Bob', age: 25 });
+
+  const filter = Filter.where('age').gte(25).build();
+  const cursor = await users.find(filter);
+  console.log(cursor.getDocuments()); // [Alice, Bob]
+
+  await client.close();
+</script>
+```
+
+Documents survive page reloads — stored in `localStorage` with a namespaced key scheme (`clientId:collection:docKey`).
+
+### SessionStorage driver
+
+Replace the URL — documents are cleared when the tab closes:
+
+```javascript
+const client = await DriverManager.getClient('jsnosqlc:sessionstorage:');
+```
+
+### In-memory driver (browser — no persistence)
+
+```html
+<script type="module">
+  import { DriverManager } from
+    'https://unpkg.com/@alt-javascript/jsnosqlc-memory/dist/jsnosqlc-memory.esm.js';
+
+  const client = await DriverManager.getClient('jsnosqlc:memory:');
+  // same API — data is lost on page reload
+</script>
+```
+
+### Isomorphic usage (Node.js and browser, same code)
+
+In Node.js, inject a `MockStorage` in place of the browser's `localStorage`:
+
+```javascript
+import { DriverManager, MockStorage } from '@alt-javascript/jsnosqlc-localstorage';
+
+const client = await DriverManager.getClient('jsnosqlc:localstorage:', {
+  storageBackend: new MockStorage(), // compatible in Node.js, Jest, Mocha, etc.
+});
+// identical API to the browser version
+```
+
 ## Filter Operators
 
 ## Writing a jsnosqlc Driver
@@ -341,8 +404,10 @@ git clone https://github.com/alt-javascript/jsnosqlc.git
 cd jsnosqlc
 npm install
 
-npm test                  # CI-safe: core + memory (55 tests, no external deps)
-npm run test:integration  # all drivers (requires Docker)
+npm test                  # CI-safe: core + memory + localstorage (106 tests, no external deps)
+npm run build:browser     # build ESM bundles for core, memory, and localstorage
+npm run test:browser      # Playwright browser integration test (requires Chrome)
+npm run test:integration  # all server drivers (requires Docker)
 ```
 
 See [Driver Guide](docs/driver-guide.md) for instructions on contributing a new driver.

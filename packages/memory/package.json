@@ -1,6 +1,6 @@
 {
   "name": "@alt-javascript/jsnosqlc-memory",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "JSNOSLQC in-memory driver — for testing and offline development",
   "keywords": [
     "jsnosqlc",
@@ -21,16 +21,31 @@
     "directory": "packages/memory"
   },
   "type": "module",
+  "sideEffects": [
+    "./MemoryDriver.js"
+  ],
   "main": "index.js",
+  "module": "dist/jsnosqlc-memory.esm.js",
+  "browser": "dist/jsnosqlc-memory.esm.js",
+  "exports": {
+    ".": {
+      "browser": "./dist/jsnosqlc-memory.esm.js",
+      "import": "./index.js",
+      "default": "./index.js"
+    }
+  },
   "scripts": {
+    "build:browser": "rollup -c",
     "test": "mocha --recursive 'test/**/*.spec.js'"
   },
   "dependencies": {
     "@alt-javascript/jsnosqlc-core": "*"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "*",
     "chai": "^4.3.7",
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "rollup": "*"
   },
   "author": "Craig Parravicini",
   "contributors": [

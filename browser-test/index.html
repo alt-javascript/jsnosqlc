@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jsnosqlc browser test</title>
+  <style>
+    body { font-family: monospace; padding: 1rem; background: #111; color: #eee; }
+    h1 { color: #7cf; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 2px 0; }
+    li[data-status="pass"]::before { content: "✓ "; color: #4f4; }
+    li[data-status="fail"]::before { content: "✗ "; color: #f44; }
+    #summary { margin-top: 1rem; font-size: 1.2em; }
+  </style>
+</head>
+<body>
+  <h1>jsnosqlc browser compliance</h1>
+  <ul id="results"></ul>
+  <div id="summary">Running...</div>
+
+  <script type="module">
+    // Import the localstorage bundle — includes core (DriverManager, Filter) inlined
+    import {
+      DriverManager,
+      Filter,
+    } from '../packages/localstorage/dist/jsnosqlc-localstorage.esm.js';
+
+    const results = [];
+    const list = document.getElementById('results');
+    const summary = document.getElementById('summary');
+
+    function pass(label) {
+      results.push({ label, status: 'pass' });
+      const li = document.createElement('li');
+      li.setAttribute('data-status', 'pass');
+      li.textContent = label;
+      list.appendChild(li);
+    }
+
+    function fail(label, err) {
+      results.push({ label, status: 'fail', error: String(err) });
+      const li = document.createElement('li');
+      li.setAttribute('data-status', 'fail');
+      li.textContent = `${label}: ${err}`;
+      list.appendChild(li);
+      console.error(`FAIL: ${label}`, err);
+    }
+
+    async function run(label, fn) {
+      try {
+        await fn();
+        pass(label);
+      } catch (e) {
+        fail(label, e);
+      }
+    }
+
+    async function runSuite(driverUrl, label) {
+      const client = await DriverManager.getClient(driverUrl);
+      const col = client.getCollection('browser_test_' + Date.now());
+
+      await run(`[${label}] store and get`, async () => {
+        await col.store('k1', { name: 'Alice', age: 30 });
+        const doc = await col.get('k1');
+        if (!doc || doc.name !== 'Alice' || doc.age !== 30) throw new Error('get returned wrong doc');
+      });
+
+      await run(`[${label}] get returns null for missing key`, async () => {
+        const doc = await col.get('missing_' + Date.now());
+        if (doc !== null) throw new Error(`expected null, got ${JSON.stringify(doc)}`);
+      });
+
+      await run(`[${label}] store overwrites (upsert)`, async () => {
+        await col.store('k-ups', { val: 1 });
+        await col.store('k-ups', { val: 2 });
+        const doc = await col.get('k-ups');
+        if (doc.val !== 2) throw new Error(`expected 2, got ${doc.val}`);
+      });
+
+      await run(`[${label}] delete`, async () => {
+        await col.store('k-del', { x: 1 });
+        await col.delete('k-del');
+        const doc = await col.get('k-del');
+        if (doc !== null) throw new Error('expected null after delete');
+      });
+
+      await run(`[${label}] insert returns id`, async () => {
+        const id = await col.insert({ name: 'Bob' });
+        if (typeof id !== 'string' || id.length === 0) throw new Error(`bad id: ${id}`);
+        const doc = await col.get(id);
+        if (!doc || doc.name !== 'Bob') throw new Error('inserted doc not retrievable');
+      });
+
+      await run(`[${label}] two inserts produce different ids`, async () => {
+        const id1 = await col.insert({ n: 1 });
+        const id2 = await col.insert({ n: 2 });
+        if (id1 === id2) throw new Error('duplicate ids');
+      });
+
+      await run(`[${label}] update patches fields`, async () => {
+        await col.store('k-upd', { name: 'Carol', age: 35, country: 'AU' });
+        await col.update('k-upd', { age: 36 });
+        const doc = await col.get('k-upd');
+        if (doc.age !== 36) throw new Error(`age should be 36, got ${doc.age}`);
+        if (doc.country !== 'AU') throw new Error('country should be preserved');
+      });
+
+      // find() tests — seed data
+      const fc = client.getCollection('browser_find_' + Date.now());
+      await fc.store('f1', { status: 'active', age: 30 });
+      await fc.store('f2', { status: 'inactive', age: 25 });
+      await fc.store('f3', { status: 'active', age: 35 });
+
+      await run(`[${label}] find eq`, async () => {
+        const cursor = await fc.find(Filter.where('status').eq('active').build());
+        const docs = cursor.getDocuments();
+        if (docs.length !== 2) throw new Error(`expected 2, got ${docs.length}`);
+        if (!docs.every(d => d.status === 'active')) throw new Error('non-active doc in results');
+      });
+
+      await run(`[${label}] find gt`, async () => {
+        const cursor = await fc.find(Filter.where('age').gt(25).build());
+        const docs = cursor.getDocuments();
+        if (!docs.every(d => d.age > 25)) throw new Error('gt filter incorrect');
+      });
+
+      await run(`[${label}] find compound and`, async () => {
+        const filter = Filter.where('status').eq('active').and('age').gt(30).build();
+        const cursor = await fc.find(filter);
+        const docs = cursor.getDocuments();
+        if (!docs.every(d => d.status === 'active' && d.age > 30)) throw new Error('compound and incorrect');
+      });
+
+      await client.close();
+    }
+
+    // Run against localStorage driver
+    await runSuite('jsnosqlc:localstorage:', 'localStorage');
+
+    // Run against sessionStorage driver
+    await runSuite('jsnosqlc:sessionstorage:', 'sessionStorage');
+
+    // Final summary
+    const passed = results.filter(r => r.status === 'pass').length;
+    const failed = results.filter(r => r.status === 'fail').length;
+
+    window.__testResults = { passed, failed, tests: results };
+    summary.textContent = `${passed} passed, ${failed} failed`;
+    document.title = `DONE: ${passed} passed, ${failed} failed`;
+  </script>
+</body>
+</html>

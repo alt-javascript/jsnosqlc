@@ -1,3 +1,14 @@
 node_modules/
 .DS_Store
 *.log
+
+# SQLite WAL journals (GSD internal)
+.gsd/gsd.db-shm
+.gsd/gsd.db-wal
+
+# Playwright
+test-results/
+playwright-report/
+
+# Rollup sourcemaps
+**/*.esm.js.map

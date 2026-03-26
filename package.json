@@ -1,6 +1,6 @@
 {
   "name": "jsnosqlc",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "JDBC-inspired unified NoSQL access layer for JavaScript",
   "private": true,
   "type": "module",
@@ -8,7 +8,9 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "npm test --workspace=packages/core --workspace=packages/memory",
+    "build:browser": "npm run build:browser --workspace=packages/core && npm run build:browser --workspace=packages/memory && npm run build:browser --workspace=packages/localstorage",
+    "test": "npm test --workspace=packages/core --workspace=packages/memory --workspace=packages/localstorage",
+    "test:browser": "npx playwright test browser-test/browser.spec.js",
     "test:integration": "npm test --workspace=packages/mongodb --workspace=packages/dynamodb --workspace=packages/firestore --workspace=packages/cosmosdb --workspace=packages/redis --workspace=packages/cassandra"
   },
   "keywords": [
@@ -23,5 +25,10 @@
   "contributors": [
     "Claude (Anthropic)"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "rollup": "^4.60.0"
+  }
 }

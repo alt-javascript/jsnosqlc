@@ -1,41 +1,46 @@
 {
-  "name": "@alt-javascript/jsnosqlc-core",
+  "name": "@alt-javascript/jsnosqlc-localstorage",
   "version": "1.1.0",
-  "description": "JSNOSLQC core interfaces — Driver, Client, Collection, Cursor, Filter, DriverManager",
+  "description": "JSNOSLQC localStorage/sessionStorage driver — isomorphic browser storage with NoSQL semantics",
   "keywords": [
     "jsnosqlc",
     "nosql",
-    "database",
-    "driver",
-    "filter",
-    "mongodb",
-    "dynamodb"
+    "localstorage",
+    "sessionstorage",
+    "browser",
+    "isomorphic",
+    "driver"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "homepage": "https://github.com/alt-javascript/jsnosqlc/tree/main/packages/core#readme",
+  "homepage": "https://github.com/alt-javascript/jsnosqlc/tree/main/packages/localstorage#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/alt-javascript/jsnosqlc",
-    "directory": "packages/core"
+    "directory": "packages/localstorage"
   },
   "type": "module",
   "main": "index.js",
-  "module": "dist/jsnosqlc-core.esm.js",
-  "browser": "dist/jsnosqlc-core.esm.js",
+  "module": "dist/jsnosqlc-localstorage.esm.js",
+  "browser": "dist/jsnosqlc-localstorage.esm.js",
+  "sideEffects": [
+    "./LocalStorageDriver.js"
+  ],
   "exports": {
     ".": {
-      "browser": "./dist/jsnosqlc-core.esm.js",
+      "browser": "./dist/jsnosqlc-localstorage.esm.js",
       "import": "./index.js",
       "default": "./index.js"
-    },
-    "./test/driverCompliance.js": "./test/driverCompliance.js"
+    }
   },
   "scripts": {
     "build:browser": "rollup -c",
     "test": "mocha --recursive 'test/**/*.spec.js'"
+  },
+  "dependencies": {
+    "@alt-javascript/jsnosqlc-core": "*"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "*",

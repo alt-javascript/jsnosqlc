@@ -6,6 +6,72 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). Versioning: [S
 
 ---
 
+## [1.1.0] — 2026-03-26
+
+### Added
+
+**LocalStorage driver (`@alt-javascript/jsnosqlc-localstorage`)** — new package
+
+- `LocalStorageDriver` — registers `jsnosqlc:localstorage:`, connects to `globalThis.localStorage`
+  or an injected `storageBackend` property
+- `SessionStorageDriver` — registers `jsnosqlc:sessionstorage:`, connects to `globalThis.sessionStorage`
+  or an injected `storageBackend` property
+- `LocalStorageClient` — generates a unique `clientId` per connection to namespace all storage keys
+- `LocalStorageCollection` — full six-operation implementation over Web Storage with key scheme
+  `<clientId>:<collectionName>:<docKey>`; `find()` applies `MemoryFilterEvaluator` over all
+  collection keys
+- `MockStorage` — in-process Web Storage API implementation (`getItem`, `setItem`, `removeItem`,
+  `clear`, `length`, `key`) for isomorphic testing in Node.js without a browser or jsdom
+- Full compliance suite (51 tests): 24 localStorage + 24 sessionStorage + 3 cross-client
+  isolation tests — all passing with injected `MockStorage`
+
+**ESM browser bundles**
+
+- `packages/core/dist/jsnosqlc-core.esm.js` — standalone core bundle
+- `packages/memory/dist/jsnosqlc-memory.esm.js` — memory driver bundle with core inlined;
+  re-exports `DriverManager`, `Filter`, and all core symbols for single-import browser usage
+- `packages/localstorage/dist/jsnosqlc-localstorage.esm.js` — localStorage driver bundle with
+  core inlined; both `LocalStorageDriver` and `SessionStorageDriver` auto-register on import
+- `npm run build:browser` — root-level script builds all three bundles via rollup
+
+**Browser integration test**
+
+- `browser-test/index.html` — inline compliance harness (20 operations against localStorage
+  and sessionStorage) loadable via a local HTTP server
+- `browser-test/browser.spec.js` — Playwright spec; starts an inline Node.js HTTP server,
+  loads the test page in Chrome, asserts zero failures; passes in ~165 ms
+- `npm run test:browser` — runs the Playwright spec against installed Chrome
+
+**Documentation**
+
+- `packages/localstorage/README.md` — package README with browser and Node.js usage, key
+  namespacing explanation, performance note, and `MockStorage` reference
+- `docs/getting-started.md` — new Step 6: browser `localStorage` usage with `<script type="module">`
+- `docs/api-reference.md` — new LocalStorage Driver and MockStorage sections; URL scheme table
+  updated to include `jsnosqlc:localstorage:` and `jsnosqlc:sessionstorage:`
+- `README.md` — Browser Quick-Start section with localStorage, sessionStorage, in-memory browser,
+  and isomorphic Node.js examples; packages table updated; contributing commands updated
+
+### Changed
+
+- `packages/memory/index.js` — re-exports all core symbols (`DriverManager`, `Filter`,
+  `Client`, `Collection`, `Cursor`, etc.) so the memory ESM bundle is a complete standalone
+  browser API with a single import
+- `packages/core/package.json`, `packages/memory/package.json` — added `module` and `browser`
+  fields pointing at `dist/` bundles; added `build:browser` script
+- Root `package.json` — added `build:browser` and `test:browser` scripts; `test` script now
+  includes `packages/localstorage`
+
+### Technical notes
+
+- rollup bundles use `treeshake: false` to guarantee `DriverManager.registerDriver()` side-effects
+  are not elided when core is inlined; this is intentional and correct for bundles of this size
+- `packages/localstorage` vendors `MemoryFilterEvaluator.js` locally rather than depending on
+  `@alt-javascript/jsnosqlc-memory`, avoiding a dual-`DriverManager` instance in the browser
+  bundle
+
+---
+
 ## [1.0.1] — 2026-03-24
 
 ### Fixed
@@ -97,4 +163,5 @@ Initial public release of all packages.
 - GitHub Actions workflow: integration tests for Redis + Cassandra
 - GitHub Actions publish workflow: publishes all 8 packages to npm on `v*` tag
 
+[1.1.0]: https://github.com/alt-javascript/jsnosqlc/compare/v1.0.1...v1.1.0
 [1.0.0]: https://github.com/alt-javascript/jsnosqlc/releases/tag/v1.0.0

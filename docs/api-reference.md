@@ -330,6 +330,8 @@ jsnosqlc:<subprotocol>:<connection-details>
 | URL | Driver Package |
 |---|---|
 | `jsnosqlc:memory:` | `@alt-javascript/jsnosqlc-memory` |
+| `jsnosqlc:localstorage:` | `@alt-javascript/jsnosqlc-localstorage` |
+| `jsnosqlc:sessionstorage:` | `@alt-javascript/jsnosqlc-localstorage` |
 | `jsnosqlc:mongodb://<host>:<port>/<db>` | `@alt-javascript/jsnosqlc-mongodb` |
 | `jsnosqlc:dynamodb:<region>` | `@alt-javascript/jsnosqlc-dynamodb` |
 | `jsnosqlc:firestore:<project-id>` | `@alt-javascript/jsnosqlc-firestore` |
@@ -337,6 +339,106 @@ jsnosqlc:<subprotocol>:<connection-details>
 | `jsnosqlc:cosmosdb:<https-endpoint>` | `@alt-javascript/jsnosqlc-cosmosdb` |
 | `jsnosqlc:redis://<host>:<port>[/<db>]` | `@alt-javascript/jsnosqlc-redis` |
 | `jsnosqlc:cassandra:<host>:<port>/<keyspace>` | `@alt-javascript/jsnosqlc-cassandra` |
+
+---
+
+## LocalStorage Driver (`@alt-javascript/jsnosqlc-localstorage`)
+
+Implements the full Collection interface over the Web Storage API. Supports both `localStorage` (persistent) and `sessionStorage` (tab-scoped). Works in the browser via an ESM bundle and in Node.js via an injected `MockStorage`.
+
+### Installation
+
+```bash
+npm install @alt-javascript/jsnosqlc-core @alt-javascript/jsnosqlc-localstorage
+```
+
+### URLs
+
+| URL | Backend |
+|---|---|
+| `jsnosqlc:localstorage:` | `globalThis.localStorage` (browser) or `storageBackend` (injected) |
+| `jsnosqlc:sessionstorage:` | `globalThis.sessionStorage` (browser) or `storageBackend` (injected) |
+
+### Connection Properties
+
+| Property | Type | Description |
+|---|---|---|
+| `storageBackend` | `Storage` | Optional. Any Web Storage-compatible object. Defaults to `globalThis.localStorage` / `globalThis.sessionStorage`. Pass a `MockStorage` instance for Node.js testing. |
+
+### Node.js Usage (isomorphic)
+
+```javascript
+import { DriverManager, MockStorage } from '@alt-javascript/jsnosqlc-localstorage';
+
+const client = await DriverManager.getClient('jsnosqlc:localstorage:', {
+  storageBackend: new MockStorage(),
+});
+const col = client.getCollection('orders');
+await col.store('o1', { status: 'pending', total: 59.99 });
+```
+
+### Browser Usage (ESM bundle)
+
+```html
+<script type="module">
+  import { DriverManager, Filter } from
+    'https://unpkg.com/@alt-javascript/jsnosqlc-localstorage/dist/jsnosqlc-localstorage.esm.js';
+
+  const client = await DriverManager.getClient('jsnosqlc:localstorage:');
+  const col = client.getCollection('orders');
+  await col.store('o1', { status: 'pending', total: 59.99 });
+</script>
+```
+
+### Key Namespacing
+
+Keys are stored as `<clientId>:<collectionName>:<docKey>`. The `clientId` is generated per `getClient()` call, preventing cross-client data collision when multiple instances share the same storage backend.
+
+### find() Performance
+
+`find()` iterates all storage keys with the collection prefix. Suitable for collections with hundreds to low-thousands of documents (within the browser's ~5–10 MB quota). Not suitable for large-scale data — use a server-side driver for that.
+
+### Supported Operations
+
+All six Collection operations: `get`, `store`, `delete`, `insert`, `update`, `find`.
+
+All ten Filter operators + `Filter.or()` and `.not()` via `MemoryFilterEvaluator`.
+
+---
+
+## MockStorage
+
+In-memory implementation of the Web Storage API. Provided by `@alt-javascript/jsnosqlc-localstorage` for use in Node.js test environments.
+
+```javascript
+import { MockStorage } from '@alt-javascript/jsnosqlc-localstorage';
+
+const storage = new MockStorage();
+```
+
+### Methods
+
+| Method | Description |
+|---|---|
+| `storage.getItem(key)` | Returns the string value for `key`, or `null` if absent |
+| `storage.setItem(key, value)` | Stores `String(value)` under `String(key)` |
+| `storage.removeItem(key)` | Removes `key` |
+| `storage.clear()` | Removes all keys |
+| `storage.length` | Number of stored keys |
+| `storage.key(index)` | Returns the key at `index` (insertion order), or `null` |
+
+`MockStorage` is compatible with any API that accepts a Web Storage object. It can also be used standalone in tests to inspect stored state:
+
+```javascript
+const storage = new MockStorage();
+const client = await DriverManager.getClient('jsnosqlc:localstorage:', {
+  storageBackend: storage,
+});
+await client.getCollection('users').store('u1', { name: 'Alice' });
+
+// Inspect raw storage state
+console.log(storage.length); // 1 — one namespaced key stored
+```
 
 ---
 
